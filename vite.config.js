@@ -10,7 +10,7 @@ export default defineConfig(({ command }) => {
       [command === 'serve' ? 'global' : '_global']: {},
     },
     root: 'src',
-    base: '/devdreamers-02/',
+    base: '/script-ninjas-project /',
     build: {
       sourcemap: true,
       rollupOptions: {
