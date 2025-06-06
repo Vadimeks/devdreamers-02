@@ -1,4 +1,4 @@
-.footer {
+/* .footer {
   padding: 20px 0;
 }
 .footer-desc {
@@ -18,4 +18,7 @@
   height: 24%;
   background-color: #41d1ff;
   transition: 200ms ease;
+} */
+.footer-section {
+  background-color: bisque;
 }
