@@ -54,8 +54,8 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
   display: flex;
   flex-direction: column;
-  min-width: 100vw;
-  min-height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
   margin: 0;
 }
 
@@ -69,6 +69,12 @@ h6 {
   font-weight: 700;
 }
 
-main {
-  flex-grow: 1;
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
