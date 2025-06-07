@@ -68,3 +68,13 @@ h6 {
   font-family: 'Epilogue', sans-serif;
   font-weight: 700;
 }
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
