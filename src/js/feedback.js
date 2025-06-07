@@ -1,6 +1,8 @@
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
+import 'css-star-rating/css/star-rating.css';
+
 const swiperWrapper = document.querySelector('.swiper-wrapper');
 
 async function fetchFeedback() {
@@ -12,7 +14,6 @@ async function fetchFeedback() {
       throw new Error(`Error HTTP: ${response.status}`);
     }
     const feedbacks = await response.json();
-    console.log('Полученные отзывы:', feedbacks);
 
     const list = Array.isArray(feedbacks) ? feedbacks : feedbacks.data;
 
