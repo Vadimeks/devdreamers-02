@@ -1,11 +1,100 @@
-.mobile-menu {
-    background-color: blue;
-}
-
-@media only screen and (min-width: 768px) {
-    .mobile-menu {
+.mobile-backdrop {
+    .mobile-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 4;
         display: none;
     }
 }
 
-@media only screen and (min-width: 1440px) {}
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #060307;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+.mobile-nav {
+    margin: auto;
+    width: 109px;
+    height: 181px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 39px;
+}
+
+.mob-nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.5;
+    color: #fff;
+}
+
+.mob-nav-item:not(:last-child) {
+    margin-bottom: 32px;
+}
+
+.mob-nav-link {
+    text-align: center;
+    transition: background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mob-nav-link:hover,
+.mob-nav-link:focus {
+    color: #764191;
+}
+
+.mob-nav-link:active {
+    color: #ffffff;
+}
+
+.icon-close {
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-backdrop.open {
+    display: block;
+}
+
+.mobile-backdrop.open .mobile-menu {
+    transform: translateX(0);
+}
+
+.mobile-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+    border: none;
+    margin-top: 26.34px;
+    margin-right: 26.34px;
+    padding: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .modal {
+        display: none;
+    }
+}
+
+.mobile-logo {
+    display: block;
+    margin: 10.63px 6.18px 10.17px 6.18px;
+    width: 106px;
+    height: 30px;
+}
