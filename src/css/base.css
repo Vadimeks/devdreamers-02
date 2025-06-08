@@ -54,8 +54,8 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
   display: flex;
   flex-direction: column;
-  min-width: 100vw;
-  min-height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
   margin: 0;
 }
 
@@ -77,4 +77,17 @@ html {
 *::before,
 *::after {
   box-sizing: inherit;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
