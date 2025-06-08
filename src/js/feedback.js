@@ -41,7 +41,18 @@ function createFeedbackSlide({ rating, text, user }) {
 
 function renderStars(count) {
   const max = 5;
-  return '★'.repeat(count) + '☆'.repeat(max - count);
+  let starsHTML = '';
+
+  for (let i = 1; i <= max; i++) {
+    const iconId = i <= count ? 'icon-star-filled' : 'icon-star-outline';
+    starsHTML += `
+        <svg class="star-icon" width="24" height="24">
+          <use href="/images/sprite.svg#icon-star"></use>
+        </svg>
+      `;
+  }
+
+  return starsHTML;
 }
 
 function initSwiper() {
@@ -58,5 +69,3 @@ function initSwiper() {
     grabCursor: true,
   });
 }
-
-fetchFeedbacks();
