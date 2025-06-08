@@ -9,7 +9,7 @@
   <script type="module" crossorigin src="/script-ninjas-project/index.js"></script>
   <link rel="modulepreload" crossorigin href="/script-ninjas-project/assets/vendor-fCUiSAzf.js">
   <link rel="stylesheet" crossorigin href="/script-ninjas-project/assets/vendor-B412uKhI.css">
-  <link rel="stylesheet" crossorigin href="/script-ninjas-project/assets/index-C4juTGU4.css">
+  <link rel="stylesheet" crossorigin href="/script-ninjas-project/assets/index-DwXDPx6h.css">
 </head>
 
 <body>
@@ -87,12 +87,26 @@
         </div>
     </div>
 </section>
-    <section class="artists-section">
+    <div class="artists-section">
   <div class="container artists-container">
 
-    <h2>Artists
+    <h2 class="artists-title">Artists
     </h2>
+    <h3 class="artists-text">Explore Your New Favorite Artists</h3>
+  <div id="global-loader">
+    <span class="loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </span>
   </div>
+    <ul class="gallery"></ul>
+    <button class="btn js-btn hidden" type="button" data-action="load-more">
+      <span class="btn-label">Load More<svg class="load-icon" width="14" height="14"><use href="/script-ninjas-project/assets/symbol-defs-BDz3EK9D.svg#icon-icon"></use></svg></span>
+      <span class="js-loader hidden" role="status" aria-hidden="true"></span>
+    </button>
+  </div>
+</div>
 </section>
     <div class="modal-artists">
     <h3>Modal</h3>
@@ -130,7 +144,7 @@
   <footer class="footer-section">
   <div class="container footer-container">
     <svg class="logo-icon" width="119" height="52">
-      <use href="/script-ninjas-project/assets/sprite-BRvbVQhF.svg#logo"></use>
+      <use href="/script-ninjas-project/assets/sprite-7pSovaBr.svg#logo"></use>
     </svg></a>
     <h3>Footer</h3>
   </div>
