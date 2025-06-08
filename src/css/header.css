@@ -28,7 +28,7 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6.5px 4px 6.5px 0px;
+    padding: 6.5px 4px 6.5px 0;
 }
 
 .header-nav-list {
@@ -36,7 +36,7 @@ html {
 }
 
 .logo-icon {
-    padding: 10.63px 6.18px 10.17px;
+    padding: 10.63px 6.18px 10.17px 0;
     width: 119px;
     height: 51px;
     color: #764191;
