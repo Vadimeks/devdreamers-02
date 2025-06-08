@@ -20,6 +20,7 @@ html {
     align-items: center;
     justify-content: space-between;
     background-color: transparent;
+    padding-right: 12px;
 }
 
 .header-nav {
@@ -27,10 +28,7 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 6.5px;
-    padding-left: 20px;
-    padding-bottom: 6.5px;
-    text-align: center;
+    padding: 6.5px 4px 6.5px 10.5px;
 }
 
 .header-nav-list {
@@ -38,10 +36,10 @@ html {
 }
 
 .logo-icon {
-    margin: 10.63px 6.18px 10.17px 6.18px;
-    width: 106px;
-    height: 30px;
-
+    padding: 10.63px 6.18px 10.17px;
+    width: 119px;
+    height: 51px;
+    color: #764191;
 }
 
 .burger-btn {
@@ -50,29 +48,25 @@ html {
     padding: 0;
     border: none;
     background-color: transparent;
-    margin-top: 8px;
-    margin-right: 24px;
-    margin-bottom: 8px;
+    cursor: pointer;
 }
 
 .burger-icon {
     stroke: #ffffff;
 }
 
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 320px) {
     .header-container {
-        width: 375px;
+        max-width: 320px;
+        height: 64px;
+        padding-right: 20px;
     }
 }
 
 @media screen and (min-width: 768px) {
     .header-container {
-        width: 768px;
+        max-width: 768px;
         height: 72px;
-    }
-
-    .header-nav {
-        padding-left: 0;
     }
 
     .burger-btn {
@@ -112,7 +106,7 @@ html {
 
 @media screen and (min-width: 1440px) {
     .header-container {
-        width: 1440px;
+        max-width: 1440px;
         background-color: transparent;
     }
 
