@@ -37,7 +37,6 @@ html {
     display: none;
 }
 
-
 .logo-icon {
     margin: 10.63px 6.18px 10.17px 6.18px;
     width: 106px;
@@ -75,7 +74,6 @@ html {
     .header-nav {
         padding-left: 0;
     }
-
 
     .burger-btn {
         display: none;
