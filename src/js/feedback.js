@@ -2,31 +2,27 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
 import 'css-star-rating/css/star-rating.css';
+import { fetchFeedbacks } from './apiService';
 
 const swiperWrapper = document.querySelector('.swiper-wrapper');
 
-async function fetchFeedback() {
+async function loadFeedbacks() {
   try {
-    const response = await fetch(
-      'https://sound-wave.b.goit.study/api/feedbacks?limit=10&page=1'
-    );
-    if (!response.ok) {
-      throw new Error(`Error HTTP: ${response.status}`);
-    }
-    const feedbacks = await response.json();
+    const response = await fetchFeedbacks(10, 1);
+    const feedbacks = response.data;
 
-    const list = Array.isArray(feedbacks) ? feedbacks : feedbacks.data;
-
-    list.forEach(({ rating, descr, name }) => {
+    feedbacks.forEach(({ rating, descr, name }) => {
       const slide = createFeedbackSlide({ rating, text: descr, user: name });
       swiperWrapper.appendChild(slide);
     });
 
     initSwiper();
   } catch (error) {
-    console.error('Oops...Error:', error);
+    console.error('Oops...Error', error);
   }
 }
+
+loadFeedbacks();
 
 function createFeedbackSlide({ rating, text, user }) {
   const slide = document.createElement('div');
@@ -63,4 +59,4 @@ function initSwiper() {
   });
 }
 
-fetchFeedback();
+fetchFeedbacks();
