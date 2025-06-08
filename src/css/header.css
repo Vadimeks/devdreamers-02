@@ -28,7 +28,7 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6.5px 4px 6.5px 0;
+    padding: 6.5px 4px 6.5px 10.5px;
 }
 
 .header-nav-list {
@@ -36,7 +36,7 @@ html {
 }
 
 .logo-icon {
-    padding: 10.63px 6.18px 10.17px 0;
+    padding: 10.63px 6.18px 10.17px;
     width: 119px;
     height: 51px;
     color: #764191;
@@ -52,7 +52,7 @@ html {
 }
 
 .burger-icon {
-    color: #ffffff;
+    stroke: #ffffff;
 }
 
 @media screen and (min-width: 320px) {
@@ -67,10 +67,6 @@ html {
     .header-container {
         max-width: 768px;
         height: 72px;
-    }
-
-    .logo-icon {
-        color: #ffffff;
     }
 
     .burger-btn {
