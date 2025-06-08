@@ -22,7 +22,7 @@
     <symbol id="icon-icon" viewBox="0 0 32 32">
       <path fill="currentColor" d="M31.33 15.95l-3.232-3.232-9.813 9.813v-21.913h-4.571v21.911l-9.813-9.81-3.232 3.232 15.33 15.33 15.33-15.33z"/>
     </symbol>
-    <symbol id="icon-x" viewBox="0 0 32 32">
+    <symbol id="close-icon" viewBox="0 0 32 32">
       <path fill="currentColor" d="M27.179 0.918l-11.315 11.312-11.312-11.312-3.771 3.771 11.312 11.312-11.312 11.312 3.771 3.771 11.312-11.312 11.315 11.312 3.771-3.771-11.312-11.312 11.312-11.312-3.771-3.771z"></path>
     </symbol>
     <symbol id="icon1" viewBox="0 0 16 12">
