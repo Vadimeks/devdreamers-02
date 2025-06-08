@@ -68,7 +68,7 @@ function renderFromBuffer() {
         <p class="artist-description">${shortBio}</p>
         <button class="learn-more-btn js-learn-more-btn" data-id="${
           artist.id
-        }">Learn More<svg class="load-icon" width="24" height="24"><use href="./img/symbol-defs.svg#icon-caret-right"></use></svg></button>
+        }">Learn More<svg class="load-icon" width="24" height="24"><use href="./img/sprite.svg#icon-caret-right"></use></svg></button>
       `;
 
     artistsList.appendChild(card);
