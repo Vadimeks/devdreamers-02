@@ -1,6 +1,34 @@
 <!-- Hero section -->
 <section class="hero-section">
     <div class="container hero-container">
-        <h1>HERO</h1>
+        <div class="hero-wrapper">
+            <h1 class="hero-title">Discover your next favorite artist today</h1>
+            <p class="hero-text">Dive into a world of music discoveries with ArtistsHub – your personal guide to the boundless
+                universe of sound.
+                Explore, filter, and learn about your favorite artists all in one place.</p>
+            <button class="hero-btn">
+                <span class="hero-btn-text">Explore Artists</span>
+            </button>
+            <picture class="">
+                <!-- Mobile -->
+                <source media="(max-width: 767px)" srcset="
+                            ./img/hero/img-hero-mobile.png 1x,
+                            ./img/hero/img-hero-mobile@2x.png 2x
+                            " />
+            
+                <!-- Tablet -->
+                <source media="(min-width: 768px) and (max-width: 1279px)" srcset="
+                            ./img/hero/img-hero-tablet.png 1x,
+                            ./img/hero/img-hero-tablet@2x.png 2x
+                            " />
+            
+                <!-- Desktop -->
+                <source media="(min-width: 1280px)" srcset="
+                            ./img/hero/img-hero-desktop.png 1x,
+                            ./img/hero/img-hero-desktop@2x.png 2x
+                            " />
+                <img class="hero-img" src="./img/hero/img-hero-mobile.png" alt="Hero image" width="440" height="560" />
+            </picture>
+        </div>
     </div>
 </section>
