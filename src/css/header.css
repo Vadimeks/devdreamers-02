@@ -20,15 +20,15 @@ html {
     align-items: center;
     justify-content: space-between;
     background-color: transparent;
-    padding-right: 12px;
+    padding-right: 6.5px 12px 6.5px 20px;
 }
 
 .header-nav {
     width: 100%;
+    max-width: 320px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6.5px 4px 6.5px 10.5px;
 }
 
 .header-nav-list {
@@ -36,10 +36,11 @@ html {
 }
 
 .logo-icon {
-    padding: 10.63px 6.18px 10.17px;
+    padding: 10.63px 0 10.17px 6.18px;
     width: 119px;
     height: 51px;
     color: #764191;
+    align-self: center;
 }
 
 .burger-btn {
@@ -52,15 +53,7 @@ html {
 }
 
 .burger-icon {
-    stroke: #ffffff;
-}
-
-@media screen and (min-width: 320px) {
-    .header-container {
-        max-width: 320px;
-        height: 64px;
-        padding-right: 20px;
-    }
+    color: #ffffff;
 }
 
 @media screen and (min-width: 768px) {
@@ -78,6 +71,8 @@ html {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        max-width: 640px;
+        margin: 0 auto;
     }
 
     .header-nav-list {
@@ -102,12 +97,27 @@ html {
     .header-nav-link:active {
         color: #ffffff;
     }
+
+    .header-nav-link {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 1.5;
+        letter-spacing: 0;
+    }
+
+    .logo-icon {
+        color: #ffffff;
+    }
 }
 
 @media screen and (min-width: 1440px) {
     .header-container {
         max-width: 1440px;
         background-color: transparent;
+    }
+
+    .header-nav {
+        max-width: 1312px;
     }
 
 }
