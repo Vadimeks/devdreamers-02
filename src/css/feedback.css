@@ -50,8 +50,18 @@
   width: 24px;
   height: 24px;
   color: #764191;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 2px;
 }
 
+.star-icon.star-filled {
+  color: rgba(118, 65, 145, 1);
+}
+
+.star-icon.star-outline {
+  color: rgba(255, 255, 255, 1);
+}
 .feedback-button-prev::after,
 .feedback-button-next::after {
   display: none;
@@ -97,7 +107,6 @@
   color: #fff;
 }
 
-
 /* PAGINATION */
 .feedback-pagination {
   position: static !important;
@@ -118,4 +127,3 @@
 .swiper-pagination-bullet-active {
   background-color: #fff !important;
 }
-
