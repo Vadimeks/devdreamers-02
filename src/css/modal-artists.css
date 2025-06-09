@@ -1,142 +1,313 @@
-.modal-artists {
-  background-color: antiquewhite;
-  display: none;
-}
-.modal-artists.container {
+/* Base Modal Styles */
+.modal-artists-backdrop {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
   justify-content: center;
   align-items: center;
-  overflow-y: auto;
+  /* Removed overflow-y: auto here, as modal-content will handle scroll */
   padding: 20px;
   z-index: 1000;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  box-sizing: border-box;
 }
 
-.modal-artists.container.active {
-  display: flex;
+/* State when modal is open */
+.modal-artists-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
 }
 
+/* Class added to the body to prevent background scrolling */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Modal Content Styles */
+.modal-content {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  max-width: 900px;
+  width: 95%;
+  max-height: 90vh;
+  /* This will manage internal scrolling for the content */
+  overflow-y: auto;
+  position: relative;
+  /* Needed for absolute positioning of loader/other elements relative to content */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+
+  /* Added padding-top to ensure content is not hidden by fixed close button */
+  padding-top: 60px;
+  /* Adjust if needed based on close button size/position */
+}
+
+/* Close button style */
 .close-modal {
-  position: absolute;
-  top: 15px;
-  right: 15px;
+  position: fixed;
+  /* Fixes button relative to viewport */
+  /* Calculate position relative to the modal-artists-backdrop */
+  top: 20px;
+  /* Offset from top of viewport */
+  right: 20px;
+  /* Offset from right of viewport */
+
+  /* For responsiveness, you might need to adjust these or calculate them dynamically */
+  /* Or use a calculated position based on modal-content's boundaries if button is truly inside */
+
   background: transparent;
   border: none;
-  font-size: 24px;
-  color: #fff;
+  color: #333;
   cursor: pointer;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1002;
+  /* Higher than modal backdrop and content */
 }
 
+.close-modal:hover {
+  color: #007bff;
+}
+
+/* Close icon size */
+.close-icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Modal Loader Styles */
+.loader {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+  border-radius: 8px;
+  font-size: 1.2em;
+  color: #555;
+  transition: opacity 0.3s ease;
+}
+
+/* Spinner animation */
+.spinner {
+  animation: rotate 2s linear infinite;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.spinner .path {
+  stroke: #007bff;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+/* Modal Body and Content Sections */
+.modal-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Artist Title */
 .modal-title {
-  margin-top: 60px;
+  margin-top: 0;
   margin-bottom: 20px;
   text-align: center;
-  font-size: 28px;
-  color: #fff;
+  font-size: 2.5em;
+  color: #333;
   font-weight: bold;
+  /* Added padding-right to avoid overlap with fixed close button */
+  padding-right: 40px;
+  /* Adjust if button is larger or closer */
 }
 
-.modal-body {
-  background: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  width: 100%;
-  max-width: 800px;
+/* Artist Details Section */
+.artist-overview-block {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: 30px;
+  justify-content: space-between;
 }
 
-.hero-artist-img {
-  flex: 1 1 300px;
-  max-width: 300px;
-  border-radius: 5px;
-  object-fit: cover;
-}
-
-.artist-content {
-  flex: 2 1 400px;
-}
-
+/* Artist Info List */
 .artist-info-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 20px;
-}
-.artist-info-item {
-  margin-bottom: 10px;
-}
-.artist-info-item h3 {
   margin: 0;
-  font-size: 16px;
-  color: #333;
-}
-.artist-info {
-  margin: 5px 0 0;
-  font-size: 14px;
-  color: #666;
+  flex: 1 1 250px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
 }
 
-.artist-bio {
-  margin-bottom: 20px;
-}
-.artist-bio h3 {
-  margin: 0 0 10px;
-  font-size: 18px;
-  color: #333;
-}
-.artist-bio .artist-info {
-  font-size: 14px;
-  color: #555;
-  line-height: 1.5;
+.artist-info-item {
+  margin-bottom: 0;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 15px;
+  border: 1px solid #eee;
 }
 
-.ganres-list {
+.artist-info-item h3 {
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.artist-info-item p.artist-info {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Artist Biography Block */
+.artist-description-details {
+  flex: 2 1 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.artist-description-details h3 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 5px;
+}
+
+.artist-info-bio-text {
+  font-size: 1em;
+  color: #444;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Read More Button for Bio */
+.read-more-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 0.9em;
+  text-align: left;
+  padding: 0;
+  margin-top: 5px;
+  align-self: flex-start;
+}
+
+.read-more-btn:hover {
+  text-decoration: underline;
+}
+
+/* Artist Genres List */
+.genres-list {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   padding: 0;
   margin: 0;
 }
-.ganres-item {
-  background: #eee;
-  padding: 5px 10px;
-  border-radius: 3px;
-  font-size: 12px;
+
+.genres-item {
+  background: #e0f2f7;
+  color: #007bff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  white-space: nowrap;
+  border: 1px solid #cceeff;
+}
+
+/* Artist Albums Section */
+.artist-albums-block {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.artist-albums-block h3 {
+  font-size: 1.8em;
   color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
 }
 
 .artist-albums-list {
   list-style: none;
-  padding: 20px;
+  padding: 0;
   margin: 0;
-  background: #fff;
-  border-radius: 5px;
-  width: 100%;
-  max-width: 800px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
 }
 
 .artist-albums-item {
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #ddd;
-}
-.artist-albums-item:last-child {
   margin-bottom: 0;
-  padding-bottom: 0;
-  border: none;
+  padding: 20px;
+  border-bottom: none;
+  background-color: #fefefe;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.album-name {
-  margin: 0 0 10px;
-  font-size: 20px;
-  color: #333;
+.artist-albums-item h3 {
+  font-size: 1.3em;
+  color: #007bff;
+  margin-top: 0;
+  margin-bottom: 15px;
+  text-align: left;
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 .album-track-list {
@@ -144,12 +315,30 @@
   padding: 0;
   margin: 0;
 }
+
 .album-track-item {
   padding: 10px 0;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #eee;
 }
+
 .album-track-item:first-child {
   border-top: none;
+}
+
+.album-track-item.track-header {
+  font-weight: bold;
+  background-color: #f0f0f0;
+  border-bottom: 2px solid #ccc;
+  padding: 10px 0;
+  color: #333;
+}
+
+.album-track-item.even-row {
+  background-color: #f8f8f8;
+}
+
+.album-track-item.odd-row {
+  background-color: #ffffff;
 }
 
 .track-info-list {
@@ -160,39 +349,186 @@
   margin: 0;
   padding: 0;
 }
+
 .track-info-item {
-  font-size: 14px;
+  font-size: 0.95em;
   color: #555;
-  width: 33%;
+  flex: 1;
   text-align: center;
-}
-.track-info-item a {
-  text-decoration: none;
-  color: #007bff;
+  padding: 0 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.loader {
-  text-align: center;
-  font-size: 18px;
-  padding: 20px;
+.track-info-item:nth-child(1) {
+  flex: 3;
+  text-align: left;
+}
+
+.track-info-item.track-info-item-time {
+  flex: 1;
+}
+
+.track-info-item.track-info-item-link {
+  flex: 1;
+}
+
+.yt-button {
+  background-color: #ff0000;
   color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
 
-/* .backdrop {
-      background-color: rgba(0, 168, 107, 0.8);
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 0.4), visibility 250ms cubic-bezier(0.4, 0, 0.2, 0.4);
+.yt-button:hover {
+  background-color: #cc0000;
+}
+
+.yt-icon {
+  fill: currentColor;
+}
+
+/* Pagination Controls */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 15px;
+}
+
+.pagination-controls button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s ease;
+}
+
+.pagination-controls button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.pagination-controls span {
+  font-size: 1.1em;
+  color: #555;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 20px;
+    width: 95%;
+    padding-top: 50px;
+    /* Adjust padding for smaller screens */
   }
-  
-  .backdrop.is-open {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      z-index: 1001; } */
+
+  .close-modal {
+    top: 15px;
+    /* Adjust position for smaller screens */
+    right: 15px;
+  }
+
+  .modal-title {
+    font-size: 2em;
+    margin-bottom: 15px;
+    padding-right: 30px;
+    /* Adjust padding for smaller screens */
+  }
+
+  .artist-overview-block {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .artist-info-list {
+    grid-template-columns: 1fr;
+  }
+
+  .artist-albums-list {
+    grid-template-columns: 1fr;
+  }
+
+  .album-track-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .track-info-list {
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+  }
+
+  .track-info-item {
+    white-space: normal;
+    text-overflow: clip;
+    flex: none !important;
+    width: 100%;
+    text-align: left !important;
+  }
+
+  .yt-button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 15px;
+  }
+
+  .modal-title {
+    font-size: 1.8em;
+  }
+
+  .artist-info-item {
+    padding: 10px;
+  }
+
+  .artist-description-details {
+    padding: 10px;
+  }
+
+  .genres-list {
+    justify-content: center;
+  }
+}
+
+.modal-artist-image {
+  display: block;
+  max-width: 250px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  margin: 0 auto 20px auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .modal-artist-image {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+}
