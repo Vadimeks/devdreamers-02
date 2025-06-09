@@ -33,7 +33,7 @@ function createFeedbackSlide({ rating, text, user }) {
     <div class="feedback-card">
       <div class="feedback-stars">${renderStars(roundedRating)}</div>
       <p class="feedback-text">"${text}"</p>
-      <p class="feedback-user">– ${user}</p>
+      <p class="feedback-user">${user}</p>
     </div>
   `;
   return slide;
@@ -44,10 +44,11 @@ function renderStars(count) {
   let starsHTML = '';
 
   for (let i = 1; i <= max; i++) {
-    const iconId = i <= count ? 'icon-star-filled' : 'icon-star-outline';
+    // Дадаём клас 'star-filled' або 'star-outline' у залежнасці ад рэйтынгу
+    const starClass = i <= count ? 'star-filled' : 'star-outline';
     starsHTML += `
-        <svg class="star-icon" width="24" height="24">
-          <use href="/src/public/img/sprite.svg#${iconId}"></use>
+        <svg class="star-icon ${starClass}" width="24" height="24">
+          <use href="./img/sprite.svg#icon-star"></use>
         </svg>
       `;
   }

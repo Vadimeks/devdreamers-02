@@ -24,6 +24,7 @@ export async function fetchGenres() {
  * @returns {Promise<Object>} A promise that resolves to an object containing artists, totalArtists, page, and limit.
  */
 export async function fetchArtists(limit = 10, page = 1) {
+  // <-- ГЭТА ФУНКЦЫЯ ПАВІННА БЫЦЬ ТУТ БЕЗ ЗМЕН
   try {
     const response = await axios.get(`${API_BASE_URL}/artists`, {
       params: { limit, page },
@@ -56,19 +57,18 @@ export async function fetchArtistDetailsWithAlbums(artistId) {
 }
 
 /**
- * Fetches artist information and their tracks by ID.
+ * Fetches comprehensive artist details, including tracks, by ID.
+ * This is the primary function for fetching all artist-related data for the modal.
  * @param {string} artistId The ID of the artist.
  * @returns {Promise<Object>} A promise that resolves to an object containing artist details and tracksList.
  */
-export async function fetchArtistDetailsWithTracks(artistId) {
+export async function fetchArtistDetails(artistId) {
+  // <-- ГЭТА ПЕРАЙМЕНАВАНАЯ ФУНКЦЫЯ
   try {
     const response = await axios.get(`${API_BASE_URL}/artists/${artistId}`);
     return response.data;
   } catch (error) {
-    console.error(
-      `Error fetching artist details with tracks (ID: ${artistId}):`,
-      error
-    );
+    console.error(`Error fetching artist details (ID: ${artistId}):`, error);
     throw error;
   }
 }
