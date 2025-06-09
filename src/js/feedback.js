@@ -2,31 +2,27 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
 import 'css-star-rating/css/star-rating.css';
+import { fetchFeedbacks } from './apiService';
 
 const swiperWrapper = document.querySelector('.swiper-wrapper');
 
-async function fetchFeedback() {
+async function loadFeedbacks() {
   try {
-    const response = await fetch(
-      'https://sound-wave.b.goit.study/api/feedbacks?limit=10&page=1'
-    );
-    if (!response.ok) {
-      throw new Error(`Error HTTP: ${response.status}`);
-    }
-    const feedbacks = await response.json();
+    const response = await fetchFeedbacks(10, 1);
+    const feedbacks = response.data;
 
-    const list = Array.isArray(feedbacks) ? feedbacks : feedbacks.data;
-
-    list.forEach(({ rating, descr, name }) => {
+    feedbacks.forEach(({ rating, descr, name }) => {
       const slide = createFeedbackSlide({ rating, text: descr, user: name });
       swiperWrapper.appendChild(slide);
     });
 
     initSwiper();
   } catch (error) {
-    console.error('Oops...Error:', error);
+    console.error('Oops...Error', error);
   }
 }
+
+loadFeedbacks();
 
 function createFeedbackSlide({ rating, text, user }) {
   const slide = document.createElement('div');
@@ -37,7 +33,7 @@ function createFeedbackSlide({ rating, text, user }) {
     <div class="feedback-card">
       <div class="feedback-stars">${renderStars(roundedRating)}</div>
       <p class="feedback-text">"${text}"</p>
-      <p class="feedback-user">– ${user}</p>
+      <p class="feedback-user">${user}</p>
     </div>
   `;
   return slide;
@@ -45,7 +41,19 @@ function createFeedbackSlide({ rating, text, user }) {
 
 function renderStars(count) {
   const max = 5;
-  return '★'.repeat(count) + '☆'.repeat(max - count);
+  let starsHTML = '';
+
+  for (let i = 1; i <= max; i++) {
+    // Дадаём клас 'star-filled' або 'star-outline' у залежнасці ад рэйтынгу
+    const starClass = i <= count ? 'star-filled' : 'star-outline';
+    starsHTML += `
+        <svg class="star-icon ${starClass}" width="24" height="24">
+          <use href="./img/sprite.svg#icon-star"></use>
+        </svg>
+      `;
+  }
+
+  return starsHTML;
 }
 
 function initSwiper() {
@@ -62,5 +70,3 @@ function initSwiper() {
     grabCursor: true,
   });
 }
-
-fetchFeedback();

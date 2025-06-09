@@ -1,3 +1,115 @@
 .feedback-section {
-    background-color: black;
+  background-color: black;
+  margin: 0 auto;
+}
+
+.feedback-container {
+  padding: 112px 64px;
+}
+
+.feedback-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedback-stars {
+  padding-bottom: 32px;
+}
+
+.feedback-text {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #fff;
+  padding-bottom: 32px;
+  width: 866px;
+}
+
+.feedback-user {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+/* ICONS */
+.feedback-stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 32px;
+}
+
+.star-icon {
+  width: 24px;
+  height: 24px;
+  color: #764191;
+}
+
+.feedback-button-prev::after,
+.feedback-button-next::after {
+  display: none;
+  content: none;
+}
+
+.feedback-button-prev,
+.feedback-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #060307;
+  width: 48px !important;
+  height: 48px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.feedback-button-prev:hover,
+.feedback-button-next:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.feedback-button-prev {
+  left: 0;
+}
+
+.feedback-button-next {
+  right: 0;
+}
+
+.icon-prev,
+.icon-next {
+  width: 24px;
+  height: 24px;
+  color: #fff;
+}
+
+/* У вашым асноўным CSS-файле */
+.star-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 2px;
+  /* Калі патрэбны невялікі адступ паміж зоркамі */
+}
+
+.star-icon.star-filled {
+  color: rgba(118, 65, 145, 1);
+  /* Фіялетавы колер для запоўненых зорак */
+}
+
+.star-icon.star-outline {
+  color: rgba(255, 255, 255, 1);
+  /* Белы колер для незапоўненых зорак */
 }
