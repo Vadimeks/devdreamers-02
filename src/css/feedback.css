@@ -36,6 +36,7 @@
   font-size: 18px;
   line-height: 1.5;
   color: #fff;
+  margin-bottom: 75px;
 }
 
 /* ICONS */
@@ -96,20 +97,25 @@
   color: #fff;
 }
 
-/* У вашым асноўным CSS-файле */
-.star-icon {
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 2px;
-  /* Калі патрэбны невялікі адступ паміж зоркамі */
+
+/* PAGINATION */
+.feedback-pagination {
+  position: static !important;
 }
 
-.star-icon.star-filled {
-  color: rgba(118, 65, 145, 1);
-  /* Фіялетавы колер для запоўненых зорак */
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #fff !important;
+  opacity: 1;
+  border-radius: 50%;
+  margin: 0 6px;
+  transition: background-color 0.3s ease;
+
+  cursor: pointer;
 }
 
-.star-icon.star-outline {
-  color: rgba(255, 255, 255, 1);
-  /* Белы колер для незапоўненых зорак */
+.swiper-pagination-bullet-active {
+  background-color: #fff !important;
 }
+
