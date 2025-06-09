@@ -16,8 +16,6 @@
 
 .artists-text {
   text-align: left;
-  /* font-family: 'Epilogue', sans-serif;
-  font-weight: 700; */
   font-size: 44px;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -43,7 +41,6 @@
 
 .artist-card {
   width: 288px;
-  /* height: 100%; */
   min-width: 280px;
   margin-bottom: 32px;
 }
@@ -52,7 +49,7 @@
   .artist-card {
     width: 704px;
     min-width: 450px;
-    margin-bottom: 64px;
+    margin-bottom: 0;
   }
 }
 
@@ -85,6 +82,7 @@
 
 .artist-genres {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 20px;
 }
@@ -122,31 +120,35 @@
 }
 
 .learn-more-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  text-align: center;
+  /* text-align: center; */
+  gap: 8px;
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 1.5;
   color: #fff;
-  border: transparent;
-  border-radius: 12px;
+  border: none;
   height: 27px;
   background-color: #060307;
+  padding: 0;
+  text-decoration: none;
 
   cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.learn-more-btn svg {
+  fill: currentColor;
+  transition: fill 0.3s ease;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .learn-more-btn:hover,
 .learn-more-btn:focus {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.learn-more-btn:active {
-  color: #060307;
-  box-shadow: 0 1px 2px 0 rgba(6, 3, 7, 0.05);
-  background-color: #f2f2f2;
+  color: #5f5e5e;
 }
 
 .btn {
@@ -166,6 +168,7 @@
     inset 0 2px 1px 0 rgba(255, 255, 255, 0.25),
     inset 0 32px 24px 0 rgba(255, 255, 255, 0.05);
   background-color: #764191;
+  transition: background-color 0.3s ease;
 }
 
 .btn:hover,
@@ -190,12 +193,10 @@
 }
 
 #global-loader {
-  display: none;
   position: fixed;
   inset: 0;
   background-color: rgba(255, 255, 255, 0.8);
   z-index: 1000;
-  justify-content: center;
   align-items: center;
 }
 
@@ -221,7 +222,6 @@
 }
 
 @keyframes pulse {
-
   0%,
   100% {
     transform: scale(0.5);
