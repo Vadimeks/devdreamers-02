@@ -1,3 +1,143 @@
-.about-us-section {
-    background-color: aquamarine;
+/* Мобільна версія */
+@media screen and (max-width: 767px) {
+  .about-us-section {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .about-us-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 64px 20px;
+    gap: 20px;
+  }
+
+  .team-photo {
+    display: block;
+    width: 280px;
+    height: 169px;
+    padding-bottom: 48px;
+    border-radius: 16px;
+  }
+
+  .logo-about-us {
+    fill: #fff;
+    width: 64px;
+    height: 64px;
+  }
+
+  .about-us-title {
+    font-family: Epilogue;
+    font-size: 44px;
+    line-height: 1.2;
+  }
+
+  .about-us-text {
+    font-family: IBM Plex Sans;
+    font-size: 18px;
+    line-height: 1.5;
+    max-width: 280px;
+  }
+}
+
+/* Планшетна версія */
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .about-us-section {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .about-us-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 24px;
+    padding: 64px 32px;
+  }
+
+  .team-photo {
+    display: block;
+    width: 704px;
+    height: 413px;
+    margin-bottom: 24px;
+    flex-shrink: 0;
+    border-radius: 16px;
+  }
+
+  .about-us-info-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-about-us {
+    fill: #fff;
+    width: 80px;
+    height: 80px;
+  }
+
+  .about-us-title {
+    font-family: Epilogue;
+    font-size: 44px;
+    line-height: 1.2;
+  }
+
+  .about-us-text {
+    font-family: IBM Plex Sans;
+    font-size: 20px;
+    line-height: 1.5;
+    max-width: 704px;
+  }
+}
+
+/* Десктопна версія */
+@media screen and (min-width: 1280px) {
+  .about-us-section {
+    background-color: #000;
+    padding: 112px 64px;
+    color: #fff;
+  }
+
+  .about-us-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 24px;
+  }
+
+  .team-photo {
+    display: block;
+    width: 640px;
+    height: 665px;
+    flex-shrink: 0;
+    border-radius: 16px;
+  }
+
+  .about-us-info-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-about-us {
+    fill: #fff;
+    margin-bottom: 32px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .about-us-title {
+    font-family: Epilogue;
+    font-size: 60px;
+    line-height: 1.2;
+  }
+
+  .about-us-text {
+    font-family: IBM Plex Sans; 
+    font-size: 20px;
+    line-height: 1.5;
+    max-width: 640px;
+  }
 }
