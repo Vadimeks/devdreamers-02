@@ -78,6 +78,8 @@ html {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        max-width: 640px;
+        margin: 0 auto;
     }
 
     .header-nav-list {
@@ -102,6 +104,17 @@ html {
     .header-nav-link:active {
         color: #ffffff;
     }
+
+    .header-nav-link {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 1.5;
+        letter-spacing: 0;
+    }
+
+    .logo-icon {
+        color: #ffffff;
+    }
 }
 
 @media screen and (min-width: 1440px) {
@@ -110,20 +123,8 @@ html {
         background-color: transparent;
     }
 
-    /* Колер на десктопі */
-    .logo-icon {
-        color: #ffffff;
-    }
-
     .header-nav {
         max-width: 1312px;
-    }
-
-    .header-nav-link {
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 1.5;
-        letter-spacing: 0;
     }
 
 }
