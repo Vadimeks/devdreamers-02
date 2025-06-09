@@ -110,4 +110,20 @@ html {
         background-color: transparent;
     }
 
+    /* Колер на десктопі */
+    .logo-icon {
+        color: #ffffff;
+    }
+
+    .header-nav {
+        max-width: 1312px;
+    }
+
+    .header-nav-link {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 1.5;
+        letter-spacing: 0;
+    }
+
 }
