@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ArtistsHub</title>
   <script type="module" crossorigin src="/script-ninjas-project/index.js"></script>
-  <link rel="modulepreload" crossorigin href="/script-ninjas-project/assets/vendor-fCUiSAzf.js">
+  <link rel="modulepreload" crossorigin href="/script-ninjas-project/assets/vendor-CWXYtbPv.js">
   <link rel="stylesheet" crossorigin href="/script-ninjas-project/assets/vendor-B412uKhI.css">
-  <link rel="stylesheet" crossorigin href="/script-ninjas-project/assets/index-B197DSrC.css">
+  <link rel="stylesheet" crossorigin href="/script-ninjas-project/assets/index-uPAEAfeV.css">
 </head>
 
 <body>
@@ -210,21 +210,34 @@
 </section>
     <section class="feedback-section">
   <div class="container feedback-container">
-    <h3>Feedback</h3>
+    <h3 class="visually-hidden">Feedback</h3>
+
     <div class="swiper feedback-swiper">
       <div class="swiper-wrapper"></div>
-      <button
-        type="button"
-        class="swiper-button-prev feedback-button-prev"
-        aria-label="previous feedback"
-      ></button>
-      <button
-        type="button"
-        class="swiper-button-next feedback-button-next"
-        aria-label="next feedback"
-      ></button>
+
+      <div class="swiper-button-prev feedback-button-prev">
+        <svg class="icon-prev">
+          <use href="/src/public/img/sprite.svg#icon-prev"></use>
+        </svg>
+      </div>
+      <div class="swiper-button-next feedback-button-next">
+        <svg class="icon-next">
+          <use href="/src/public/img/sprite.svg#icon-next"></use>
+        </svg>
+      </div>
     </div>
-    <div class="swiper-pagination feedback-pagination"></div>
+
+    <div class="swiper-pagination feedback-pagination">
+      <svg class="icon-pagination-active">
+        <use href="/src/public/img/sprite.svg#icon-pagination"></use>
+      </svg>
+      <svg class="icon-pagination-inactive">
+        <use href="/src/public/img/sprite.svg#icon-pagination"></use>
+      </svg>
+      <svg class="icon-pagination-inactive">
+        <use href="/src/public/img/sprite.svg#icon-pagination"></use>
+      </svg>
+    </div>
   </div>
 </section>
 
