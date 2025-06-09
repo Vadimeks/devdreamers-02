@@ -32,6 +32,7 @@
   font-size: 18px;
   line-height: 1.5;
   color: #fff;
+  margin-bottom: 75px;
 }
 
 /* ICONS */
@@ -89,4 +90,25 @@
   width: 24px;
   height: 24px;
   color: #fff;
+}
+
+/* PAGINATION */
+.feedback-pagination {
+  position: static !important;
+}
+
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #fff !important;
+  opacity: 1;
+  border-radius: 50%;
+  margin: 0 6px;
+  transition: background-color 0.3s ease;
+
+  cursor: pointer;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #fff !important;
 }
