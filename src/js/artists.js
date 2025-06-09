@@ -1,3 +1,5 @@
+import { fetchArtists as getArtists } from './apiService.js';
+
 const artistsList = document.getElementById('artists-list');
 const loadMoreBtn = document.getElementById('load-more');
 const loader = document.getElementById('global-loader');
@@ -9,31 +11,31 @@ let isFetching = false;
 
 //!================================================================
 
-async function fetchArtists(page = 1) {
+async function loadArtists(page = 1) {
   showLoader();
   isFetching = true;
 
   try {
-    const response = await fetch(
-      `https://sound-wave.b.goit.study/api/artists?page=${page}`
-    );
-    const data = await response.json();
-
+    const data = await getArtists(limit, page); // Axios: .data вже готове
     const artists = data.artists || [];
     const total = data.totalArtists || 0;
     buffer.push(...artists);
 
-    renderFromBuffer();
+    setTimeout(() => {
+      renderFromBuffer();
 
-    const shownCount = document.querySelectorAll('.artist-card').length;
-    if (shownCount >= total && buffer.length === 0) {
-      loadMoreBtn.classList.add('hidden');
-    } else {
-      loadMoreBtn.classList.remove('hidden');
-    }
+      const shownCount = document.querySelectorAll('.artist-card').length;
+      if (shownCount >= total && buffer.length === 0) {
+        loadMoreBtn.classList.add('hidden');
+      } else {
+        loadMoreBtn.classList.remove('hidden');
+      }
+
+      hideLoader();
+      isFetching = false;
+    }, 500);
   } catch (error) {
     console.error('Error fetching artists:', error);
-  } finally {
     hideLoader();
     isFetching = false;
   }
@@ -54,35 +56,40 @@ function renderFromBuffer() {
         : firstSentence;
 
     card.innerHTML = `
-        <img class="artists-img" src="${
-          artist.strArtistThumb || artist.image
-        }" alt="${artist.strArtist}">
-    <p class="artist-genres">
-  ${
-    artist.genres
-      ?.map(genre => `<span class="genre">${genre}</span>`)
-      .join(' ') || ''
-  }
-</p>
-        <h3 class="artist-name">${artist.strArtist}</h3>
-        <p class="artist-description">${shortBio}</p>
-        <button class="learn-more-btn js-learn-more-btn" data-id="${
-          artist.id
-        }">Learn More<svg class="load-icon" width="24" height="24"><use href="./img/sprite.svg#icon-caret-right"></use></svg></button>
-      `;
+      <img class="artists-img" src="${
+        artist.strArtistThumb || artist.image
+      }" alt="${artist.strArtist}">
+      <p class="artist-genres">
+        ${(artist.genres || [])
+          .map(genre => `<span class="genre">${genre}</span>`)
+          .join(' ')}
+      </p>
+      <h3 class="artist-name">${artist.strArtist}</h3>
+      <p class="artist-description">${shortBio}</p>
+      <button class="learn-more-btn js-learn-more-btn" data-artist-id="${
+        artist.id
+      }">
+        Learn More
+        <svg class="learn-icon" width="24" height="24">
+          <use href="./img/sprite.svg#icon-caret-right"></use>
+        </svg>
+      </button>
+    `;
 
     artistsList.appendChild(card);
   });
 }
 
 loadMoreBtn.addEventListener('click', () => {
+  loadMoreBtn.blur();
   if (buffer.length >= limit) {
     renderFromBuffer();
   } else if (!isFetching) {
     currentPage++;
-    fetchArtists(currentPage);
+    loadArtists(currentPage);
   }
 });
+
 function showLoader() {
   loader.classList.add('is-active');
   loader.style.display = 'block';
@@ -93,4 +100,4 @@ function hideLoader() {
   loader.style.display = 'none';
 }
 
-fetchArtists(currentPage);
+loadArtists(currentPage);

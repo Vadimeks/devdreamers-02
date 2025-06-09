@@ -42,7 +42,6 @@
 
 .artist-card {
   width: 288px;
-  /* height: 100%; */
   min-width: 280px;
   margin-bottom: 32px;
 }
@@ -50,7 +49,7 @@
   .artist-card {
     width: 704px;
     min-width: 450px;
-    margin-bottom: 64px;
+    margin-bottom: 0;
   }
 }
 
@@ -82,6 +81,7 @@
 
 .artist-genres {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 20px;
 }
@@ -130,6 +130,7 @@
   border-radius: 12px;
   height: 27px;
   background-color: #060307;
+  padding: 0;
 
   cursor: pointer;
 }
@@ -142,7 +143,9 @@
   box-shadow: 0 1px 2px 0 rgba(6, 3, 7, 0.05);
   background-color: #f2f2f2;
 }
-
+.learn-icon {
+  margin-left: 8px;
+}
 .btn {
   display: block;
   margin-left: auto;
@@ -160,6 +163,7 @@
     inset 0 2px 1px 0 rgba(255, 255, 255, 0.25),
     inset 0 32px 24px 0 rgba(255, 255, 255, 0.05);
   background-color: #764191;
+  transition: background-color 0.3s ease;
 }
 
 .btn:hover,
@@ -183,12 +187,10 @@
 }
 
 #global-loader {
-  display: none;
   position: fixed;
   inset: 0;
   background-color: rgba(255, 255, 255, 0.8);
   z-index: 1000;
-  justify-content: center;
   align-items: center;
 }
 
