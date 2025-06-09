@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ArtistsHub</title>
   <script type="module" crossorigin src="/script-ninjas-project/index.js"></script>
-  <link rel="modulepreload" crossorigin href="/script-ninjas-project/assets/vendor-CWXYtbPv.js">
+  <link rel="modulepreload" crossorigin href="/script-ninjas-project/assets/vendor-B_QiARH3.js">
   <link rel="stylesheet" crossorigin href="/script-ninjas-project/assets/vendor-B412uKhI.css">
-  <link rel="stylesheet" crossorigin href="/script-ninjas-project/assets/index-uPAEAfeV.css">
+  <link rel="stylesheet" crossorigin href="/script-ninjas-project/assets/index-ClgNY8Zo.css">
 </head>
 
 <body>
@@ -38,9 +38,9 @@
                 </svg>
             </button>
         </nav>
-
     </div>
 </header>
+
   <div class="mobile-backdrop">
     <div class="mobile-menu">
         <button class="mobile-close" aria-label="Close menu">
@@ -63,29 +63,22 @@
 </div>
   <main>
     <!-- Loads the specified .html file -->
-    <!-- Hero section -->
-<section class="hero-section">
+    <section class="hero-section">
     <div class="container hero-container">
-        <div class="hero-wrapper">
+        <div class="hero-block-wrapper">
             <h1 class="hero-title">Discover your next favorite artist today</h1>
-            <p class="hero-text">Dive into a world of music discoveries with ArtistsHub – your personal guide to the boundless
+            <p class="hero-text">Dive into a world of music discoveries with ArtistsHub – your personal guide to the
+                boundless
                 universe of sound.
                 Explore, filter, and learn about your favorite artists all in one place.</p>
             <button class="hero-btn">
                 <span class="hero-btn-text">Explore Artists</span>
+                <svg class="hero-btn-icon" width="15" height="21">
+                    <use href="./img/sprite.svg#"></use>
+                </svg>
             </button>
-            <picture class="">
-                <!-- Mobile -->
-                <source media="(max-width: 767px)" srcset="/script-ninjas-project/assets/img-hero-mobile-D0DRGU5i.png 1x, /script-ninjas-project/assets/img-hero-mobile@2x-BhkIF6Nw.png 2x" />
-            
-                <!-- Tablet -->
-                <source media="(min-width: 768px) and (max-width: 1279px)" srcset="/script-ninjas-project/assets/img-hero-tablet-O4z9yI3z.png 1x, /script-ninjas-project/assets/img-hero-tablet@2x-CfDMF4ma.png 2x" />
-            
-                <!-- Desktop -->
-                <source media="(min-width: 1280px)" srcset="/script-ninjas-project/assets/img-hero-desktop-BIiGGXOy.png 1x, /script-ninjas-project/assets/img-hero-desktop@2x-1gOBsDnx.png 2x" />
-                <img class="hero-img" src="/script-ninjas-project/assets/img-hero-mobile-D0DRGU5i.png" alt="Hero image" width="440" height="560" />
-            </picture>
         </div>
+        <div class="hero-img-wrapper"></div>
     </div>
 </section>
     <section class="artists-section">
@@ -108,83 +101,50 @@
     </button>
   </div>
 </section>
-    <div class="modal-artists container" id="artistModal">
-  <button class="close-modal" aria-label="Close">
-    <svg class="close-icon" width="24" height="24">
-      <use href="./img/sprite.svg#icon-close"></use>
-    </svg>
-  </button>
-  <div id="modalLoader" class="loader">Load...</div>
-  <h2 class="modal-title">Name</h2>
-  <div class="modal-body">
-    <img src="" alt="Artist Photo" class="hero-artist-img" />
-    <div class="artist-content">
-      <ul class="artist-info-list">
-        <li class="artist-info-item">
-          <h3>Years active</h3>
-          <p class="artist-info"></p>
-        </li>
-        <li class="artist-info-item">
-          <h3>Sex</h3>
-          <p class="artist-info"></p>
-        </li>
-        <li class="artist-info-item">
-          <h3>Members</h3>
-          <p class="artist-info"></p>
-        </li>
-        <li class="artist-info-item">
-          <h3>Country</h3>
-          <p class="artist-info"></p>
-        </li>
-      </ul>
-      <div class="artist-bio">
-        <h3>Biography</h3>
-        <p class="artist-info"></p>
+    <div class="modal-artists-backdrop" id="artistModal">
+  <div class="modal-content">
+    <button class="close-modal" id="close-modal-btn" aria-label="Close modal">
+      <svg class="close-icon" width="24" height="24">
+        <use href="./img/sprite.svg#icon-close"></use>
+      </svg>
+    </button>
+
+    <div id="modalLoader" class="loader">
+      <svg class="spinner" viewBox="0 0 50 50">
+        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+      </svg>
+      <p>Loading...</p>
+    </div>
+
+    <h2 class="modal-title" id="modal-title"></h2>
+
+    <div class="modal-body">
+      <div class="artist-overview-block">
+        <div class="artist-image-container"> <img src="" alt="Artist photo" class="modal-artist-image"
+            id="modal-artist-image"> </div>
+
+        <div class="artist-description-details">
+          <h3>Information about the artist</h3>
+          <ul class="artist-info-list" id="artist-info-list">
+          </ul>
+
+          <h3>Genres</h3>
+          <ul class="genres-list" id="genres-list">
+          </ul>
+
+          <h3>Biography</h3>
+          <p class="artist-info-bio-text" id="artist-bio-paragraph"></p>
+          <button class="read-more-btn" id="read-more-bio-btn" style="display: none;">Read More</button>
+        </div>
       </div>
-      <ul class="ganres-list">
-        <li class="ganres-item"></li>
-        <li class="ganres-item"></li>
-        <li class="ganres-item"></li>
-        <li class="ganres-item"></li>
-      </ul>
+
+      <div class="artist-albums-block">
+        <h3>Albums</h3>
+        <ul class="artist-albums-list" id="artist-albums-list-container">
+        </ul>
+      </div>
     </div>
   </div>
-  <ul class="artist-albums-list">
-    <li class="artist-albums-item">
-      <h3 class="album-name"></h3>
-      <ul class="album-track-list">
-        <li class="album-track-item">
-          <ul class="track-info-list">
-            <li class="track-info-item">Track</li>
-            <li class="track-info-item">Time</li>
-            <li class="track-info-item">Link</li>
-          </ul>
-        </li>
-        <li class="album-track-item"></li>
-        <li class="album-track-item"></li>
-        <li class="album-track-item"></li>
-        <li class="album-track-item"></li>
-        <li class="album-track-item"></li>
-        <li class="album-track-item"></li>
-        <li class="album-track-item"></li>
-        <li class="album-track-item"></li>
-        <li class="album-track-item"></li>
-        <li class="album-track-item"></li>
-        <li class="album-track-item"></li>
-        <li class="album-track-item"></li>
-        <li class="album-track-item"></li>
-        <li class="album-track-item"></li>
-        <li class="album-track-item"></li>
-      </ul>
-    </li>
-    <li class="artist-albums-item"></li>
-    <li class="artist-albums-item"></li>
-    <li class="artist-albums-item"></li>
-    <li class="artist-albums-item"></li>
-    <li class="artist-albums-item"></li>
-    <li class="artist-albums-item"></li>
-    <li class="artist-albums-item"></li>
-  </ul>
 </div>
     <section class="about-us-section">
   <div class="container about-us-container">
@@ -240,6 +200,7 @@
     </div>
   </div>
 </section>
+
 
   </main>
 
