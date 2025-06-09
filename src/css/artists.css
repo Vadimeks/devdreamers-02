@@ -16,14 +16,13 @@
 
 .artists-text {
   text-align: left;
-  /* font-family: 'Epilogue', sans-serif;
-  font-weight: 700; */
   font-size: 44px;
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: #fff;
   margin-bottom: 32px;
 }
+
 @media screen and (min-width: 1440px) {
   .artists-text {
     font-size: 60px;
@@ -45,6 +44,7 @@
   min-width: 280px;
   margin-bottom: 32px;
 }
+
 @media screen and (min-width: 768px) {
   .artist-card {
     width: 704px;
@@ -59,6 +59,7 @@
     min-width: 450px;
   }
 }
+
 .artists-img {
   display: block;
   border-radius: 16px;
@@ -85,6 +86,7 @@
   gap: 16px;
   margin-bottom: 20px;
 }
+
 .genre {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
@@ -118,34 +120,37 @@
 }
 
 .learn-more-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  text-align: center;
+  /* text-align: center; */
+  gap: 8px;
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 1.5;
   color: #fff;
-  border: transparent;
-  border-radius: 12px;
+  border: none;
   height: 27px;
   background-color: #060307;
   padding: 0;
+  text-decoration: none;
 
   cursor: pointer;
+  transition: color 0.3s ease;
 }
+
+.learn-more-btn svg {
+  fill: currentColor;
+  transition: fill 0.3s ease;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .learn-more-btn:hover,
 .learn-more-btn:focus {
-  background: rgba(255, 255, 255, 0.1);
+  color: #5f5e5e;
 }
-.learn-more-btn:active {
-  color: #060307;
-  box-shadow: 0 1px 2px 0 rgba(6, 3, 7, 0.05);
-  background-color: #f2f2f2;
-}
-.learn-icon {
-  margin-left: 8px;
-}
+
 .btn {
   display: block;
   margin-left: auto;
@@ -184,6 +189,7 @@
 
 .load-icon {
   margin-left: 12px;
+  fill: currentColor;
 }
 
 #global-loader {
@@ -202,6 +208,7 @@
   display: flex;
   gap: 10px;
 }
+
 .loader div {
   width: 16px;
   height: 16px;
@@ -220,11 +227,13 @@
     transform: scale(0.5);
     opacity: 0.3;
   }
+
   50% {
     transform: scale(1);
     opacity: 1;
   }
 }
+
 .hidden {
   display: none !important;
 }
