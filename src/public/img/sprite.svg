@@ -48,9 +48,12 @@
       </path>
     </symbol>
     <!-- Hero icons -->
-    <symbol id="icon-caret-right" viewBox="0 0 15 21">
+    <symbol id="icon-hero-btn" viewBox="0 0 15 21">
       <path fill="currentColor"
         d="M.536 20.386a1.003 1.003 0 0 0 1.033-.064l13-9a1 1 0 0 0 0-1.644l-13-9A.998.998 0 0 0 0 1.5v18a1 1 0 0 0 .536.886ZM2 3.409 12.243 10.5 2 17.591V3.409Z" />
+    </symbol>
+    <symbol id="icon-caret-right" viewBox="0 0 32 32">
+      <path fill="currentColor" d="M11.52 24.666l10.24-8.96-10.24-8.96v17.92z" />
     </symbol>
     <symbol id="icon-icon" viewBox="0 0 32 32">
       <path fill="currentColor"
