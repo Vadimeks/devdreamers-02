@@ -1,143 +1,145 @@
-/* Мобільна версія */
-@media screen and (max-width: 767px) {
-  .about-us-section {
-    background-color: #000;
-    color: #fff;
-  }
+/* Base styles - Mobile First (default styles applied to all screen sizes) */
 
-  .about-us-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 64px 20px;
-    gap: 20px;
-  }
-
-  .team-photo {
-    display: block;
-    width: 280px;
-    height: 169px;
-    padding-bottom: 48px;
-    border-radius: 16px;
-  }
-
-  .logo-about-us {
-    color: #fff;
-    width: 64px;
-    height: 64px;
-  }
-
-  .about-us-title {
-    font-family: Epilogue;
-    font-size: 44px;
-    line-height: 1.2;
-  }
-
-  .about-us-text {
-    font-family: IBM Plex Sans;
-    font-size: 18px;
-    line-height: 1.5;
-    max-width: 280px;
-  }
+.about-us-section {
+  background-color: #000;
+  color: #fff;
 }
 
-/* Планшетна версія */
-@media screen and (min-width: 768px) and (max-width: 1279px) {
-  .about-us-section {
-    background-color: #000;
-    color: #fff;
-  }
+.about-us-container {
+  display: flex;
+  flex-direction: column;
+  /* Mobile: photo then content (column) */
+  align-items: center;
+  text-align: center;
+  padding: 64px 20px;
+  gap: 20px;
+}
 
+.team-photo {
+  display: block;
+  width: 280px;
+  /* Mobile width */
+  height: 169px;
+  /* Mobile height */
+  object-fit: cover;
+  /* Ensures photo fills container without distortion */
+  padding-bottom: 48px;
+  /* Padding below the image on mobile */
+  border-radius: 16px;
+}
+
+.logo-about-us {
+  color: #fff;
+  width: 64px;
+  height: 64px;
+}
+
+.about-us-title {
+  font-family: Epilogue, sans-serif;
+  font-size: 44px;
+  line-height: 1.2;
+}
+
+.about-us-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 280px;
+}
+
+.about-us-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  /* Content items in column */
+}
+
+/* --- Media Queries --- */
+
+/* Tablet styles (min-width: 768px and up to 1279px) */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
   .about-us-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    text-align: left;
+    flex-direction: column;
+    /* Tablet: photo then content (column) - EXPLICITLY SET FOR TABLET */
+    align-items: center;
+    /* Center items for column layout on tablet */
+    text-align: center;
+    /* Center text for column layout on tablet */
     gap: 24px;
+    /* Gap between image and text on tablet */
     padding: 64px 32px;
   }
 
   .team-photo {
-    display: block;
     width: 704px;
+    /* Tablet width */
     height: 413px;
+    /* Tablet height */
+    /* object-fit: cover; will still apply.
+         If the image is still cropped, check the actual dimensions of tablet-team.webp.
+         Consider using height: auto; if you prefer the image to adjust its height
+         to maintain aspect ratio, which might make the container taller.
+         If you want to keep this fixed height, cropping is expected if aspect ratios don't match.
+      */
+    padding-bottom: 0;
+    /* Remove mobile-specific padding */
     margin-bottom: 24px;
+    /* Add margin below the photo */
     flex-shrink: 0;
-    border-radius: 16px;
-  }
-
-  .about-us-info-wrapper {
-    display: flex;
-    flex-direction: column;
   }
 
   .logo-about-us {
-    color: #fff;
     width: 80px;
     height: 80px;
   }
 
   .about-us-title {
-    font-family: Epilogue;
     font-size: 44px;
-    line-height: 1.2;
   }
 
   .about-us-text {
-    font-family: IBM Plex Sans;
     font-size: 20px;
-    line-height: 1.5;
     max-width: 704px;
   }
 }
 
-/* Десктопна версія */
-@media screen and (min-width: 1280px) {
+/* Desktop styles (min-width: 1280px) */
+@media screen and (min-width: 1440px) {
   .about-us-section {
-    background-color: #000;
     padding: 112px 64px;
-    color: #fff;
   }
 
   .about-us-container {
-    display: flex;
     flex-direction: row;
+    /* Desktop: photo and content side-by-side (row) */
     align-items: flex-start;
     text-align: left;
     gap: 24px;
+    /* Gap between image and text on desktop */
   }
 
   .team-photo {
-    display: block;
     width: 640px;
+    /* Desktop width */
     height: 665px;
-    flex-shrink: 0;
-    border-radius: 16px;
-  }
-
-  .about-us-info-wrapper {
-    display: flex;
-    flex-direction: column;
+    /* Desktop height */
+    /* object-fit: cover; still applies.
+         This is where cropping is most likely to occur if desktop-team.webp
+         is not close to a 1:1 aspect ratio. */
+    padding-bottom: 0;
+    /* No padding below image */
+    margin-bottom: 0;
+    /* No margin below image */
   }
 
   .logo-about-us {
-    color: #fff;
     margin-bottom: 32px;
-    width: 80px;
-    height: 80px;
   }
 
   .about-us-title {
-    font-family: Epilogue;
     font-size: 60px;
-    line-height: 1.2;
   }
 
   .about-us-text {
-    font-family: IBM Plex Sans;
-    font-size: 20px;
-    line-height: 1.5;
     max-width: 640px;
   }
 }
