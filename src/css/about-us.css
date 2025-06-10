@@ -1,3 +1,131 @@
+/* Base styles - Mobile First (default styles applied to all screen sizes) */
+
 .about-us-section {
-    background-color: aquamarine;
+  background-color: #000;
+  color: #fff;
+}
+
+.about-us-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 64px 20px;
+  gap: 20px;
+}
+
+.team-photo {
+  display: block;
+  width: 280px;
+  height: 169px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.logo-about-us {
+  color: #fff;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 20px;
+
+}
+
+.about-us-title {
+  font-family: Epilogue, sans-serif;
+  font-size: 44px;
+  line-height: 1.2;
+}
+
+.about-us-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 280px;
+}
+
+.about-us-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- Media Queries --- */
+
+/* Tablet styles (min-width: 768px and up to 1439px) */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .about-us-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    padding: 64px 32px;
+  }
+
+  .team-photo {
+    width: 704px;
+    height: 413px;
+    padding-bottom: 0;
+    margin-bottom: 24px;
+    flex-shrink: 0;
+  }
+
+  .logo-about-us {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 24px;
+  }
+
+  .about-us-title {
+    font-size: 44px;
+  }
+
+  .about-us-text {
+    font-size: 20px;
+    max-width: 704px;
+  }
+
+  .about-us-info-wrapper {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* Desktop styles (min-width: 1440px) */
+@media screen and (min-width: 1440px) {
+  .about-us-section {
+    padding: 112px 64px;
+  }
+
+  .about-us-container {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 24px;
+  }
+
+  .team-photo {
+    width: 640px;
+    height: 665px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .logo-about-us {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 32px;
+  }
+
+  .about-us-title {
+    font-size: 60px;
+  }
+
+  .about-us-text {
+    max-width: 640px;
+  }
+
+  .about-us-info-wrapper {
+    align-items: flex-start;
+    text-align: left;
+    flex-shrink: 0;
+  }
 }
