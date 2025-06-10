@@ -1,8 +1,8 @@
 .feedback-button-prev,
 .feedback-button-next {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 150%;
+  transform: translateY(-150%);
   background-color: #060307;
   width: 48px !important;
   height: 48px !important;
@@ -19,7 +19,7 @@
 
 .feedback-button-prev:hover,
 .feedback-button-next:hover {
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-150%) scale(1.1);
 }
 
 .feedback-button-prev {
@@ -92,11 +92,9 @@
   width: 24px;
   height: 24px;
   color: #764191;
-  /* Гэты колер для зорак па змаўчанні, калі ён не перакрываецца star-filled/star-outline */
   display: inline-block;
   vertical-align: middle;
   margin-right: 2px;
-  /* Магчыма, гэта лішняе, калі ўжо ёсць gap */
 }
 
 .star-icon.star-filled {
@@ -117,20 +115,16 @@
 .feedback-pagination {
   position: static !important;
   display: flex;
-  /* Дададзена для цэнтравання кнопак пагінацыі */
   justify-content: center;
-  /* Цэнтраванне кнопак па гарызанталі */
   align-items: center;
-  /* Выраўноўванне кнопак па вертыкалі */
   margin-top: 20px;
-  /* Можна наладзіць, калі патрэбен адступ зверху */
 }
 
 .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
-  background-color: #4A4A4A !important;
-  opacity: 1;
+  background-color: #fff !important;
+  opacity: 0.2;
   border-radius: 50%;
   margin: 0 6px;
   transition: background-color 0.3s ease;
@@ -139,12 +133,10 @@
 
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background-color: #ffffff !important;
-  /* <--- Белы для актыўнай кнопкі */
 }
 
 @media screen and (max-width: 767px) {
-
-  .feedback-button-prev,
+  git reflog .feedback-button-prev,
   .feedback-button-next {
     display: none !important;
   }
@@ -164,9 +156,5 @@
     font-size: 32px;
     line-height: 1.3;
     width: 866px;
-  }
-
-  .feedback-card {
-    margin-bottom: 75px;
   }
 }
