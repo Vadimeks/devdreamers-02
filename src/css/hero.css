@@ -54,11 +54,10 @@
     justify-content: center;
     flex-direction: row;
     gap: 12px;
-
+    padding: 10px 24px;
     border-radius: 12px;
     border: transparent;
     cursor: pointer;
-    padding: 10px 24px;
     width: 280px;
     height: 47px;
 
@@ -72,6 +71,10 @@
     line-height: 1.5;
     color: #fff;
 
+}
+
+.hero-btn-icon{
+    fill: white;
 }
 
 .hero-img-wrapper {
@@ -157,7 +160,7 @@ screen and (min-width: 768px) and (min-resolution: 2dppx) {
     }
 
     .hero-btn-icon {
-        height: 20px;
+        height: 20px;;
     }
 }
 
