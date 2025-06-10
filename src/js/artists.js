@@ -86,11 +86,11 @@ function renderFromBuffer() {
       .join(' ');
     const artistId = artist._id || artist.idArtist || artist.id;
     card.innerHTML = `
-      <img class="artists-img" src="${
+      <div class="artists-image"><img class="artists-img" src="${
         artist.strArtistThumb ||
         artist.image ||
         'https://via.placeholder.com/200x200?text=No+Image'
-      }" alt="${artist.strArtist || 'Artist image'}">
+      }" alt="${artist.strArtist || 'Artist image'}"></div>
       <p class="artist-genres">
         ${genresHtml || 'No genres'}
       </p>
