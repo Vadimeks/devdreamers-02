@@ -47,7 +47,7 @@ function renderStars(count) {
 
 function initSwiper() {
   const swiper = new Swiper('.feedback-swiper', {
-    loop: false, // Пастаўце true, калі вам патрэбна бясконцая пракрутка
+    loop: false,
 
     navigation: {
       nextEl: '.feedback-button-next',
@@ -58,7 +58,7 @@ function initSwiper() {
       clickable: true,
       type: 'custom',
       renderCustom: function (swiper, current, total) {
-        const firstSlideIndex = 1; // Swiper current пачынаецца з 1
+        const firstSlideIndex = 1;
         const lastSlideIndex = total;
 
         let leftBulletActive = '';
@@ -85,8 +85,6 @@ function initSwiper() {
       },
     },
     on: {
-      // Гэты блок `paginationUpdate` ужо правільна прымацоўвае апрацоўшчыкі клікаў
-      // да дынамічна створаных bullets.
       paginationUpdate: function () {
         const bullets = document.querySelectorAll(
           '.feedback-pagination .swiper-pagination-bullet'
