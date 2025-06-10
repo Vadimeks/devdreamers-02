@@ -1,6 +1,5 @@
 .artists-section {
-  padding-top: 64px;
-  padding-bottom: 64px;
+  padding: 64px 0;
   background-color: #060307;
 }
 
@@ -23,14 +22,6 @@
   margin-bottom: 32px;
 }
 
-@media screen and (min-width: 1440px) {
-  .artists-text {
-    font-size: 60px;
-    margin-bottom: 80px;
-    width: 523px;
-  }
-}
-
 .artists {
   display: flex;
   justify-content: center;
@@ -45,39 +36,12 @@
   margin-bottom: 32px;
 }
 
-@media screen and (min-width: 768px) {
-  .artist-card {
-    width: 704px;
-    min-width: 450px;
-    margin-bottom: 0;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .artist-card {
-    width: 640px;
-    min-width: 450px;
-  }
-}
-
 .artists-img {
   display: block;
   border-radius: 16px;
   width: 288px;
   height: auto;
   margin-bottom: 24px;
-}
-
-@media screen and (min-width: 768px) {
-  .artists-img {
-    width: 704px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .artists-img {
-    width: 640px;
-  }
 }
 
 .artist-genres {
@@ -93,7 +57,6 @@
   font-size: 16px;
   line-height: 1.5;
   color: #fff;
-
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 6px;
   padding: 4px 10px;
@@ -221,7 +184,45 @@
   animation-delay: 0.2s;
 }
 
+@media screen and (min-width: 768px) {
+  .artist-card {
+    width: 704px;
+    min-width: 450px;
+    margin-bottom: 0;
+  }
+
+  .artists-img {
+    width: 704px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .artists-section {
+    padding: 112px 0;
+  }
+
+  .artists-text {
+    font-size: 60px;
+    margin-bottom: 80px;
+    width: 523px;
+  }
+
+  .artist-card {
+    width: 640px;
+    min-width: 450px;
+  }
+
+  .artists-img {
+    width: 640px;
+  }
+
+  .artists {
+    margin: 80px 0 64px 0;
+  }
+}
+
 @keyframes pulse {
+
   0%,
   100% {
     transform: scale(0.5);
