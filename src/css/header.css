@@ -1,3 +1,4 @@
+/*--header-section--*/
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 64px;
@@ -63,7 +64,7 @@ body {
 }
 
 .burger-icon {
-    color: #ffffff;
+    color: #FFFFFF;
 }
 
 @media screen and (min-width: 768px) {
@@ -117,7 +118,7 @@ body {
     }
 
     .header-nav-link:active {
-        color: #ffffff;
+        color: #FFFFFF;
     }
 
     .header-nav-link {
@@ -128,7 +129,7 @@ body {
     }
 
     .logo-icon {
-        color: #ffffff;
+        color: #FFFFFF;
     }
 }
 
@@ -141,5 +142,4 @@ body {
     .header-nav {
         max-width: 1312px;
     }
-
 }
