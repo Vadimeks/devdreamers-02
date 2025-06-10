@@ -136,7 +136,8 @@
 }
 
 @media screen and (max-width: 767px) {
-  git reflog .feedback-button-prev,
+
+  .feedback-button-prev,
   .feedback-button-next {
     display: none !important;
   }
