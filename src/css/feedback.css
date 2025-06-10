@@ -92,9 +92,11 @@
   width: 24px;
   height: 24px;
   color: #764191;
+  /* Гэты колер для зорак па змаўчанні, калі ён не перакрываецца star-filled/star-outline */
   display: inline-block;
   vertical-align: middle;
   margin-right: 2px;
+  /* Магчыма, гэта лішняе, калі ўжо ёсць gap */
 }
 
 .star-icon.star-filled {
@@ -104,6 +106,7 @@
 .star-icon.star-outline {
   color: rgba(255, 255, 255, 1);
 }
+
 .feedback-button-prev::after,
 .feedback-button-next::after {
   display: none;
@@ -113,12 +116,20 @@
 /* PAGINATION */
 .feedback-pagination {
   position: static !important;
+  display: flex;
+  /* Дададзена для цэнтравання кнопак пагінацыі */
+  justify-content: center;
+  /* Цэнтраванне кнопак па гарызанталі */
+  align-items: center;
+  /* Выраўноўванне кнопак па вертыкалі */
+  margin-top: 20px;
+  /* Можна наладзіць, калі патрэбен адступ зверху */
 }
 
 .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
-  background-color: #fff !important;
+  background-color: #4A4A4A !important;
   opacity: 1;
   border-radius: 50%;
   margin: 0 6px;
@@ -126,15 +137,19 @@
   cursor: pointer;
 }
 
-.swiper-pagination-bullet-active {
-  background-color: #fff !important;
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: #ffffff !important;
+  /* <--- Белы для актыўнай кнопкі */
 }
+
 @media screen and (max-width: 767px) {
+
   .feedback-button-prev,
   .feedback-button-next {
     display: none !important;
   }
 }
+
 /* Tablet styles */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .feedback-text {
@@ -150,6 +165,7 @@
     line-height: 1.3;
     width: 866px;
   }
+
   .feedback-card {
     margin-bottom: 75px;
   }
