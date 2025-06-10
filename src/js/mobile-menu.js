@@ -1,3 +1,4 @@
+//---header-section---
 document.addEventListener('DOMContentLoaded', function () {
   const burger = document.querySelector('.burger-btn');
   const modalMenu = document.querySelector('.mobile-menu');
