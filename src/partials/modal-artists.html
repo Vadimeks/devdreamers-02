@@ -2,13 +2,20 @@
   <div class="modal-content">
     <button class="close-modal" id="close-modal-btn" aria-label="Close modal">
       <svg class="close-icon" width="24" height="24">
-        <use href="./img/sprite.svg#icon-close"></use>
+        <use href="./img/sprite.svg#icon-feedback-dot"></use>
       </svg>
     </button>
 
     <div id="modalLoader" class="loader">
       <svg class="spinner" viewBox="0 0 50 50">
-        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+        <circle
+          class="path"
+          cx="25"
+          cy="25"
+          r="20"
+          fill="none"
+          stroke-width="5"
+        ></circle>
       </svg>
       <p>Loading...</p>
     </div>
@@ -17,28 +24,29 @@
 
     <div class="modal-body">
       <div class="artist-overview-block">
-        <div class="artist-image-container"> <img src="" alt="Artist photo" class="modal-artist-image"
-            id="modal-artist-image"> </div>
+        <div class="artist-image-container">
+          <img
+            src=""
+            alt="Artist photo"
+            class="modal-artist-image"
+            id="modal-artist-image"
+          />
+        </div>
 
         <div class="artist-description-details">
-          <h3>Information about the artist</h3>
-          <ul class="artist-info-list" id="artist-info-list">
-          </ul>
+          <ul class="artist-info-list" id="artist-info-list"></ul>
 
           <h3>Genres</h3>
-          <ul class="genres-list" id="genres-list">
-          </ul>
+          <ul class="genres-list" id="genres-list"></ul>
 
           <h3>Biography</h3>
           <p class="artist-info-bio-text" id="artist-bio-paragraph"></p>
-          <button class="read-more-btn" id="read-more-bio-btn" style="display: none;">Read More</button>
         </div>
       </div>
 
       <div class="artist-albums-block">
         <h3>Albums</h3>
-        <ul class="artist-albums-list" id="artist-albums-list-container">
-        </ul>
+        <ul class="artist-albums-list" id="artist-albums-list-container"></ul>
       </div>
     </div>
   </div>
