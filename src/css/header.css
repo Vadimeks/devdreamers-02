@@ -20,7 +20,7 @@ html {
     align-items: center;
     justify-content: space-between;
     background-color: transparent;
-    padding-right: 6.5px 12px 6.5px 20px;
+    padding: 6.5px 12px 6.5px 20px;
 }
 
 .header-nav {
