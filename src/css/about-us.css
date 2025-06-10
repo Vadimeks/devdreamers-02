@@ -23,7 +23,7 @@
   }
 
   .logo-about-us {
-    fill: #fff;
+    color: #fff;
     width: 64px;
     height: 64px;
   }
@@ -73,7 +73,7 @@
   }
 
   .logo-about-us {
-    fill: #fff;
+    color: #fff;
     width: 80px;
     height: 80px;
   }
@@ -122,7 +122,7 @@
   }
 
   .logo-about-us {
-    fill: #fff;
+    color: #fff;
     margin-bottom: 32px;
     width: 80px;
     height: 80px;
@@ -135,7 +135,7 @@
   }
 
   .about-us-text {
-    font-family: IBM Plex Sans; 
+    font-family: IBM Plex Sans;
     font-size: 20px;
     line-height: 1.5;
     max-width: 640px;
