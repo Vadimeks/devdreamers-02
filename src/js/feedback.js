@@ -35,7 +35,6 @@ function renderStars(count) {
   const max = 5;
   let starsHTML = '';
   for (let i = 1; i <= max; i++) {
-
     const starClass = i <= count ? 'star-filled' : 'star-outline';
     starsHTML += `
         <svg class="star-icon ${starClass}" width="24" height="24">
@@ -59,19 +58,30 @@ function initSwiper() {
       clickable: true,
       type: 'custom',
       renderCustom: function (swiper, current, total) {
-        const lastIndex = total - 1;
-        const middleIndex = Math.floor(lastIndex / 2);
-        const indexes = [0, middleIndex, lastIndex];
+        const firstSlideIndex = 1;
+        const lastSlideIndex = total;
 
-        return indexes
-          .map(slideIndex => {
-            const isActive =
-              current - 1 === slideIndex
-                ? 'swiper-pagination-bullet-active'
-                : '';
-            return `<span class="swiper-pagination-bullet ${isActive}" data-slide-index="${slideIndex}"></span>`;
-          })
-          .join('');
+        let leftBulletActive = '';
+        let middleBulletActive = '';
+        let rightBulletActive = '';
+
+        if (current === firstSlideIndex) {
+          leftBulletActive = 'swiper-pagination-bullet-active';
+        } else if (current === lastSlideIndex) {
+          rightBulletActive = 'swiper-pagination-bullet-active';
+        } else {
+          middleBulletActive = 'swiper-pagination-bullet-active';
+        }
+
+        return `
+          <span class="swiper-pagination-bullet ${leftBulletActive}" data-slide-index="0"></span>
+          <span class="swiper-pagination-bullet ${middleBulletActive}" data-slide-index="${Math.floor(
+          total / 2
+        )}"></span>
+          <span class="swiper-pagination-bullet ${rightBulletActive}" data-slide-index="${
+          total - 1
+        }"></span>
+        `;
       },
     },
     on: {

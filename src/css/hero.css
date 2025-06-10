@@ -28,7 +28,6 @@
     background: linear-gradient(to top, #060307, rgba(35, 19, 43, 0));
 }
 
-.hero-container {}
 
 .hero-title {
     margin: 64px 0 20px 0;
@@ -55,11 +54,10 @@
     justify-content: center;
     flex-direction: row;
     gap: 12px;
-
+    padding: 10px 24px;
     border-radius: 12px;
     border: transparent;
     cursor: pointer;
-    padding: 10px 24px;
     width: 280px;
     height: 47px;
 
@@ -75,10 +73,14 @@
 
 }
 
+.hero-btn-icon{
+    fill: white;
+}
+
 .hero-img-wrapper {
     height: 385px;
     width: 100%;
-    background-image: url(../img/hero/img-hero-mobile.png);
+    background-image: url(../img/hero/img-hero-mobile.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-position-y: bottom;
@@ -88,7 +90,7 @@
 @media screen and (min-width: 320px) and (min-resolution: 192dpi),
 screen and (min-width: 320px) and (min-resolution: 2dppx) {
     .hero-img-wrapper {
-        background-image: url(../img/hero/img-hero-mobile@2x.png);
+        background-image: url(../img/hero/img-hero-mobile@2x.webp);
 
 
     }
@@ -108,14 +110,14 @@ screen and (min-width: 320px) and (min-resolution: 2dppx) {
 
     .hero-img-wrapper {
         height: 632px;
-        background-image: url(../img/hero/img-hero-tablet.png);
+        background-image: url(../img/hero/img-hero-tablet.webp);
     }
 }
 
 @media screen and (min-width: 768px) and (min-resolution: 192dpi),
 screen and (min-width: 768px) and (min-resolution: 2dppx) {
     .hero-img-wrapper {
-        background-image: url(../img/hero/img-hero-tablet@2x.png);
+        background-image: url(../img/hero/img-hero-tablet@2x.webp);
     }
 }
 
@@ -133,7 +135,7 @@ screen and (min-width: 768px) and (min-resolution: 2dppx) {
     .hero-img-wrapper {
         flex: 1;
         height: 900px;
-        background-image: url(../img/hero/img-hero-desktop.png);
+        background-image: url(../img/hero/img-hero-desktop.webp);
         background-position: center right;
     }
 
@@ -158,13 +160,13 @@ screen and (min-width: 768px) and (min-resolution: 2dppx) {
     }
 
     .hero-btn-icon {
-        height: 20px;
+        height: 20px;;
     }
 }
 
 @media screen and (min-width: 1440px) and (min-resolution: 192dpi),
 screen and (min-width: 1440px) and (min-resolution: 2dppx) {
     .hero-img-wrapper {
-        background-image: url(../img/hero/img-hero-desktop@2x.png);
+        background-image: url(../img/hero/img-hero-desktop@2x.webp);
     }
 }
