@@ -40,12 +40,12 @@ import{a as I,S as O}from"./assets/vendor-B_QiARH3.js";(function(){const t=docum
       </p>
       <h3 class="artist-name">${n.strArtist||"Unknown Artist"}</h3>
       <p class="artist-description">${a}</p>
-      <a href="#" class="learn-more-btn js-learn-more-btn" data-id="${f}">
-        Learn More
-        <svg class="learn-icon" width="24" height="24">
-          <use href="./img/sprite.svg#icon-caret-right"></use>
-        </svg>
-      </a>
+
+      <button class="learn-more-btn js-learn-more-btn"
+              data-id="${f}">Learn More
+        <svg class="load-icon" width="24" height="24"><use href="./img/sprite.svg#icon-caret-right"></use></svg>
+      </button>
+
     `,t.appendChild(r)}),S&&S.appendChild(t),Z()}v.addEventListener("click",()=>{v.blur(),$.length>=N?U():B||(M++,G(M))});function J(){A&&(A.classList.add("is-active"),A.style.display="block")}function X(){A&&(A.classList.remove("is-active"),A.style.display="none")}function Z(){document.querySelectorAll(".js-learn-more-btn").forEach(t=>{t.dataset.listenerAttached||(t.addEventListener("click",ee),t.dataset.listenerAttached="true")})}async function ee(s){const t=s.currentTarget.dataset.id;if(!t){console.warn("Artist ID not found for modal. Cannot open modal.");return}const n=F.get(t);try{await z(n||t)}catch(r){console.error("Error opening artist modal:",r)}}document.addEventListener("DOMContentLoaded",()=>{G(M)});const te=document.querySelector(".swiper-wrapper");async function se(){try{(await D(10,1)).data.forEach(({rating:n,descr:r,name:o})=>{const e=ne({rating:n,text:r,user:o});te.appendChild(e)}),re()}catch(s){console.error("Oops...Error",s)}}se();function ne({rating:s,text:t,user:n}){const r=document.createElement("div");r.classList.add("swiper-slide");const o=Math.round(s);return r.innerHTML=`
     <div class="feedback-card">
       <div class="feedback-stars">${ie(o)}</div>
