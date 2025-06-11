@@ -1,8 +1,11 @@
+// feedback section js
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 import 'css-star-rating/css/star-rating.css';
 import { fetchFeedbacks } from './apiService';
+
 const swiperWrapper = document.querySelector('.swiper-wrapper');
+
 async function loadFeedbacks() {
   try {
     const response = await fetchFeedbacks(10, 1);
@@ -16,7 +19,9 @@ async function loadFeedbacks() {
     console.error('Oops...Error', error);
   }
 }
+
 loadFeedbacks();
+
 function createFeedbackSlide({ rating, text, user }) {
   const slide = document.createElement('div');
   slide.classList.add('swiper-slide');
@@ -57,26 +62,22 @@ function initSwiper() {
       el: '.feedback-pagination',
       clickable: true,
       type: 'custom',
-      renderCustom: function (swiper, current, total) {
-        const firstSlideIndex = 1;
-        const lastSlideIndex = total;
-
+      renderCustom: function (swiperInstance, current, total) {
         let leftBulletActive = '';
         let middleBulletActive = '';
         let rightBulletActive = '';
 
-        if (current === firstSlideIndex) {
+        if (current === 1) {
           leftBulletActive = 'swiper-pagination-bullet-active';
-        } else if (current === lastSlideIndex) {
+        } else if (current === total) {
           rightBulletActive = 'swiper-pagination-bullet-active';
         } else {
           middleBulletActive = 'swiper-pagination-bullet-active';
         }
-
         return `
           <span class="swiper-pagination-bullet ${leftBulletActive}" data-slide-index="0"></span>
           <span class="swiper-pagination-bullet ${middleBulletActive}" data-slide-index="${Math.floor(
-          total / 2
+          (total - 1) / 2
         )}"></span>
           <span class="swiper-pagination-bullet ${rightBulletActive}" data-slide-index="${
           total - 1
