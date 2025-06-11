@@ -1,8 +1,9 @@
-import { fetchArtistDetails } from './apiService.js'; // Пераканайцеся, што шлях правільны
+import { fetchArtistDetails } from './apiService.js';
 
 const artistModal = document.getElementById('artistModal');
 const closeModalButton = artistModal?.querySelector('.close-modal');
 const modalLoader = document.getElementById('modalLoader');
+const modalContent = artistModal?.querySelector('.modal-content');
 
 const modalArtistImage = artistModal?.querySelector('#modal-artist-image');
 const modalTitle = artistModal?.querySelector('.modal-title');
@@ -32,8 +33,6 @@ function clearModalContent() {
   if (genresList) genresList.innerHTML = '';
   if (artistAlbumsListContainer) artistAlbumsListContainer.innerHTML = '';
 
-  if (modalLoader) modalLoader.style.display = 'none';
-
   const existingPaginationControls = artistModal?.querySelector(
     '.pagination-controls'
   );
@@ -51,9 +50,6 @@ function clearModalContent() {
   allAlbums = [];
 }
 
-/**
- * Closes the artist modal and restores body scroll.
- */
 function closeArtistModal() {
   if (artistModal) {
     artistModal.classList.remove('open');
@@ -63,51 +59,39 @@ function closeArtistModal() {
     document.body.style.top = '';
     window.scrollTo(0, scrollPosition);
   }
+  if (modalLoader) modalLoader.style.display = 'none';
+  if (modalContent) {
+    modalContent.style.opacity = '0';
+    modalContent.style.visibility = 'hidden';
+  }
+
   clearModalContent();
   document.removeEventListener('keydown', escapeKeyHandler);
   artistModal?.removeEventListener('click', outsideClickHandler);
 }
 
-/**
- * Handles clicks outside the modal to close it.
- * @param {MouseEvent} e - The click event.
- */
 function outsideClickHandler(e) {
   if (e.target === artistModal) {
     closeArtistModal();
   }
 }
 
-/**
- * Handles the Escape key press to close the modal.
- * @param {KeyboardEvent} e - The keyboard event.
- */
 function escapeKeyHandler(e) {
   if (e.key === 'Escape') {
     closeArtistModal();
   }
 }
 
-/**
- * Checks if a given URL is a valid YouTube video URL using a regex.
- * @param {string} url - The URL to validate.
- * @returns {boolean} - True if the URL is a valid YouTube URL, false otherwise.
- */
 const isValidYoutubeUrl = url => {
-  // If URL doesn't exist, isn't a string, or is empty after trimming
   if (!url || typeof url !== 'string' || url.trim() === '') {
     return false;
   }
 
-  // More robust regex to validate YouTube URLs
   const youtubeRegex =
     /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/(watch\?v=|embed\/|v\/|)([\w-]{11})(.*)?$/;
   return youtubeRegex.test(url.trim());
 };
 
-/**
- * Renders the albums and their tracks within the modal.
- */
 function renderAlbumsContent() {
   if (!artistAlbumsListContainer) return;
 
@@ -145,13 +129,10 @@ function renderAlbumsContent() {
 
     if (album.tracks && album.tracks.length > 0) {
       album.tracks.forEach((track, index) => {
-        const rowClass = index % 2 === 0 ? 'even-row' : 'odd-row';
-
         const trackDuration = track.intDuration
           ? formatDuration(track.intDuration)
           : '';
 
-        // *** CRITICAL CHANGE: Use track.movie instead of track.strMusicVid ***
         const musicVidUrl = track.movie;
         const youtubeUrlIsValid = isValidYoutubeUrl(musicVidUrl);
 
@@ -168,7 +149,7 @@ function renderAlbumsContent() {
             ? track.strTrack
             : 'Track Name';
 
-        albumItemHtml += `<li class="album-track-item ${rowClass}">
+        albumItemHtml += `<li class="album-track-item">
                             <ul class="track-info-list">
                               <li class="track-info-item">${trackName}</li>
                               <li class="track-info-item track-info-item-time">${trackDuration}</li>
@@ -194,11 +175,6 @@ function renderAlbumsContent() {
   });
 }
 
-/**
- * Formats duration from milliseconds to MM:SS format.
- * @param {number|string} ms - Duration in milliseconds.
- * @returns {string} - Formatted duration string.
- */
 function formatDuration(ms) {
   const numMs = typeof ms === 'string' ? parseInt(ms, 10) : ms;
 
@@ -211,9 +187,6 @@ function formatDuration(ms) {
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
-/**
- * Toggles the expanded/collapsed state of the artist biography.
- */
 function toggleBiography() {
   if (artistBioParagraph && readMoreBioBtn) {
     artistBioParagraph.classList.toggle('expanded');
@@ -225,14 +198,11 @@ function toggleBiography() {
   }
 }
 
-/**
- * Opens the artist modal and populates it with details and tracks.
- * @param {object|string} artistData - The artist object or artist ID.
- */
 export async function openArtistModal(artistData) {
   const requiredElements = [
     artistModal,
     modalLoader,
+    modalContent,
     modalTitle,
     modalArtistImage,
     artistInfoList,
@@ -241,9 +211,7 @@ export async function openArtistModal(artistData) {
     artistAlbumsListContainer,
   ];
   if (requiredElements.some(el => !el)) {
-    console.error(
-      'One or more modal DOM elements not found. Check your HTML IDs and classes.'
-    );
+    console.error('Missing modal DOM elements.');
     return;
   }
 
@@ -251,13 +219,16 @@ export async function openArtistModal(artistData) {
   document.body.style.top = `-${scrollPosition}px`;
   document.body.classList.add('modal-open');
   artistModal.classList.add('open');
-  modalLoader.style.display = 'block';
 
   clearModalContent();
+  modalLoader.style.display = 'flex';
+  modalContent.style.opacity = '0';
+  modalContent.style.visibility = 'hidden';
 
   document.addEventListener('keydown', escapeKeyHandler);
   artistModal?.addEventListener('click', outsideClickHandler);
   closeModalButton?.addEventListener('click', closeArtistModal);
+
   let fullArtistDetailsFromApi;
   let artistIdToFetch;
   let genresFromCache = [];
@@ -280,9 +251,13 @@ export async function openArtistModal(artistData) {
   }
 
   if (!artistIdToFetch) {
-    console.error('Artist ID is missing for modal.');
+    console.error('Artist ID missing.');
     modalLoader.style.display = 'none';
     if (modalTitle) modalTitle.textContent = 'Error: Artist ID missing';
+    if (modalContent) {
+      modalContent.style.opacity = '1';
+      modalContent.style.visibility = 'visible';
+    }
     return;
   }
 
@@ -296,8 +271,6 @@ export async function openArtistModal(artistData) {
     } else {
       finalArtistDetails.genres = [];
     }
-
-    modalLoader.style.display = 'none';
 
     if (finalArtistDetails) {
       modalTitle.textContent =
@@ -436,7 +409,7 @@ export async function openArtistModal(artistData) {
         const albumsMap = new Map();
         finalArtistDetails.tracksList.forEach(track => {
           const albumName = track.strAlbum || 'Unknown Album';
-          const albumId = track.idAlbum || albumName; // Use idAlbum if available, otherwise albumName
+          const albumId = track.idAlbum || albumName;
 
           if (!albumsMap.has(albumId)) {
             albumsMap.set(albumId, {
@@ -452,7 +425,7 @@ export async function openArtistModal(artistData) {
         allAlbums = Array.from(albumsMap.values()).sort((a, b) => {
           const yearA = parseInt(a.intYearReleased) || 0;
           const yearB = parseInt(b.intYearReleased) || 0;
-          return yearB - yearA; // Sort by year descending
+          return yearB - yearA;
         });
 
         renderAlbumsContent();
@@ -470,26 +443,31 @@ export async function openArtistModal(artistData) {
       if (genresList) genresList.innerHTML = '';
       if (artistAlbumsListContainer) artistAlbumsListContainer.innerHTML = '';
     }
-  } catch (error) {
+
     modalLoader.style.display = 'none';
+    modalContent.style.opacity = '1';
+    modalContent.style.visibility = 'visible';
+  } catch (error) {
+    console.error('Error loading data:', error);
+    modalLoader.style.display = 'none';
+    if (modalContent) {
+      modalContent.style.opacity = '1';
+      modalContent.style.visibility = 'visible';
+    }
+
     if (artistModal) {
       if (modalTitle) modalTitle.textContent = 'Error loading data!';
       let errorMessage = 'Unfortunately, artist data could not be loaded. ';
-      // Check for specific error types for a more informative message
       if (error.response) {
-        // Axios error (if you're using it)
         errorMessage += `Status: ${error.response.status}. `;
         if (error.response.status === 404) {
-          errorMessage +=
-            'Resource not found at the specified URL. Incorrect ID or API path. Try a different ID or check API documentation.';
+          errorMessage += 'Resource not found or API path incorrect.';
         } else if (error.response.data && error.response.data.message) {
           errorMessage += `Message: ${error.response.data.message}`;
         }
       } else if (error.request) {
-        // Network error
-        errorMessage += 'No response received from the server. Network issue.';
+        errorMessage += 'No response from server. Network issue.';
       } else {
-        // Other errors
         errorMessage += `Message: ${error.message}`;
       }
 
@@ -499,6 +477,5 @@ export async function openArtistModal(artistData) {
       if (genresList) genresList.innerHTML = '';
       if (artistAlbumsListContainer) artistAlbumsListContainer.innerHTML = '';
     }
-    console.error('Error fetching data:', error);
   }
 }
