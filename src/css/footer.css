@@ -6,12 +6,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* width: 280px; */
-  /* margin: 0px; */
+  padding: 48px 16px;
 }
 
 .footer-logo-link {
-  margin-top: 48px;
   margin-bottom: 32px;
 }
 
@@ -39,11 +37,10 @@
   width: 280px;
   align-items: center;
   flex-direction: column-reverse;
-  margin-bottom: 48px;
 }
 
 .sm-list {
-  padding-top: 32px;
+  margin-top: 32px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -56,7 +53,7 @@
   font-size: 16px;
   line-height: 1.5;
   color: #fff;
-  padding-top: 32px;
+  margin-top: 32px;
 }
 
 .sm-icon {
