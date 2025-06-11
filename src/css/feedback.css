@@ -133,6 +133,7 @@
 
 /* Mobile styles (max-width: 767px) - Buttons hidden */
 @media screen and (max-width: 767px) {
+
   .feedback-button-prev,
   .feedback-button-next {
     display: none !important;
@@ -173,13 +174,13 @@
 
   .feedback-button-prev {
     left: 64px !important;
-    top: 150%;
+    top: 50%;
     transform: translateY(-150%);
   }
 
   .feedback-button-next {
     right: 64px !important;
-    top: 150%;
+    top: 50%;
     transform: translateY(-150%);
   }
 
