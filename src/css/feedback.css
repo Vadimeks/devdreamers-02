@@ -1,44 +1,4 @@
-.feedback-button-prev,
-.feedback-button-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #060307;
-  width: 48px !important;
-  height: 48px !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: transform 0.2s ease;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 8px;
-  padding: 12px;
-}
-
-.feedback-button-prev:hover,
-.feedback-button-next:hover {
-  transform: translateY(-50%) scale(1.1);
-}
-
-.feedback-button-prev {
-  left: 0;
-}
-
-.feedback-button-next {
-  right: 0;
-}
-
-.icon-prev,
-.icon-next {
-  width: 24px;
-  height: 24px;
-  color: #fff;
-}
-
-/* Mobile styles */
-
+/* feedback section styles */
 .feedback-section {
   background-color: black;
   margin: 0 auto;
@@ -46,19 +6,39 @@
 
 .feedback-container {
   padding: 64px 16px;
+  position: relative;
 }
 
 .feedback-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin-bottom: 16px;
   position: relative;
 }
 
 .feedback-stars {
+  display: flex;
+  gap: 4px;
   margin-bottom: 32px;
+}
+
+.star-icon {
+  width: 24px;
+  height: 24px;
+  color: #764191;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+
+.star-icon.star-filled {
+  color: rgba(118, 65, 145, 1);
+}
+
+.star-icon.star-outline {
+  color: rgba(255, 255, 255, 1);
 }
 
 .feedback-text {
@@ -81,30 +61,44 @@
   color: #fff;
 }
 
-/* ICONS */
-.feedback-stars {
+.feedback-button-prev,
+.feedback-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #060307;
+  width: 48px !important;
+  height: 48px !important;
   display: flex;
-  gap: 4px;
-  margin-bottom: 32px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  padding: 12px;
 }
 
-.star-icon {
+.icon-prev,
+.icon-next {
   width: 24px;
   height: 24px;
-  color: #764191;
-  /* Гэты колер для зорак па змаўчанні, калі ён не перакрываецца star-filled/star-outline */
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 2px;
-  /* Магчыма, гэта лішняе, калі ўжо ёсць gap */
+  color: #fff;
 }
 
-.star-icon.star-filled {
-  color: rgba(118, 65, 145, 1);
+.feedback-button-prev:hover,
+.feedback-button-next:hover {
+  transform: translateY(-50%) scale(1.1);
 }
 
-.star-icon.star-outline {
-  color: rgba(255, 255, 255, 1);
+/* Position buttons at container edges */
+.feedback-button-prev {
+  left: 0;
+}
+
+.feedback-button-next {
+  right: 0;
 }
 
 .feedback-button-prev::after,
@@ -113,35 +107,31 @@
   content: none;
 }
 
-/* PAGINATION */
 .feedback-pagination {
   position: static !important;
   display: flex;
-  /* Дададзена для цэнтравання кнопак пагінацыі */
   justify-content: center;
-  /* Цэнтраванне кнопак па гарызанталі */
   align-items: center;
-  /* Выраўноўванне кнопак па вертыкалі */
   margin-top: 20px;
-  /* Можна наладзіць, калі патрэбен адступ зверху */
 }
 
 .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
-  background-color: #4A4A4A !important;
-  opacity: 1;
+  background-color: #fff !important;
+  opacity: 0.2;
   border-radius: 50%;
   margin: 0 6px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
   cursor: pointer;
 }
 
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background-color: #ffffff !important;
-  /* <--- Белы для актыўнай кнопкі */
+  opacity: 1;
 }
 
+/* Mobile styles (max-width: 767px) - Buttons hidden */
 @media screen and (max-width: 767px) {
 
   .feedback-button-prev,
@@ -150,15 +140,27 @@
   }
 }
 
-/* Tablet styles */
+/* Tablet styles (768px to 1439px) */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .feedback-text {
     font-size: 26px;
     width: 518px;
   }
+
+  .feedback-container {
+    padding: 64px 32px;
+  }
+
+  .feedback-button-next {
+    right: 32px !important;
+  }
+
+  .feedback-button-prev {
+    left: 32px !important;
+  }
 }
 
-/* Desktop styles */
+/* Desktop styles (1440px and up) */
 @media screen and (min-width: 1440px) {
   .feedback-text {
     font-size: 32px;
@@ -166,7 +168,15 @@
     width: 866px;
   }
 
-  .feedback-card {
-    margin-bottom: 75px;
+  .feedback-container {
+    padding: 112px 64px;
+  }
+
+  .feedback-button-prev {
+    left: 64px !important;
+  }
+
+  .feedback-button-next {
+    right: 64px !important;
   }
 }
