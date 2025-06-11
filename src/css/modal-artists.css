@@ -20,21 +20,6 @@
   overflow-x: hidden;
 }
 
-.modal-artists-backdrop::-webkit-scrollbar {
-  width: 8px;
-}
-
-.modal-artists-backdrop::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-}
-
-.modal-artists-backdrop::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  border: 2px solid rgba(6, 3, 7, 1);
-}
-
 .modal-artists-backdrop.open {
   opacity: 1;
   visibility: visible;
@@ -51,28 +36,28 @@ body.modal-open {
 }
 
 .modal-container {
-  margin: 0 auto;
+  margin: 16px auto 48px auto;
   max-width: 320px;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(6, 3, 7, 1);
+  overflow-y: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.8),
+    0 15px 30px rgba(0, 0, 0, 0.6),
+    0 25px 50px rgba(0, 0, 0, 0.4);
 }
 
 /* Modal Content Styles (Mobile First: up to 767px) */
 .modal-content {
-  background: var(--Color-Scheme-1-Background, rgba(6, 3, 7, 1));
-  border-radius: 8px;
   max-width: 320px;
   width: 100%;
   position: relative;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
   padding: 52px 8px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin: 0 auto;
   min-height: min-content;
-  overflow-y: auto;
-  max-height: 90vh;
+  margin: 0 auto;
 }
 
 /* Close button style */
@@ -97,6 +82,11 @@ body.modal-open {
   height: 14.06px;
   color: white;
   fill: #fff;
+}
+
+.close-modal:hover .close-icon,
+.close-modal:focus .close-icon {
+  color: #333;
 }
 
 /* --- LOADER STYLES START HERE --- */
@@ -537,9 +527,14 @@ body.modal-open {
 
 /* YouTube Icon styling */
 .yt-button .yt-icon {
-  fill: currentColor;
+  color: currentColor;
   width: 24px;
   height: 24px;
+}
+
+.yt-button:hover .yt-icon,
+.yt-button:focus .yt-icon {
+  color: #555;
 }
 
 /* --- Media Queries --- */
@@ -549,6 +544,22 @@ body.modal-open {
   .modal-container {
     max-width: 768px;
     background-color: rgba(6, 3, 7, 1);
+  }
+
+  /* Scrollbar aesthetics for modal-container */
+  .modal-container::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .modal-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+  }
+
+  .modal-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    border: 2px solid rgba(6, 3, 7, 1);
   }
 
   .modal-content {
@@ -643,7 +654,7 @@ body.modal-open {
 @media (min-width: 1440px) {
   .modal-container {
     max-width: 1440px;
-    background-color: rgba(6, 3, 7, 1);
+    background-color: rgba(6, 3, 7, 25);
   }
 
   .modal-content {
