@@ -1,63 +1,49 @@
+/*--header-section--*/
 .mobile-backdrop {
     position: fixed;
     inset: 0;
     z-index: 9999;
     display: none;
+    background: #060307;
+}
+
+.mobile-backdrop.open {
+    display: block;
 }
 
 .mobile-menu {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
     position: fixed;
     top: 0;
-    right: 0;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
     height: 100%;
     background: #060307;
     transition: transform 0.3s ease-in-out;
+    padding-top: 103px;
 }
 
-.mobile-nav {
-    margin: auto;
-    width: 109px;
-    height: 181px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 39px;
-
+.mobile-logo {
+    position: absolute;
+    top: 17.12px;
+    left: 20px;
+    width: 106px;
+    height: 30px;
+    margin: 0;
 }
 
-.mob-nav-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-family: "IBM Plex Sans", sans-serif;
-    font-weight: 500;
-    font-size: 26px;
-    line-height: 1.5;
-    color: #fff;
-}
-
-.mob-nav-item:not(:last-child) {
-    margin-bottom: 32px;
-}
-
-.mob-nav-link {
-    text-align: center;
-    transition: background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.mob-nav-link:hover,
-.mob-nav-link:focus {
-    color: #764191;
-}
-
-.mob-nav-link:active {
-    color: #ffffff;
+.mobile-close {
+    position: absolute;
+    top: 26.34px;
+    right: 26.34px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    z-index: 1000;
+    margin: 6.34px;
 }
 
 .icon-close {
@@ -65,34 +51,36 @@
     color: #fff;
 }
 
-.mobile-backdrop.open {
-    display: block;
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
 }
 
-.mobile-backdrop.open .mobile-menu {
-    transform: translateX(0);
+.mob-nav-item {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.5;
+    color: #fff;
 }
 
-.mobile-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: transparent;
-    border: none;
-    margin-top: 26.34px;
-    margin-right: 26.34px;
-    padding: 0;
+.mob-nav-link {
+    text-align: center;
+    transition: color 500ms ease;
+}
+
+.mob-nav-link:hover,
+.mob-nav-link:focus {
+    color: #764191;
 }
 
 @media screen and (min-width: 768px) {
-    .modal {
+
+    .mobile-backdrop,
+    .mobile-menu {
         display: none;
     }
-}
-
-.mobile-logo {
-    display: block;
-    margin: 10.63px 6.18px 10.17px 6.18px;
-    width: 106px;
-    height: 30px;
 }

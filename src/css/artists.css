@@ -1,3 +1,5 @@
+/*======================ARTISTS-SECTION===================*/
+
 .artists-section {
   padding: 64px 0;
   background-color: #060307;
@@ -26,29 +28,31 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 32px;
-  margin: 0 auto;
+  gap: 64px;
+  margin-bottom: 32px;
 }
 
 .artist-card {
   width: 288px;
   min-width: 280px;
-  margin-bottom: 32px;
 }
 
+
+.artists-image {
+  margin-bottom: 24px;
+}
 .artists-img {
   display: block;
   border-radius: 16px;
   width: 288px;
   height: auto;
-  margin-bottom: 24px;
 }
 
 .artist-genres {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .genre {
@@ -85,7 +89,6 @@
 .learn-more-btn {
   display: inline-flex;
   align-items: center;
-  /* text-align: center; */
   gap: 8px;
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 500;
@@ -96,7 +99,7 @@
   height: 27px;
   background-color: #060307;
   padding: 0;
-  text-decoration: none;
+  
 
   cursor: pointer;
   transition: color 0.3s ease;
@@ -115,14 +118,16 @@
 }
 
 .btn {
-  display: block;
+  display: flex;
+  justify-content: center;
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
 
   border-radius: 12px;
   border: transparent;
   padding: 10px 24px;
-  width: 170px;
+  width: 288px;
   height: 47px;
   cursor: pointer;
 
@@ -140,9 +145,6 @@
 }
 
 .btn-label {
-  display: flex;
-  align-items: center;
-  text-align: center;
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 500;
   font-size: 18px;
@@ -154,7 +156,10 @@
   margin-left: 12px;
   fill: currentColor;
 }
-
+.btn-label svg {
+  display: inline-block;
+  vertical-align: middle;
+}
 #global-loader {
   position: fixed;
   inset: 0;
@@ -237,4 +242,49 @@
 
 .hidden {
   display: none !important;
+
 }
+@media screen and (min-width: 768px) {
+  .artists {
+    gap: 32px;
+    margin-bottom: 64px;
+  }
+  .artists-img {
+    width: 704px;
+  }
+  .artist-card {
+    width: 704px;
+    min-width: 450px;
+  }
+  .btn {
+    width: 340px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .artists-section {
+    padding-top: 112px;
+    padding-bottom: 112px;
+  }
+
+  .artists-img {
+    width: 640px;
+  }
+  .artist-genres {
+    margin-bottom: 20px;
+  }
+  .artist-card {
+    width: 640px;
+    min-width: 450px;
+  }
+
+  .artists-text {
+    font-size: 60px;
+    margin-bottom: 80px;
+    width: 523px;
+  }
+  .btn {
+    width: 170px;
+  }
+}
+

@@ -1,44 +1,46 @@
 <div class="modal-artists-backdrop" id="artistModal">
-  <div class="modal-content">
-    <button class="close-modal" id="close-modal-btn" aria-label="Close modal">
-      <svg class="close-icon" width="24" height="24">
-        <use href="./img/sprite.svg#icon-close"></use>
-      </svg>
-    </button>
-
+  <div class="container modal-container">
     <div id="modalLoader" class="loader">
       <svg class="spinner" viewBox="0 0 50 50">
         <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
       </svg>
       <p>Loading...</p>
     </div>
+    <div class="modal-content">
+      <button class="close-modal" id="close-modal-btn" aria-label="Close modal">
+        <svg class="close-icon" width="24" height="24">
+          <use href="/img/sprite.svg#icon-close"></use>
+        </svg>
+      </button>
 
-    <h2 class="modal-title" id="modal-title"></h2>
 
-    <div class="modal-body">
-      <div class="artist-overview-block">
-        <div class="artist-image-container"> <img src="" alt="Artist photo" class="modal-artist-image"
-            id="modal-artist-image"> </div>
 
-        <div class="artist-description-details">
-          <h3>Information about the artist</h3>
-          <ul class="artist-info-list" id="artist-info-list">
-          </ul>
+      <h2 class="modal-title" id="modal-title">&nbsp;</h2>
 
-          <h3>Genres</h3>
-          <ul class="genres-list" id="genres-list">
-          </ul>
+      <div class="modal-body">
+        <div class="artist-overview-block">
+          <div class="artist-image-container">
+            <img src="/img/no-image.webp" alt="Artist photo" class="modal-artist-image" id="modal-artist-image">
+          </div>
+          <div class="modal-descr">
+            <ul class="artist-info-list" id="artist-info-list"></ul>
+            <div class="artist-description-details">
+              <h3>Biography</h3>
+              <p class="artist-info-bio-text" id="artist-bio-paragraph">
+              </p>
 
-          <h3>Biography</h3>
-          <p class="artist-info-bio-text" id="artist-bio-paragraph"></p>
-          <button class="read-more-btn" id="read-more-bio-btn" style="display: none;">Read More</button>
+
+
+              <h3>Genres</h3>
+              <ul class="genres-list" id="genres-list"></ul>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="artist-albums-block">
-        <h3>Albums</h3>
-        <ul class="artist-albums-list" id="artist-albums-list-container">
-        </ul>
+        <div class="artist-albums-block">
+          <h3>Albums</h3>
+          <ul class="artist-albums-list" id="artist-albums-list-container"></ul>
+        </div>
       </div>
     </div>
   </div>

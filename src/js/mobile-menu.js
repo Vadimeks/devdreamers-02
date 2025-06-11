@@ -1,3 +1,4 @@
+// Mobile menu
 document.addEventListener('DOMContentLoaded', function () {
   const burger = document.querySelector('.burger-btn');
   const modalMenu = document.querySelector('.mobile-menu');
@@ -36,4 +37,18 @@ document.addEventListener('DOMContentLoaded', function () {
   mobileLinks.forEach(link => {
     link.addEventListener('click', closeMenu);
   });
+
+  const mediaQuery = window.matchMedia('(min-width: 768px)');
+
+  const handleMediaQueryChange = e => {
+    if (e.matches) {
+      if (backdrop.classList.contains('open')) {
+        closeMenu();
+      }
+    }
+  };
+
+  mediaQuery.addEventListener('change', handleMediaQueryChange);
+
+  handleMediaQueryChange(mediaQuery);
 });
