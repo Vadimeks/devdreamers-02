@@ -1,8 +1,8 @@
 <div class="modal-artists-backdrop" id="artistModal">
-  <div class="modal-content">
+  <div class="modal-content container">
     <button class="close-modal" id="close-modal-btn" aria-label="Close modal">
       <svg class="close-icon" width="24" height="24">
-        <use href="./img/sprite.svg#icon-feedback-dot"></use>
+        <use href="/img/sprite.svg#icon-close"></use>
       </svg>
     </button>
 
@@ -20,15 +20,16 @@
         <div class="artist-image-container">
           <img src="/img/no-image.webp" alt="Artist photo" class="modal-artist-image" id="modal-artist-image">
         </div>
-
+        <ul class="artist-info-list" id="artist-info-list"></ul>
         <div class="artist-description-details">
-          <ul class="artist-info-list" id="artist-info-list"></ul>
+          <h3>Biography</h3>
+          <p class="artist-info-bio-text" id="artist-bio-paragraph"></p>
+          <button id="read-more-bio-btn" class="read-more-btn" style="display: none;">Read More</button>
+
+
 
           <h3>Genres</h3>
           <ul class="genres-list" id="genres-list"></ul>
-
-          <h3>Biography</h3>
-          <p class="artist-info-bio-text" id="artist-bio-paragraph"></p>
         </div>
       </div>
 

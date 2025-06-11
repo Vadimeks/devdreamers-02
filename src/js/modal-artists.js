@@ -1,4 +1,4 @@
-import { fetchArtistDetails } from './apiService.js';
+import { fetchArtistDetails } from './apiService.js'; // Пераканайцеся, што шлях правільны
 
 const artistModal = document.getElementById('artistModal');
 const closeModalButton = artistModal?.querySelector('.close-modal');
@@ -16,15 +16,22 @@ const artistAlbumsListContainer = artistModal?.querySelector(
 );
 const artistAlbumsBlock = artistModal?.querySelector('.artist-albums-block');
 
-let allAlbums = [];
-let currentAlbumPage = 1;
-const albumsPerPage = 8;
+// Base URL for static files (considering a server subfolder)
+// If your project is not in a "script-ninjas-project" subfolder on the server,
+// you'll need to change this to just '/' or leave it empty ''.
+const BASE_PUBLIC_URL = '/script-ninjas-project';
 
+let allAlbums = [];
+let scrollPosition = 0;
+
+/**
+ * Clears all dynamic content within the artist modal.
+ */
 function clearModalContent() {
-  if (modalTitle) modalTitle.textContent = 'Artist Name';
+  if (modalTitle) modalTitle.textContent = '';
   if (modalArtistImage) {
     modalArtistImage.src = '';
-    modalArtistImage.alt = '';
+    modalArtistImage.alt = 'Artist Photo';
   }
   if (artistInfoList) artistInfoList.innerHTML = '';
   if (artistBioParagraph) artistBioParagraph.innerHTML = '';
@@ -48,100 +55,132 @@ function clearModalContent() {
   }
 
   allAlbums = [];
-  currentAlbumPage = 1;
 }
 
+/**
+ * Closes the artist modal and restores body scroll.
+ */
 function closeArtistModal() {
   if (artistModal) {
     artistModal.classList.remove('open');
   }
   if (document.body) {
     document.body.classList.remove('modal-open');
+    document.body.style.top = '';
+    window.scrollTo(0, scrollPosition);
   }
   clearModalContent();
   document.removeEventListener('keydown', escapeKeyHandler);
   artistModal?.removeEventListener('click', outsideClickHandler);
 }
 
+/**
+ * Handles clicks outside the modal to close it.
+ * @param {MouseEvent} e - The click event.
+ */
 function outsideClickHandler(e) {
   if (e.target === artistModal) {
     closeArtistModal();
   }
 }
 
+/**
+ * Handles the Escape key press to close the modal.
+ * @param {KeyboardEvent} e - The keyboard event.
+ */
 function escapeKeyHandler(e) {
   if (e.key === 'Escape') {
     closeArtistModal();
   }
 }
 
-function renderAlbums(page) {
-  if (!artistAlbumsListContainer) return;
+/**
+ * Checks if a given URL is a valid YouTube video URL using a regex.
+ * @param {string} url - The URL to validate.
+ * @returns {boolean} - True if the URL is a valid YouTube URL, false otherwise.
+ */
+const isValidYoutubeUrl = url => {
+  // If URL doesn't exist, isn't a string, or is empty after trimming
+  if (!url || typeof url !== 'string' || url.trim() === '') {
+    return false;
+  }
 
-  const startIndex = (page - 1) * albumsPerPage;
-  const endIndex = startIndex + albumsPerPage;
-  const albumsToDisplay = allAlbums.slice(startIndex, endIndex);
+  // More robust regex to validate YouTube URLs
+  const youtubeRegex =
+    /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/(watch\?v=|embed\/|v\/|)([\w-]{11})(.*)?$/;
+  return youtubeRegex.test(url.trim());
+};
+
+/**
+ * Renders the albums and their tracks within the modal.
+ */
+function renderAlbumsContent() {
+  if (!artistAlbumsListContainer) return;
 
   artistAlbumsListContainer.innerHTML = '';
 
-  if (albumsToDisplay.length === 0) {
+  if (allAlbums.length === 0) {
     artistAlbumsListContainer.innerHTML = `<li class="artist-albums-item"><p>No album information available.</p></li>`;
-    const existingPaginationControls = artistModal?.querySelector(
-      '.pagination-controls'
-    );
-    if (existingPaginationControls) {
-      existingPaginationControls.remove();
-    }
     return;
   }
 
-  albumsToDisplay.forEach(album => {
+  allAlbums.forEach(album => {
+    const albumTitle =
+      album.strAlbum && String(album.strAlbum).trim() !== ''
+        ? album.strAlbum
+        : 'Album Title';
+    const albumYear =
+      album.intYearReleased &&
+      String(album.intYearReleased).trim() !== '' &&
+      album.intYearReleased !== '0000' &&
+      album.intYearReleased !== null
+        ? ` (${album.intYearReleased})`
+        : '';
+
     let albumItemHtml = `<li class="artist-albums-item">
-                            <h3>${album.strAlbum || 'Album Title'} (${
-      album.intYearReleased || 'Year'
-    })</h3>
+                            <h3>${albumTitle}${albumYear}</h3>
                             <ul class="album-track-list">`;
 
     albumItemHtml += `<li class="album-track-item track-header">
-                            <ul class="track-info-list">
-                                <li class="track-info-item">Track</li>
-                                <li class="track-info-item track-info-item-time">Time</li>
-                                <li class="track-info-item track-info-item-link">Link</li>
-                            </ul>
-                        </li>`;
+                        <ul class="track-info-list">
+                          <li class="track-info-item">Track</li>
+                          <li class="track-info-item track-info-item-time">Time</li>
+                          <li class="track-info-item track-info-item-link">Link</li>
+                        </ul>
+                      </li>`;
 
     if (album.tracks && album.tracks.length > 0) {
       album.tracks.forEach((track, index) => {
         const rowClass = index % 2 === 0 ? 'even-row' : 'odd-row';
+
+        const trackDuration = track.intDuration
+          ? formatDuration(track.intDuration)
+          : '';
+
+        // *** CRITICAL CHANGE: Use track.movie instead of track.strMusicVid ***
+        const musicVidUrl = track.movie;
+        const youtubeUrlIsValid = isValidYoutubeUrl(musicVidUrl);
+
+        const youtubeLinkHtml = youtubeUrlIsValid
+          ? `<button class="yt-button" data-url="${musicVidUrl}" aria-label="Watch on YouTube">
+                <svg class="yt-icon" width="20" height="14">
+                    <use href="${BASE_PUBLIC_URL}/img/sprite.svg#icon-youtube-modal"></use>
+                </svg>
+            </button>`
+          : '';
+
+        const trackName =
+          track.strTrack && String(track.strTrack).trim() !== ''
+            ? track.strTrack
+            : 'Track Name';
+
         albumItemHtml += `<li class="album-track-item ${rowClass}">
                             <ul class="track-info-list">
-                                <li class="track-info-item">${
-                                  track.strTrack || 'Track Name'
-                                }</li>
-                                <li class="track-info-item track-info-item-time">${
-                                  track.intDuration
-                                    ? formatDuration(track.intDuration)
-                                    : '-'
-                                }</li>
-                                <li class="track-info-item track-info-item-link">`;
-        if (
-          track.movie &&
-          typeof track.movie === 'string' &&
-          track.movie !== 'null' &&
-          (track.movie.startsWith('http://') ||
-            track.movie.startsWith('https://'))
-        ) {
-          albumItemHtml += `<button class="yt-button" data-url="${track.movie}" aria-label="Watch on YouTube">
-                                <svg class="yt-icon" width="20" height="20">
-                                  <use href="./img/sprite.svg#icon-youtube"></use>
-                                </svg>
-                            </button>`;
-        } else {
-          albumItemHtml += `-`;
-        }
-        albumItemHtml += `</li>
+                              <li class="track-info-item">${trackName}</li>
+                              <li class="track-info-item track-info-item-time">${trackDuration}</li>
+                              <li class="track-info-item track-info-item-link">${youtubeLinkHtml}</li>
                             </ul>
-                        </li>`;
+                          </li>`;
       });
     } else {
       albumItemHtml += `<li class="album-track-item"><p>No tracks available for this album.</p></li>`;
@@ -149,49 +188,6 @@ function renderAlbums(page) {
     albumItemHtml += `</ul></li>`;
     artistAlbumsListContainer.insertAdjacentHTML('beforeend', albumItemHtml);
   });
-
-  const totalPages = Math.ceil(allAlbums.length / albumsPerPage);
-
-  const existingPaginationControls = artistModal?.querySelector(
-    '.pagination-controls'
-  );
-  if (existingPaginationControls) {
-    existingPaginationControls.remove();
-  }
-
-  if (totalPages > 1) {
-    const paginationControls = document.createElement('div');
-    paginationControls.className = 'pagination-controls';
-
-    const prevButton = document.createElement('button');
-    prevButton.textContent = 'Previous';
-    prevButton.disabled = page === 1;
-    prevButton.addEventListener('click', () => {
-      currentAlbumPage--;
-      renderAlbums(currentAlbumPage);
-    });
-
-    const nextButton = document.createElement('button');
-    nextButton.textContent = 'Next';
-    nextButton.disabled = page === totalPages;
-    nextButton.addEventListener('click', () => {
-      currentAlbumPage++;
-      renderAlbums(currentAlbumPage);
-    });
-
-    const pageInfo = document.createElement('span');
-    pageInfo.textContent = ` ${page} / ${totalPages} `;
-
-    paginationControls.appendChild(prevButton);
-    paginationControls.appendChild(pageInfo);
-    paginationControls.appendChild(nextButton);
-
-    if (artistAlbumsBlock) {
-      artistAlbumsBlock.appendChild(paginationControls);
-    } else if (artistModal) {
-      artistModal.appendChild(paginationControls);
-    }
-  }
 
   const ytButtons = artistAlbumsListContainer?.querySelectorAll('.yt-button');
   ytButtons?.forEach(btn => {
@@ -204,11 +200,16 @@ function renderAlbums(page) {
   });
 }
 
+/**
+ * Formats duration from milliseconds to MM:SS format.
+ * @param {number|string} ms - Duration in milliseconds.
+ * @returns {string} - Formatted duration string.
+ */
 function formatDuration(ms) {
   const numMs = typeof ms === 'string' ? parseInt(ms, 10) : ms;
 
-  if (typeof numMs !== 'number' || isNaN(numMs) || numMs < 0) {
-    return 'N/A';
+  if (typeof numMs !== 'number' || isNaN(numMs) || numMs <= 0) {
+    return '';
   }
   const totalSeconds = Math.floor(numMs / 1000);
   const minutes = Math.floor(totalSeconds / 60);
@@ -216,6 +217,9 @@ function formatDuration(ms) {
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
+/**
+ * Toggles the expanded/collapsed state of the artist biography.
+ */
 function toggleBiography() {
   if (artistBioParagraph && readMoreBioBtn) {
     artistBioParagraph.classList.toggle('expanded');
@@ -227,6 +231,10 @@ function toggleBiography() {
   }
 }
 
+/**
+ * Opens the artist modal and populates it with details and tracks.
+ * @param {object|string} artistData - The artist object or artist ID.
+ */
 export async function openArtistModal(artistData) {
   const requiredElements = [
     artistModal,
@@ -245,6 +253,8 @@ export async function openArtistModal(artistData) {
     return;
   }
 
+  scrollPosition = window.scrollY;
+  document.body.style.top = `-${scrollPosition}px`;
   document.body.classList.add('modal-open');
   artistModal.classList.add('open');
   modalLoader.style.display = 'block';
@@ -264,7 +274,7 @@ export async function openArtistModal(artistData) {
       genresFromCache = artistData.genres;
     } else if (
       typeof artistData.strGenre === 'string' &&
-      artistData.strGenre.trim() !== ''
+      String(artistData.strGenre).trim() !== ''
     ) {
       genresFromCache = artistData.strGenre
         .split(';')
@@ -296,23 +306,35 @@ export async function openArtistModal(artistData) {
     modalLoader.style.display = 'none';
 
     if (finalArtistDetails) {
-      modalTitle.textContent = finalArtistDetails.strArtist || 'Unknown Artist';
+      modalTitle.textContent =
+        finalArtistDetails.strArtist &&
+        String(finalArtistDetails.strArtist).trim() !== ''
+          ? finalArtistDetails.strArtist
+          : '';
+
       modalArtistImage.src =
         finalArtistDetails.strArtistFanart ||
         finalArtistDetails.strArtistThumb ||
         finalArtistDetails.image ||
-        'https://via.placeholder.com/250x250.png?text=No+Image';
+        '';
       modalArtistImage.alt = finalArtistDetails.strArtist || 'Artist Photo';
 
       if (artistInfoList) {
         const formedYear = finalArtistDetails.intFormedYear;
         const disbandedYear = finalArtistDetails.intDiedYear;
 
-        let yearsActive = 'information unavailable';
-        if (formedYear) {
+        let yearsActive = '';
+        if (
+          formedYear &&
+          String(formedYear).trim() !== '' &&
+          formedYear !== '0000' &&
+          formedYear !== null
+        ) {
           if (
             disbandedYear &&
+            String(disbandedYear).trim() !== '' &&
             disbandedYear !== '0000' &&
+            disbandedYear !== 'Present' &&
             disbandedYear !== null
           ) {
             yearsActive = `${formedYear} - ${disbandedYear}`;
@@ -321,6 +343,26 @@ export async function openArtistModal(artistData) {
           }
         }
 
+        const gender =
+          finalArtistDetails.strGender &&
+          String(finalArtistDetails.strGender).trim() !== '' &&
+          String(finalArtistDetails.strGender).trim().toLowerCase() !== 'null'
+            ? finalArtistDetails.strGender
+            : '';
+        const members =
+          finalArtistDetails.intMembers &&
+          String(finalArtistDetails.intMembers).trim() !== '' &&
+          finalArtistDetails.intMembers !== '0' &&
+          finalArtistDetails.intMembers !== null
+            ? finalArtistDetails.intMembers
+            : '';
+        const country =
+          finalArtistDetails.strCountry &&
+          String(finalArtistDetails.strCountry).trim() !== '' &&
+          String(finalArtistDetails.strCountry).trim().toLowerCase() !== 'null'
+            ? finalArtistDetails.strCountry
+            : '';
+
         artistInfoList.innerHTML = `
           <li class="artist-info-item">
             <h3>Years Active</h3>
@@ -328,28 +370,27 @@ export async function openArtistModal(artistData) {
           </li>
           <li class="artist-info-item">
             <h3>Gender</h3>
-            <p class="artist-info">${
-              finalArtistDetails.strGender || 'information unavailable'
-            }</p>
+            <p class="artist-info">${gender}</p>
           </li>
           <li class="artist-info-item">
             <h3>Members</h3>
-            <p class="artist-info">${
-              finalArtistDetails.intMembers || 'information unavailable'
-            }</p>
+            <p class="artist-info">${members}</p>
           </li>
           <li class="artist-info-item">
             <h3>Country</h3>
-            <p class="artist-info">${
-              finalArtistDetails.strCountry || 'information unavailable'
-            }</p>
+            <p class="artist-info">${country}</p>
           </li>
         `;
       }
 
       if (artistBioParagraph) {
         const biographyText =
-          finalArtistDetails.strBiographyEN || 'Biography unavailable.';
+          finalArtistDetails.strBiographyEN &&
+          String(finalArtistDetails.strBiographyEN).trim() !== '' &&
+          String(finalArtistDetails.strBiographyEN).trim().toLowerCase() !==
+            'null'
+            ? finalArtistDetails.strBiographyEN
+            : 'Biography unavailable.';
         artistBioParagraph.textContent = biographyText;
 
         if (biographyText.length > 300) {
@@ -374,12 +415,19 @@ export async function openArtistModal(artistData) {
 
         if (displayGenres.length > 0) {
           displayGenres.forEach(genre => {
-            const li = document.createElement('li');
-            li.className = 'genres-item';
-            li.textContent = genre;
-            genresList.appendChild(li);
+            if (
+              genre &&
+              String(genre).trim() !== '' &&
+              String(genre).trim().toLowerCase() !== 'null'
+            ) {
+              const li = document.createElement('li');
+              li.className = 'genres-item';
+              li.textContent = genre;
+              genresList.appendChild(li);
+            }
           });
-        } else {
+        }
+        if (genresList.children.length === 0) {
           const li = document.createElement('li');
           li.className = 'genres-item';
           li.textContent = 'Genres unavailable';
@@ -394,12 +442,12 @@ export async function openArtistModal(artistData) {
         const albumsMap = new Map();
         finalArtistDetails.tracksList.forEach(track => {
           const albumName = track.strAlbum || 'Unknown Album';
-          const albumId = track.idAlbum || albumName;
+          const albumId = track.idAlbum || albumName; // Use idAlbum if available, otherwise albumName
 
           if (!albumsMap.has(albumId)) {
             albumsMap.set(albumId, {
               strAlbum: albumName,
-              intYearReleased: track.intYearReleased || 'Unknown',
+              intYearReleased: track.intYearReleased || '',
               idAlbum: albumId,
               tracks: [],
             });
@@ -410,19 +458,13 @@ export async function openArtistModal(artistData) {
         allAlbums = Array.from(albumsMap.values()).sort((a, b) => {
           const yearA = parseInt(a.intYearReleased) || 0;
           const yearB = parseInt(b.intYearReleased) || 0;
-          return yearB - yearA;
+          return yearB - yearA; // Sort by year descending
         });
 
-        renderAlbums(currentAlbumPage);
+        renderAlbumsContent();
       } else {
         if (artistAlbumsListContainer) {
           artistAlbumsListContainer.innerHTML = `<li class="artist-albums-item"><p>Album and track information unavailable.</p></li>`;
-        }
-        const existingPaginationControls = artistModal?.querySelector(
-          '.pagination-controls'
-        );
-        if (existingPaginationControls) {
-          existingPaginationControls.remove();
         }
       }
     } else {
@@ -439,7 +481,9 @@ export async function openArtistModal(artistData) {
     if (artistModal) {
       if (modalTitle) modalTitle.textContent = 'Error loading data!';
       let errorMessage = 'Unfortunately, artist data could not be loaded. ';
+      // Check for specific error types for a more informative message
       if (error.response) {
+        // Axios error (if you're using it)
         errorMessage += `Status: ${error.response.status}. `;
         if (error.response.status === 404) {
           errorMessage +=
@@ -448,8 +492,10 @@ export async function openArtistModal(artistData) {
           errorMessage += `Message: ${error.response.data.message}`;
         }
       } else if (error.request) {
+        // Network error
         errorMessage += 'No response received from the server. Network issue.';
       } else {
+        // Other errors
         errorMessage += `Message: ${error.message}`;
       }
 
