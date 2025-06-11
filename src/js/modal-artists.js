@@ -16,17 +16,11 @@ const artistAlbumsListContainer = artistModal?.querySelector(
 );
 const artistAlbumsBlock = artistModal?.querySelector('.artist-albums-block');
 
-// Base URL for static files (considering a server subfolder)
-// If your project is not in a "script-ninjas-project" subfolder on the server,
-// you'll need to change this to just '/' or leave it empty ''.
 const BASE_PUBLIC_URL = '/script-ninjas-project';
 
 let allAlbums = [];
 let scrollPosition = 0;
 
-/**
- * Clears all dynamic content within the artist modal.
- */
 function clearModalContent() {
   if (modalTitle) modalTitle.textContent = '';
   if (modalArtistImage) {

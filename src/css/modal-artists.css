@@ -20,7 +20,6 @@
   overflow-x: hidden;
 }
 
-/* Custom scroll for modal window */
 .modal-artists-backdrop::-webkit-scrollbar {
   width: 8px;
 }
@@ -49,6 +48,12 @@ body.modal-open {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+}
+
+.modal-container {
+  margin: 0 auto;
+  max-width: 320px;
+  background-color: rgba(6, 3, 7, 1);
 }
 
 /* Modal Content Styles (Mobile First: up to 767px) */
@@ -162,8 +167,8 @@ body.modal-open {
   font-family: 'Epilogue', sans-serif;
   font-weight: 700;
   font-size: 20px;
-  line-height: 130%;
-  letter-spacing: -1%;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
   color: rgba(255, 255, 255, 1);
   margin-top: 4px;
 }
@@ -175,6 +180,12 @@ body.modal-open {
   gap: 20px;
 }
 
+/* Artist Image Container */
+.artist-image-container {
+  width: 100%;
+  flex-shrink: 0;
+}
+
 /* Artist Image */
 .modal-artist-image {
   display: block;
@@ -182,8 +193,18 @@ body.modal-open {
   height: auto;
   border-radius: 8px;
   object-fit: cover;
+  /* You mentioned this was okay, so keeping it */
   margin: 0 auto;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Wrapper for artist info list and description details */
+.modal-descr {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  flex-grow: 1;
 }
 
 /* Artist Info List Styles */
@@ -206,7 +227,7 @@ body.modal-open {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 18px;
-  line-height: 150%;
+  line-height: 1.5;
   letter-spacing: 0;
   color: #777;
   margin-bottom: 5px;
@@ -218,23 +239,25 @@ body.modal-open {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
   font-size: 18px;
-  line-height: 150%;
-  letter-spacing: 0%;
+  line-height: 1.5;
+  letter-spacing: 0;
   color: rgba(255, 255, 255, 1);
 }
 
-/* Artist Description Details */
+/* Artist Description Details (Biography and Genres) */
 .artist-description-details {
-  flex: 2 1 350px;
   display: flex;
   flex-direction: column;
   gap: 15px;
   padding: 0;
+  width: 100%;
 }
 
 .artist-description-details h3 {
   font-size: 1.5em;
   color: rgba(255, 255, 255, 1);
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /* Text for Biography */
@@ -242,10 +265,10 @@ body.modal-open {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
   font-size: 18px;
-  line-height: 150%;
-  letter-spacing: 0%;
+  line-height: 1.5;
+  letter-spacing: 0;
   color: rgba(255, 255, 255, 1);
-  max-height: 324px;
+  max-height: 162px;
   overflow-y: auto;
   padding-right: 8px;
   box-sizing: border-box;
@@ -267,22 +290,6 @@ body.modal-open {
   border: 2px solid rgba(6, 3, 7, 1);
 }
 
-.read-more-btn {
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  font-size: 0.9em;
-  text-align: left;
-  padding: 0;
-  margin-top: 5px;
-  align-self: flex-start;
-}
-
-.read-more-btn:hover {
-  opacity: 0.8;
-}
-
 /* Genres list */
 .genres-list {
   list-style: none;
@@ -291,6 +298,7 @@ body.modal-open {
   padding: 0;
   margin: 0;
   gap: 16px;
+  align-self: flex-start;
 }
 
 /* Each genre item */
@@ -303,8 +311,8 @@ body.modal-open {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 16px;
-  line-height: 150%;
-  letter-spacing: 0%;
+  line-height: 1.5;
+  letter-spacing: 0;
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -321,11 +329,11 @@ body.modal-open {
   font-family: 'Epilogue', sans-serif;
   font-weight: 700;
   font-size: 24px;
-  line-height: 130%;
-  letter-spacing: -1%;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
   color: rgba(255, 255, 255, 1);
+  margin-top: 0;
   margin-bottom: 0;
-  padding-bottom: 0;
   text-align: left;
   border-bottom: none;
   padding-bottom: 0;
@@ -359,8 +367,8 @@ body.modal-open {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
   font-size: 16px;
-  line-height: 150%;
-  letter-spacing: 0%;
+  line-height: 1.5;
+  letter-spacing: 0;
   color: rgba(255, 255, 255, 1);
   margin-top: 0;
   margin-bottom: 0;
@@ -414,7 +422,6 @@ body.modal-open {
   height: 40px;
   padding-right: 8px;
   padding-left: 12px;
-  /* Specific padding for header row */
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -433,19 +440,16 @@ body.modal-open {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
   font-size: 12px;
-  line-height: 150%;
-  letter-spacing: 0%;
+  line-height: 1.5;
+  letter-spacing: 0;
   color: #fff;
   padding: 0;
-  /* Remove all internal padding from cells */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   box-sizing: border-box;
   display: flex;
-  /* Use flex to align content within the cell */
   align-items: center;
-  /* Vertically center content */
 }
 
 /* Specific styling for the 'Track' cell */
@@ -454,10 +458,8 @@ body.modal-open {
   min-width: 97px;
   height: 18px;
   justify-content: flex-start;
-  /* Align content to the left */
   flex-shrink: 0;
   flex-grow: 1;
-  /* Allow to grow if space is available, but respect min-width */
 }
 
 /* Specific styling for the 'Time' cell */
@@ -466,7 +468,6 @@ body.modal-open {
   min-width: 74px;
   height: 17px;
   justify-content: center;
-  /* Center content */
   flex-shrink: 0;
 }
 
@@ -476,7 +477,6 @@ body.modal-open {
   min-width: 24px;
   height: 24px;
   justify-content: flex-end;
-  /* Align content (YouTube button) to the right */
   flex-shrink: 0;
 }
 
@@ -484,9 +484,7 @@ body.modal-open {
 .yt-button {
   border: none;
   padding: 0;
-  /* No internal padding */
   width: 24px;
-  /* Exact size */
   height: 24px;
   cursor: pointer;
   background-color: transparent;
@@ -499,7 +497,6 @@ body.modal-open {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Center icon within button */
 }
 
 .yt-button:hover,
@@ -518,186 +515,265 @@ body.modal-open {
 
 /* Tablets: 768px - 1439px */
 @media (min-width: 768px) {
-  .modal-artists-backdrop {
-    padding: 0 32px;
+  .modal-container {
+    max-width: 768px;
+    background-color: rgba(6, 3, 7, 1);
   }
 
   .modal-content {
     max-width: 768px;
-    padding: 52px 32px;
-    gap: 32px;
+    padding: 64px 24px;
+    gap: 48px;
     margin: 0 auto;
   }
 
   .close-modal {
     top: 16px;
-    right: 16px;
+    right: 47px;
   }
 
   .modal-title {
-    font-size: 2em;
+    font-size: 32px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-top: 16px;
   }
 
   .artist-overview-block {
-    flex-direction: row;
-    gap: 30px;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 32px;
   }
 
   .modal-artist-image {
-    max-width: 100%;
+    width: 100%;
+    margin-bottom: 0;
   }
 
-  .artist-image-container {
-    width: calc(50% - 15px);
-    flex-shrink: 0;
+  .modal-descr {
+    flex-direction: column;
+    gap: 24px;
   }
 
-  .artist-description-details {
-    width: calc(50% - 15px);
-  }
-
+  /* Artist info list (Years Active, Sex, Members, Country) */
   .artist-info-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 146px 484px;
+    gap: 24px;
   }
 
-  .artist-albums-block h3 {
-    text-align: center;
-  }
-
-  .artist-albums-list {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 32px;
-  }
-
-  .album-track-item {
-    padding: 0 12px;
-    /* Ensure padding is consistent for tablets */
-  }
-
-  .track-info-item {
-    padding: 0;
-    /* Ensure no internal padding for cells */
-  }
-
-  .track-info-item:nth-child(1) {
-    width: 97px;
-    min-width: 97px;
-    height: 18px;
-    justify-content: flex-start;
-  }
-
-  .track-info-item.track-info-item-time {
-    width: 74px;
-    min-width: 74px;
-    height: 17px;
-    justify-content: center;
-  }
-
-  .track-info-item.track-info-item-link {
-    width: 24px;
-    min-width: 24px;
-    height: 24px;
-    justify-content: flex-end;
-  }
-
-  .yt-button {
-    width: 24px;
-    height: 24px;
-    padding: 0;
-  }
-
-  .yt-button .yt-icon {
-    width: 24px;
-    height: 24px;
-  }
-}
-
-/* Desktops: 1440px+ */
-@media (min-width: 1440px) {
-  .modal-artists-backdrop {
-    padding: 64px;
-  }
-
-  .modal-content {
-    max-width: 1440px;
-    padding: 52px 64px;
-    gap: 32px;
-    margin: auto;
-  }
-
-  .close-modal {
-    top: 16px;
-    right: 16px;
-  }
-
-  .modal-title {
-    font-size: 2.2em;
-  }
-
-  .artist-overview-block {
-    gap: 40px;
-  }
-
-  .artist-image-container {
-    width: 400px;
-  }
-
+  /* Biography details (content block) */
   .artist-description-details {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .artist-info-bio-text {
     width: auto;
-    flex-grow: 1;
+    max-height: 135px;
   }
 
-  .artist-info-list {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  /* Genres list */
+  .genres-list {
+    width: 317px;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .artist-albums-block {
+    margin-top: 48px;
+    width: 654px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .artist-albums-block h3 {
     text-align: left;
   }
 
+  /* Artist albums list (2 albums per row) */
   .artist-albums-list {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 32px;
   }
 
+  .artist-albums-item {
+    width: 311px;
+  }
+
+  .modal-artist-image {
+    max-width: 654px;
+    max-height: 402px;
+    object-fit: cover;
+    object-position: top;
+  }
+}
+
+/* Desktops: 1440px and up */
+@media (min-width: 1440px) {
+  .modal-container {
+    max-width: 1440px;
+    background-color: rgba(6, 3, 7, 1);
+
+  }
+
+  .modal-content {
+    max-width: 1440px;
+    padding: 64px 48px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .close-modal {
+    top: 24px;
+    right: 24px;
+  }
+
+  .modal-title {
+    font-size: 40px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-top: 24px;
+  }
+
+  .modal-body {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .artist-overview-block {
+    flex-direction: row;
+    gap: 32px;
+    align-items: flex-start;
+  }
+
+  .artist-image-container {
+    width: 295px;
+    flex: 50%;
+    flex-shrink: 0;
+  }
+
+  .modal-artist-image {
+    max-width: 576px;
+    max-height: 374px;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .modal-descr {
+    width: auto;
+    flex-grow: 1;
+    gap: 32px;
+  }
+
+  /* Artist info list (Years Active, Sex, Members, Country) */
+  .artist-info-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 32px;
+  }
+
+  /* Biography details (content block) */
+  .artist-description-details {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .artist-info-bio-text {
+    max-height: 180px;
+  }
+
+  /* Genres list */
+  .genres-list {
+    width: auto;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .artist-albums-block {
+    margin-top: 0;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Artist albums list (4 albums per row) */
+  .artist-albums-list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+
+  .artist-albums-item {
+    width: 272px;
+    /* Fixed width for album block */
+    padding: 14px 11px;
+    /* Updated paddings */
+    gap: 12px;
+    /* Gap from album title to track list */
+    min-width: unset;
+    /* Remove min-width from mobile */
+  }
+
+  /* Track Item: Main container for each track row */
   .album-track-item {
-    padding: 0 12px;
+    height: 32px;
+    /* New height for track item */
+    padding: 7px 4px 7px 12px;
+    /* New paddings: top right bottom left */
   }
 
+  /* Table header for tracks */
+  .album-track-item.track-header {
+    height: 20px;
+    /* New height for header */
+    padding: 4px 4px 4px 8px;
+    /* New paddings for header */
+    font-size: 8px;
+    /* Font size for header */
+    line-height: 1.5;
+    /* Line height for header */
+    letter-spacing: 0;
+    /* Letter spacing for header */
+  }
+
+  /* Track Info List: Flex container for track, time, and link within a row */
+  .track-info-list {
+    gap: 0;
+  }
+
+  /* Track Info Item: Base style for all cells (Track, Time, Link) */
   .track-info-item {
-    padding: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    flex-shrink: 0;
+    height: auto;
   }
 
+  /* Specific styling for the 'Track' cell */
   .track-info-item:nth-child(1) {
     width: 97px;
     min-width: 97px;
-    height: 18px;
-    justify-content: flex-start;
+    flex-grow: 1;
   }
 
+  /* Specific styling for the 'Time' cell */
   .track-info-item.track-info-item-time {
-    width: 74px;
-    min-width: 74px;
-    height: 17px;
-    justify-content: center;
+    width: 102px;
+    min-width: 102px;
   }
 
+  /* Specific styling for the 'Link' cell */
   .track-info-item.track-info-item-link {
-    width: 24px;
-    min-width: 24px;
-    height: 24px;
-    justify-content: flex-end;
+    width: 35px;
+    min-width: 35px;
   }
 
   .yt-button {
-    width: 24px;
-    height: 24px;
-    padding: 0;
+    width: 32px;
+    height: 32px;
   }
 
   .yt-button .yt-icon {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
   }
 }
