@@ -1,11 +1,91 @@
+/* Агульныя стылі для секцыі "Фідбэк" */
+.feedback-section {
+  background-color: black;
+  margin: 0 auto;
+}
+
+/* Канфігурацыя кантэйнера для адаптыўнасці */
+.feedback-container {
+  padding: 64px 16px;
+  /* Мабільны адступ */
+  position: relative;
+  /* ВЕЛЬМІ ВАЖНА: Бацькоўскі элемент для абсалютна пазіцыянаваных кнопак */
+}
+
+/* Стылі для карткі з водгукам */
+.feedback-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+/* Зоркі рэйтынгу */
+.feedback-stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 32px;
+}
+
+.star-icon {
+  width: 24px;
+  height: 24px;
+  color: #764191;
+  /* Колер зоркі па змаўчанні */
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+
+.star-icon.star-filled {
+  color: rgba(118, 65, 145, 1);
+  /* Напоўненая зорка */
+}
+
+.star-icon.star-outline {
+  color: rgba(255, 255, 255, 1);
+  /* Пустая зорка */
+}
+
+/* Тэкст водгуку */
+.feedback-text {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #fff;
+  width: 288px;
+  /* Шырыня тэксту для мабільных */
+  margin-bottom: 32px;
+}
+
+/* Імя карыстальніка */
+.feedback-user {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+
+
 .feedback-button-prev,
 .feedback-button-next {
   position: absolute;
-  top: 150%;
-  transform: translateY(-150%);
+  top: 50%;
+  /* Цэнтруе кнопкі вертыкальна адносна .feedback-container */
+  transform: translateY(-50%);
+  /* Дакладнае цэнтраванне па вертыкалі */
   background-color: #060307;
   width: 48px !important;
+  /* Важна: Swiper часам скідае шырыню/вышыню */
   height: 48px !important;
+  /* Важна: Swiper часам скідае шырыню/вышыню */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,11 +97,23 @@
   padding: 12px;
 }
 
-.feedback-button-prev:hover,
-.feedback-button-next:hover {
-  transform: translateY(-150%) scale(1.1);
+/* Стылі для іконкі ўнутры кнопак */
+.icon-prev,
+.icon-next {
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  /* Колер іконкі */
 }
 
+/* Эфект навядзення для кнопак */
+.feedback-button-prev:hover,
+.feedback-button-next:hover {
+  transform: translateY(-50%) scale(1.1);
+  /* Павялічвае кнопку пры навядзенні */
+}
+
+/* Пазіцыянаванне кнопак злева і справа */
 .feedback-button-prev {
   left: 0;
 }
@@ -30,142 +122,102 @@
   right: 0;
 }
 
-.icon-prev,
-.icon-next {
-  width: 24px;
-  height: 24px;
-  color: #fff;
-}
-
-/* Mobile styles */
-
-.feedback-section {
-  background-color: black;
-  margin: 0 auto;
-}
-
-.feedback-container {
-  padding: 64px 16px;
-}
-
-.feedback-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-  position: relative;
-}
-
-.feedback-stars {
-  margin-bottom: 32px;
-}
-
-.feedback-text {
-  font-family: 'Epilogue', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  text-align: center;
-  color: #fff;
-  width: 288px;
-  margin-bottom: 32px;
-}
-
-.feedback-user {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 1.5;
-  color: #fff;
-}
-
-/* ICONS */
-.feedback-stars {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 32px;
-}
-
-.star-icon {
-  width: 24px;
-  height: 24px;
-  color: #764191;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 2px;
-}
-
-.star-icon.star-filled {
-  color: rgba(118, 65, 145, 1);
-}
-
-.star-icon.star-outline {
-  color: rgba(255, 255, 255, 1);
-}
-
+/* Схаваць стандартныя стрэлкі Swiper (калі яны з'яўляюцца) */
 .feedback-button-prev::after,
 .feedback-button-next::after {
   display: none;
   content: none;
 }
 
-/* PAGINATION */
+
+
+/* Пазіцыянаванне кантэйнера пагінацыі */
 .feedback-pagination {
   position: static !important;
+  /* Скідаем пазіцыянаванне Swiper па змаўчанні */
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
 }
 
+/* Стылі для асобных булетаў пагінацыі */
 .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   background-color: #fff !important;
+  /* Колер неактыўных булетаў */
   opacity: 0.2;
+  /* Празрыстасць для неактыўных булетаў */
   border-radius: 50%;
   margin: 0 6px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  /* Плаўны пераход */
   cursor: pointer;
 }
 
+/* Стылі для актыўнага булета пагінацыі */
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background-color: #ffffff !important;
+  opacity: 1;
+  /* Поўная непразрыстасць для актыўнага булета */
 }
 
+
+/* Мабільныя стылі (шырыня да 767px) - Кнопкі схаваны */
 @media screen and (max-width: 767px) {
 
   .feedback-button-prev,
   .feedback-button-next {
     display: none !important;
+    /* Схаваць кнопкі на мабільных */
   }
-
 }
 
-/* Tablet styles */
+/* Стылі для планшэтаў (ад 768px да 1439px) */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .feedback-text {
     font-size: 26px;
+    /* Большы памер шрыфта для планшэтаў */
     width: 518px;
+    /* Шырыня тэксту для планшэтаў */
   }
 
   .feedback-container {
     padding: 64px 32px;
+    /* Адступ для планшэтаў */
   }
+
+  .feedback-button-next {
+    right: 32px !important;
+  }
+
+  .feedback-button-prev {
+    left: 32px !important;
+  }
+
 }
 
-/* Desktop styles */
+/* Стылі для дэсктопа (ад 1440px і больш) */
 @media screen and (min-width: 1440px) {
   .feedback-text {
     font-size: 32px;
+    /* Большы памер шрыфта для дэсктопа */
     line-height: 1.3;
     width: 866px;
+    /* Шырыня тэксту для дэсктопа */
   }
 
   .feedback-container {
     padding: 112px 64px;
+    /* Адступ для дэсктопа */
   }
 
+  .feedback-button-prev {
+    left: 64px !important;
+  }
+
+  .feedback-button-next {
+    right: 64px !important;
+  }
 }
