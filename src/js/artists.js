@@ -89,12 +89,12 @@ function renderFromBuffer() {
       </p>
       <h3 class="artist-name">${artist.strArtist || 'Unknown Artist'}</h3>
       <p class="artist-description">${shortBio}</p>
-      <a href="#" class="learn-more-btn js-learn-more-btn" data-id="${artistId}">
-        Learn More
-        <svg class="learn-icon" width="24" height="24">
-          <use href="./img/sprite.svg#icon-caret-right"></use>
-        </svg>
-      </a>
+
+      <button class="learn-more-btn js-learn-more-btn"
+              data-id="${artistId}">Learn More
+        <svg class="load-icon" width="24" height="24"><use href="./img/sprite.svg#icon-caret-right"></use></svg>
+      </button>
+
     `;
 
     fragment.appendChild(card);
