@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/script-ninjas-project/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/script-ninjas-project/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ArtistsHub</title>
   <script type="module" crossorigin src="/script-ninjas-project/index.js"></script>
   <link rel="modulepreload" crossorigin href="/script-ninjas-project/assets/vendor-B_QiARH3.js">
@@ -88,11 +88,11 @@
     <h2 class="artists-title">Artists</h2>
     <h3 class="artists-text">Explore Your New Favorite Artists</h3>
     <div id="global-loader">
-      <span class="loader">
+      <div class="loader">
         <div></div>
         <div></div>
         <div></div>
-      </span>
+      </div>
     </div>
     <ul id="artists-list" class="artists"></ul>
     <button id="load-more" class="btn js-btn hidden" type="button" data-action="load-more">
@@ -113,29 +113,17 @@
 
     <div id="modalLoader" class="loader">
       <svg class="spinner" viewBox="0 0 50 50">
-        <circle
-          class="path"
-          cx="25"
-          cy="25"
-          r="20"
-          fill="none"
-          stroke-width="5"
-        ></circle>
+        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
       </svg>
       <p>Loading...</p>
     </div>
 
-    <h2 class="modal-title" id="modal-title"></h2>
+    <h2 class="modal-title" id="modal-title">&nbsp;</h2>
 
     <div class="modal-body">
       <div class="artist-overview-block">
         <div class="artist-image-container">
-          <img
-            src=""
-            alt="Artist photo"
-            class="modal-artist-image"
-            id="modal-artist-image"
-          />
+          <img src="/script-ninjas-project/img/no-image.webp" alt="Artist photo" class="modal-artist-image" id="modal-artist-image">
         </div>
 
         <div class="artist-description-details">
@@ -156,17 +144,16 @@
     </div>
   </div>
 </div>
-
     <section class="about-us-section" id="about-us">
   <div class="container about-us-container">
     <picture>
-      <source media="(max-width: 767px)" srcset="/script-ninjas-project/assets/mob-team-BvkShGaE.jpg 1x, /script-ninjas-project/assets/mob-team@2x-BSYnnt7N.jpg 2x" />
+      <source media="(max-width: 767px)" srcset="/script-ninjas-project/assets/mob-team-BvkShGaE.jpg 1x, /script-ninjas-project/assets/mob-team@2x-BSYnnt7N.jpg 2x">
 
-      <source media="(min-width: 768px) and (max-width: 1439px)" srcset="/script-ninjas-project/assets/tablet-team-D_QEx6HO.jpg 1x, /script-ninjas-project/assets/tablet-team@2x-GkdpHyUS.jpg 2x" />
+      <source media="(min-width: 768px) and (max-width: 1439px)" srcset="/script-ninjas-project/assets/tablet-team-D_QEx6HO.jpg 1x, /script-ninjas-project/assets/tablet-team@2x-GkdpHyUS.jpg 2x">
 
-      <source media="(min-width: 1440px)" srcset="/script-ninjas-project/assets/desktop-team-DVwBBucL.jpg 1x, /script-ninjas-project/assets/desktop-team@2x-DKb2JBU-.jpg 2x" />
+      <source media="(min-width: 1440px)" srcset="/script-ninjas-project/assets/desktop-team-DVwBBucL.jpg 1x, /script-ninjas-project/assets/desktop-team@2x-DKb2JBU-.jpg 2x">
 
-      <img class="team-photo" src="/script-ninjas-project/assets/mob-team-BvkShGaE.jpg" alt="ArtistsHub team photo" width="280" height="169" />
+      <img class="team-photo" src="/script-ninjas-project/assets/mob-team-BvkShGaE.jpg" alt="ArtistsHub team photo" width="280" height="169">
     </picture>
     <div class="about-us-info-wrapper">
       <svg class="logo-about-us" width="64" height="64">
