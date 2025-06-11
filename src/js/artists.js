@@ -1,26 +1,18 @@
-// src/js/artists.js
-
-//!==============================================================
-
 import { fetchArtists as fetchArtistsFromApi } from './apiService.js';
 import { openArtistModal } from './modal-artists.js';
-// =================================================================
-// 1. DOM Element Caching
-// =================================================================
+
+// DOM Element Caching
 const artistsList = document.getElementById('artists-list');
 const loadMoreBtn = document.getElementById('load-more');
 const globalLoader = document.getElementById('global-loader');
-// =================================================================
-// 2. State Variables
-// =================================================================
+
+// State Variables
 let currentPage = 1;
-const limit = 8; // Number of items per page
-let buffer = []; // Buffer for artists waiting to be rendered
-let isFetching = false; // Flag indicating if an API request is in progress
-let artistsCache = new Map(); // Cache to store all loaded artist objects by ID
-// =================================================================
-// 3. Data Fetching Functions
-// =================================================================
+const limit = 8;
+let buffer = [];
+let isFetching = false;
+let artistsCache = new Map();
+
 /**
  * Asynchronously fetches a list of artists.
  * @param {number} page - The page number to load.
@@ -32,15 +24,15 @@ async function fetchArtists(page = 1) {
     const data = await fetchArtistsFromApi(limit, page);
     const artists = data.artists || [];
     const total = data.totalArtists || 0;
-    // Add new artists to the buffer and update the cache
+
     artists.forEach(artist => {
       buffer.push(artist);
-      // Use _id, idArtist, or id as unique key, prioritizing what API typically returns
       const artistId = artist._id || artist.idArtist || artist.id;
       if (artistId) {
         artistsCache.set(artistId, artist);
       }
     });
+
     renderFromBuffer();
     const shownCount = document.querySelectorAll('.artist-card').length;
     if (shownCount >= total && buffer.length === 0) {
@@ -62,6 +54,7 @@ async function fetchArtists(page = 1) {
     isFetching = false;
   }
 }
+
 /**
  * Renders artist cards from the buffer into the DOM.
  */
@@ -97,11 +90,11 @@ function renderFromBuffer() {
       <h3 class="artist-name">${artist.strArtist || 'Unknown Artist'}</h3>
       <p class="artist-description">${shortBio}</p>
       <a href="#" class="learn-more-btn js-learn-more-btn" data-id="${artistId}">
-  Learn More
-  <svg class="learn-icon" width="24" height="24">
-    <use href="./img/sprite.svg#icon-caret-right"></use>
-  </svg>
-</a>
+        Learn More
+        <svg class="learn-icon" width="24" height="24">
+          <use href="./img/sprite.svg#icon-caret-right"></use>
+        </svg>
+      </a>
     `;
 
     fragment.appendChild(card);
@@ -111,9 +104,7 @@ function renderFromBuffer() {
   }
   addLearnMoreButtonListeners();
 }
-// =================================================================
-// 4. Event Handlers
-// =================================================================
+
 /**
  * Handles clicks on the "Load More" button.
  */
@@ -126,6 +117,7 @@ loadMoreBtn.addEventListener('click', () => {
     fetchArtists(currentPage);
   }
 });
+
 /**
  * Shows the global loader.
  */
@@ -135,6 +127,7 @@ function showGlobalLoader() {
     globalLoader.style.display = 'block';
   }
 }
+
 /**
  * Hides the global loader.
  */
@@ -144,6 +137,7 @@ function hideGlobalLoader() {
     globalLoader.style.display = 'none';
   }
 }
+
 /**
  * Attaches click handlers to all "Learn More" buttons that don't already have a listener.
  */
@@ -156,9 +150,9 @@ function addLearnMoreButtonListeners() {
     }
   });
 }
+
 /**
  * Handles clicks on the "Learn More" button, and opens the modal.
- * It attempts to pass a cached artist object with genres if available.
  * @param {Event} event - The click event object.
  */
 async function onLearnMoreBtnClick(event) {
@@ -167,21 +161,15 @@ async function onLearnMoreBtnClick(event) {
     console.warn('Artist ID not found for modal. Cannot open modal.');
     return;
   }
-  // Attempt to retrieve the full artist object from the cache
   const cachedArtist = artistsCache.get(artistId);
   try {
-    // Pass the cached artist object if found, otherwise just the ID
-    // The openArtistModal function in modal-artists.js will handle fetching
-    // details if a full object isn't provided.
     await openArtistModal(cachedArtist || artistId);
   } catch (error) {
     console.error('Error opening artist modal:', error);
-    // Optionally, display an error message to the user
   }
 }
-// =================================================================
-// 5. Initial Load
-// =================================================================
+
+// Initial Load
 document.addEventListener('DOMContentLoaded', () => {
   fetchArtists(currentPage);
 });

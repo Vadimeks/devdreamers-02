@@ -9,7 +9,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Removed overflow-y: auto here, as modal-content will handle scroll */
   padding: 20px;
   z-index: 1000;
 
@@ -20,14 +19,12 @@
   box-sizing: border-box;
 }
 
-/* State when modal is open */
 .modal-artists-backdrop.open {
   opacity: 1;
   visibility: visible;
   pointer-events: all;
 }
 
-/* Class added to the body to prevent background scrolling */
 body.modal-open {
   overflow: hidden;
 }
@@ -40,31 +37,18 @@ body.modal-open {
   max-width: 900px;
   width: 95%;
   max-height: 90vh;
-  /* This will manage internal scrolling for the content */
   overflow-y: auto;
   position: relative;
-  /* Needed for absolute positioning of loader/other elements relative to content */
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
-
-  /* Added padding-top to ensure content is not hidden by fixed close button */
   padding-top: 60px;
-  /* Adjust if needed based on close button size/position */
 }
 
 /* Close button style */
 .close-modal {
   position: fixed;
-  /* Fixes button relative to viewport */
-  /* Calculate position relative to the modal-artists-backdrop */
   top: 20px;
-  /* Offset from top of viewport */
   right: 20px;
-  /* Offset from right of viewport */
-
-  /* For responsiveness, you might need to adjust these or calculate them dynamically */
-  /* Or use a calculated position based on modal-content's boundaries if button is truly inside */
-
   background: transparent;
   border: none;
   color: #333;
@@ -74,21 +58,18 @@ body.modal-open {
   justify-content: center;
   align-items: center;
   z-index: 1002;
-  /* Higher than modal backdrop and content */
 }
 
 .close-modal:hover {
   color: #007bff;
 }
 
-/* Close icon size */
 .close-icon {
   width: 24px;
   height: 24px;
   fill: currentColor;
 }
 
-/* Modal Loader Styles */
 .loader {
   display: none;
   position: absolute;
@@ -107,7 +88,6 @@ body.modal-open {
   transition: opacity 0.3s ease;
 }
 
-/* Spinner animation */
 .spinner {
   animation: rotate 2s linear infinite;
   width: 50px;
@@ -144,7 +124,6 @@ body.modal-open {
   }
 }
 
-/* Modal Body and Content Sections */
 .modal-body {
   width: 100%;
   display: flex;
@@ -152,7 +131,6 @@ body.modal-open {
   gap: 25px;
 }
 
-/* Artist Title */
 .modal-title {
   margin-top: 0;
   margin-bottom: 20px;
@@ -160,12 +138,9 @@ body.modal-open {
   font-size: 700;
   color: rgba(255, 255, 255, 1);
   font-weight: bold;
-  /* Added padding-right to avoid overlap with fixed close button */
   padding-right: 40px;
-  /* Adjust if button is larger or closer */
 }
 
-/* Artist Details Section */
 .artist-overview-block {
   display: flex;
   flex-wrap: wrap;
@@ -173,7 +148,6 @@ body.modal-open {
   justify-content: space-between;
 }
 
-/* Artist Info List */
 .artist-info-list {
   list-style: none;
   padding: 0;
@@ -202,7 +176,6 @@ body.modal-open {
   color: rgba(255, 255, 255, 1);
 }
 
-/* Artist Biography Block */
 .artist-description-details {
   flex: 2 1 350px;
   display: flex;
@@ -221,7 +194,6 @@ body.modal-open {
   line-height: 1.6;
 }
 
-/* Read More Button for Bio */
 .read-more-btn {
   background: none;
   border: none;
@@ -238,7 +210,6 @@ body.modal-open {
   text-decoration: underline;
 }
 
-/* Artist Genres List */
 .genres-list {
   list-style: none;
   display: flex;
@@ -255,7 +226,6 @@ body.modal-open {
   border: 1px rgba(255, 255, 255, 0.2);
 }
 
-/* Artist Albums Section */
 .artist-albums-block {
   margin-top: 30px;
   width: 100%;
@@ -355,6 +325,7 @@ p:last-child {
   overflow: hidden;
   position: relative;
 }
+
 .track-info-item.track-info-item-time {
   font-size: 12px;
   width: 40px;
@@ -393,7 +364,6 @@ p:last-child {
   fill: currentColor;
 }
 
-/* Pagination Controls */
 .pagination-controls {
   display: flex;
   justify-content: center;
@@ -427,18 +397,15 @@ p:last-child {
   color: #555;
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
   .modal-content {
     padding: 20px;
     width: 95%;
     padding-top: 50px;
-    /* Adjust padding for smaller screens */
   }
 
   .close-modal {
     top: 15px;
-    /* Adjust position for smaller screens */
     right: 15px;
   }
 
@@ -446,7 +413,6 @@ p:last-child {
     font-size: 2em;
     margin-bottom: 15px;
     padding-right: 30px;
-    /* Adjust padding for smaller screens */
   }
 
   .artist-overview-block {
@@ -510,18 +476,22 @@ p:last-child {
     width: calc(50% - 15px);
     flex-shrink: 0;
   }
+
   .modal-artist-image {
     max-width: 100%;
   }
 }
+
 @media (min-width: 768px) {
   .modal-artist-image {
     max-width: 100%;
     margin-bottom: 20px;
   }
+
   .artist-info-item {
     width: calc(50% - 15px);
   }
+
   .artist-info-list {
     display: flex;
     flex-wrap: wrap;
