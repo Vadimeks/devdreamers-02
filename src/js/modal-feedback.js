@@ -1,14 +1,25 @@
+//  modal-feedback.js
+
+import { submitFeedback } from './apiService';
+
+let modalOverlay;
+let modal;
+let closeBtn;
+let form;
+let stars;
+let loader;
+let selectedRating = 0;
+
 document.addEventListener('DOMContentLoaded', () => {
-  const modalOverlay = document.querySelector('.modal-overlay');
-  const modal = document.querySelector('.leave-feedback-modal');
-  const closeBtn = document.querySelector('.modal-close');
-  const form = document.querySelector('.feedback-form');
-  const stars = document.querySelectorAll('.star');
-  const loader = document.getElementById('feedback-loader');
-  let selectedRating = 0;
+  modalOverlay = document.querySelector('.modal-overlay');
+  modal = document.querySelector('.leave-feedback-modal');
+  closeBtn = document.querySelector('.modal-close');
+  form = document.querySelector('.feedback-form');
+  stars = document.querySelectorAll('.star');
+  loader = document.getElementById('feedback-loader');
 
   if (!modalOverlay || !modal || !closeBtn || !form) {
-    console.warn('Modal elements not found');
+    console.warn('Modal elements not found for feedback modal.');
     return;
   }
 
@@ -22,44 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  function highlightStars(rating) {
-    stars.forEach((star, index) => {
-      star.classList.toggle('filled', index < rating);
-    });
-  }
-
   closeBtn.addEventListener('click', closeModal);
   modalOverlay.addEventListener('click', e => {
     if (e.target === modalOverlay) closeModal();
   });
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape' && modalOverlay.classList.contains('is-open'))
+      closeModal();
   });
-
-  function closeModal() {
-    modalOverlay.classList.remove('is-open');
-    document.body.classList.remove('modal-open');
-  }
-
-  function showLoader() {
-    loader?.style.setProperty('display', 'block');
-  }
-
-  function hideLoader() {
-    loader?.style.setProperty('display', 'none');
-  }
-
-  function showError(message) {
-    const existing = document.querySelector('.feedback-error');
-    if (existing) existing.remove();
-
-    const el = document.createElement('div');
-    el.className = 'feedback-error';
-    el.textContent = message;
-    el.style.color = 'red';
-    el.style.marginTop = '8px';
-    form.appendChild(el);
-  }
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -68,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const name = form.elements['name'].value.trim();
     const message = form.elements['message'].value.trim();
 
-    // Валідація
     if (name.length < 2 || name.length > 16) {
       showError('Name must be between 2 and 16 characters.');
       return;
@@ -90,30 +70,72 @@ document.addEventListener('DOMContentLoaded', () => {
         rating: selectedRating,
         message,
       });
-      const response = await fetch(
-        'https://sound-wave.b.goit.study/api/feedbacks',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name,
-            rating: selectedRating,
-            descr: message,
-          }),
-        }
-      );
 
-      if (!response.ok) throw new Error('Server error');
+      // === Змена тут: Выкарыстанне функцыі submitFeedback з apiService.js ===
+      const responseData = await submitFeedback({
+        name,
+        rating: selectedRating,
+        descr: message, // Важна: назва поля павінна супадаць з API (descr, а не message)
+      });
+      // ===================================================================
+
+      console.log('Feedback submitted successfully:', responseData); // Можна лагаваць адказ ад бэкэнда
 
       closeModal();
       form.reset();
       selectedRating = 0;
       highlightStars(0);
     } catch (err) {
+      // submitFeedback з apiService.js ужо мае логіку апрацоўкі памылак axios і выкідвае іх,
+      // таму мы тут проста перахопліваем выкінутую памылку.
       showError('Failed to submit feedback. Please try again later.');
-      console.error(err);
+      console.error('Error submitting feedback via apiService:', err);
     } finally {
       hideLoader();
     }
   });
 });
+
+export function openFeedbackModal() {
+  if (!modalOverlay || !modal) {
+    console.warn('Modal elements not initialized. Cannot open modal.');
+    return;
+  }
+  modalOverlay.classList.add('is-open');
+  document.body.classList.add('modal-open');
+  form.reset();
+  selectedRating = 0;
+  highlightStars(0);
+  document.querySelector('.feedback-error')?.remove();
+}
+
+function closeModal() {
+  modalOverlay.classList.remove('is-open');
+  document.body.classList.remove('modal-open');
+}
+
+function highlightStars(rating) {
+  stars.forEach((star, index) => {
+    star.classList.toggle('filled', index < rating);
+  });
+}
+
+function showLoader() {
+  loader?.style.setProperty('display', 'block');
+}
+
+function hideLoader() {
+  loader?.style.setProperty('display', 'none');
+}
+
+function showError(message) {
+  const existing = document.querySelector('.feedback-error');
+  if (existing) existing.remove();
+
+  const el = document.createElement('div');
+  el.className = 'feedback-error';
+  el.textContent = message;
+  el.style.color = 'red';
+  el.style.marginTop = '8px';
+  form.appendChild(el);
+}

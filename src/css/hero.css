@@ -55,7 +55,7 @@
 }
 
 .hero-btn {
-    margin: 24px 0 0 0;
+    margin: 24px 0 64px 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -116,7 +116,7 @@ screen and (min-width: 320px) and (min-resolution: 2dppx) {
     }
 
     .hero-btn {
-        margin-top: 32px;
+        margin: 32px 0;
         width: 246px;
         align-self: flex-start;
     }
