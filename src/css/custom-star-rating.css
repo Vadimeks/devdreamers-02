@@ -4,11 +4,11 @@
 .rating.small .rating.label-value .star,
 .rating.small .star {
     width: 10px;
-    height: 9.5px;
+    height: 9.5px !important;
 }
 
 .rating.immediately .star-container {
-    -webkit-transition: none;
-    -moz-transition: none;
-    transition: none;
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    transition: none !important;
 }
