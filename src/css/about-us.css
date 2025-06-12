@@ -3,6 +3,7 @@
 .about-us-section {
   background-color: #000;
   color: #fff;
+  padding: 64px 0;
 }
 
 .about-us-container {
@@ -10,8 +11,6 @@
   flex-direction: column;
   align-items: center;
   text-align: left;
-  padding: 64px 16px;
-  /* gap: 20px; */
 }
 
 .team-photo {
@@ -46,13 +45,16 @@
 
 /* Планшетна версія */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
+  .about-us-section {
+    padding: 64px 0;
+  }
 
   .about-us-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: left;
-    padding: 64px 32px;
+
   }
 
   .team-photo {
@@ -73,7 +75,6 @@
     font-family: 'Epilogue', sans-serif;
     font-size: 44px;
     margin-bottom: 24px;
-
   }
 
   .about-us-text {
@@ -91,13 +92,15 @@
 
 /* Desktop styles (min-width: 1440px) */
 @media screen and (min-width: 1440px) {
+  .about-us-section {
+    padding: 112px 0;
+  }
 
   .about-us-container {
     flex-direction: row;
     align-items: center;
     text-align: left;
     gap: 24px;
-    padding: 112px 64px;
   }
 
   .team-photo {
