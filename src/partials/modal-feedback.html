@@ -9,36 +9,37 @@
     <form class="feedback-form">
       <div class="form-group">
         <label for="feedback-name">Name</label>
-        <input required id="feedback-name" type="text" name="name" placeholder="Emily" />
+        <input required id="feedback-name" type="text" name="name" placeholder="Emily" autocomplete="name" />
       </div>
       <div class="form-group">
         <label for="feedback-message">Message</label>
-        <textarea required id="feedback-message" name="message" placeholder="Type your message..."></textarea>
+        <textarea required id="feedback-message" name="message" placeholder="Type your message..."
+          autocomplete="off"></textarea>
       </div>
       <div class="form-group rating-group">
-        <label>Rating</label>
-        <div class="rating">
-          <button type="button" class="star" aria-label="1 star">
+        <label id="rating-label">Rating</label>
+        <div class="rating" role="radiogroup" aria-labelledby="rating-label">
+          <button type="button" class="star" aria-label="1 star" value="1">
             <svg aria-hidden="true">
               <use href="img/sprite.svg#icon-star"></use>
             </svg>
           </button>
-          <button type="button" class="star" aria-label="2 stars">
+          <button type="button" class="star" aria-label="2 stars" value="2">
             <svg aria-hidden="true">
               <use xlink:href="img/sprite.svg#icon-star"></use>
             </svg>
           </button>
-          <button type="button" class="star" aria-label="3 stars">
+          <button type="button" class="star" aria-label="3 stars" value="3">
             <svg aria-hidden="true">
               <use xlink:href="img/sprite.svg#icon-star"></use>
             </svg>
           </button>
-          <button type="button" class="star" aria-label="4 stars">
+          <button type="button" class="star" aria-label="4 stars" value="4">
             <svg aria-hidden="true">
               <use xlink:href="img/sprite.svg#icon-star"></use>
             </svg>
           </button>
-          <button type="button" class="star" aria-label="5 stars">
+          <button type="button" class="star" aria-label="5 stars" value="5">
             <svg aria-hidden="true">
               <use xlink:href="img/sprite.svg#icon-star"></use>
             </svg>
@@ -50,4 +51,3 @@
     </form>
   </div>
 </div>
-<script type="module" src="./js/modal-feedback.js"></script>
