@@ -46,6 +46,22 @@ body.modal-open {
     0 25px 50px rgba(0, 0, 0, 0.4);
 }
 
+/* Scrollbar aesthetics for modal-container */
+.modal-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.modal-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  border: 2px solid rgba(6, 3, 7, 1);
+}
+
 /* Modal Content Styles (Mobile First: up to 767px) */
 .modal-content {
   max-width: 320px;
