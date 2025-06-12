@@ -192,3 +192,17 @@
     transform: translateY(-150%) scale(1.1);
   }
 }
+
+.star.small,
+.rating.small .star.label-value,
+.rating.small .rating.star .star.label-value,
+.rating.small .rating.label-value .star,
+.rating.small .star {
+  height: 9.5px;
+  /* fixing error in validator (9,5)*/
+}
+
+.rating.immediately .star-container {
+  transition: none;
+  /* fixing error in validator (all none)*/
+}
