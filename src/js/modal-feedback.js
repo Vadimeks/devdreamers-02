@@ -1,4 +1,4 @@
-//  modal-feedback.js
+// modal-feedback.js
 
 import { submitFeedback } from './apiService';
 
@@ -9,6 +9,8 @@ let form;
 let stars;
 let loader;
 let selectedRating = 0;
+
+let scrollPosition = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
   modalOverlay = document.querySelector('.modal-overlay');
@@ -71,23 +73,19 @@ document.addEventListener('DOMContentLoaded', () => {
         message,
       });
 
-      // === Змена тут: Выкарыстанне функцыі submitFeedback з apiService.js ===
       const responseData = await submitFeedback({
         name,
         rating: selectedRating,
-        descr: message, // Важна: назва поля павінна супадаць з API (descr, а не message)
+        descr: message,
       });
-      // ===================================================================
 
-      console.log('Feedback submitted successfully:', responseData); // Можна лагаваць адказ ад бэкэнда
+      console.log('Feedback submitted successfully:', responseData);
 
       closeModal();
       form.reset();
       selectedRating = 0;
       highlightStars(0);
     } catch (err) {
-      // submitFeedback з apiService.js ужо мае логіку апрацоўкі памылак axios і выкідвае іх,
-      // таму мы тут проста перахопліваем выкінутую памылку.
       showError('Failed to submit feedback. Please try again later.');
       console.error('Error submitting feedback via apiService:', err);
     } finally {
@@ -101,8 +99,12 @@ export function openFeedbackModal() {
     console.warn('Modal elements not initialized. Cannot open modal.');
     return;
   }
-  modalOverlay.classList.add('is-open');
+
+  scrollPosition = window.scrollY;
+  document.body.style.top = `-${scrollPosition}px`;
   document.body.classList.add('modal-open');
+
+  modalOverlay.classList.add('is-open');
   form.reset();
   selectedRating = 0;
   highlightStars(0);
@@ -111,7 +113,17 @@ export function openFeedbackModal() {
 
 function closeModal() {
   modalOverlay.classList.remove('is-open');
+
+  // Remove the fixed positioning first, then clear the top style, then scroll
+  // The order might matter for some browsers' rendering engines
   document.body.classList.remove('modal-open');
+  document.body.style.top = '';
+
+  // Crucially, ensure the scroll is instantaneous
+  window.scrollTo({
+    top: scrollPosition,
+    behavior: 'instant', // <--- Key change here!
+  });
 }
 
 function highlightStars(rating) {

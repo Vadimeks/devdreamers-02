@@ -20,7 +20,7 @@ const artistAlbumsBlock = artistModal?.querySelector('.artist-albums-block');
 const BASE_PUBLIC_URL = '/script-ninjas-project';
 
 let allAlbums = [];
-let scrollPosition = 0;
+let scrollPosition = 0; // Дададзена: Пераменная для захоўвання пазіцыі пракруткі
 
 function clearModalContent() {
   if (modalTitle) modalTitle.textContent = '';
@@ -56,8 +56,12 @@ function closeArtistModal() {
   }
   if (document.body) {
     document.body.classList.remove('modal-open');
-    document.body.style.top = '';
-    window.scrollTo(0, scrollPosition);
+    document.body.style.top = ''; // Выдаляем інлайн-стыль
+    // Важна: Выкарыстоўваем behavior: 'instant' для імгненнай пракруткі
+    window.scrollTo({
+      top: scrollPosition,
+      behavior: 'instant', // Імгненная пракрутка
+    });
   }
   if (modalLoader) modalLoader.style.display = 'none';
   if (modalContent) {
@@ -68,9 +72,12 @@ function closeArtistModal() {
   clearModalContent();
   document.removeEventListener('keydown', escapeKeyHandler);
   artistModal?.removeEventListener('click', outsideClickHandler);
+  // Выдаліць слухача для closeModalButton, каб прадухіліць шматразовае даданне
+  closeModalButton?.removeEventListener('click', closeArtistModal);
 }
 
 function outsideClickHandler(e) {
+  // Праверце, ці клік быў менавіта па бэкдропе, а не па мадальным акне
   if (e.target === artistModal) {
     closeArtistModal();
   }
@@ -215,6 +222,7 @@ export async function openArtistModal(artistData) {
     return;
   }
 
+  // Захоўваем бягучую пазіцыю пракруткі і наладжваем body
   scrollPosition = window.scrollY;
   document.body.style.top = `-${scrollPosition}px`;
   document.body.classList.add('modal-open');
@@ -227,6 +235,7 @@ export async function openArtistModal(artistData) {
 
   document.addEventListener('keydown', escapeKeyHandler);
   artistModal?.addEventListener('click', outsideClickHandler);
+  // Дадаць слухача для closeModalButton. Важна дадаваць толькі адзін раз!
   closeModalButton?.addEventListener('click', closeArtistModal);
 
   let fullArtistDetailsFromApi;
