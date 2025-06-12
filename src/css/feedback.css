@@ -2,10 +2,10 @@
 .feedback-section {
   background-color: black;
   margin: 0 auto;
+  padding: 64px 0;
 }
 
 .feedback-container {
-  padding: 64px 16px;
   position: relative;
 }
 
@@ -142,14 +142,17 @@
 
 /* Tablet styles (768px to 1439px) */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
+  .feedback-section {
+    background-color: black;
+    margin: 0 auto;
+    padding: 64px 0;
+  }
+
   .feedback-text {
     font-size: 26px;
     width: 518px;
   }
 
-  .feedback-container {
-    padding: 64px 32px;
-  }
 
   .feedback-button-next {
     right: 32px !important;
@@ -168,8 +171,8 @@
     width: 866px;
   }
 
-  .feedback-container {
-    padding: 112px 64px;
+  .feedback-section {
+    padding: 112px 0;
   }
 
   .feedback-button-prev {
