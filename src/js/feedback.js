@@ -1,11 +1,14 @@
-// feedback section js
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
-// import 'css-star-rating/css/star-rating.css';
 
 import { fetchFeedbacks } from './apiService';
 
+// Функцыі для адкрыцця/закрыцця мадальнага акна
+// Імпартуем іх з асобнага файла modal-feedback.js
+import { openFeedbackModal } from './modal-feedback'; // Мяркуецца, што openFeedbackModal будзе экспартавана з modal-feedback.js
+
 const swiperWrapper = document.querySelector('.swiper-wrapper');
+const leaveFeedbackButton = document.querySelector('.leave-feedback-button');
 
 async function loadFeedbacks() {
   try {
@@ -122,3 +125,12 @@ function initSwiper() {
     }
   }
 }
+
+// Слухач падзей для кнопкі "Leave feedback"
+document.addEventListener('DOMContentLoaded', () => {
+  if (leaveFeedbackButton) {
+    leaveFeedbackButton.addEventListener('click', openFeedbackModal);
+  } else {
+    console.warn('Leave feedback button not found.');
+  }
+});
