@@ -1,8 +1,8 @@
 // feedback section js
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
-import 'css-star-rating/css/star-rating.css';
-import '/css/custom-star-rating.css';
+// import 'css-star-rating/css/star-rating.css';
+import '../css/custom-star-rating.css';
 import { fetchFeedbacks } from './apiService';
 
 const swiperWrapper = document.querySelector('.swiper-wrapper');
