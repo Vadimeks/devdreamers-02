@@ -2,6 +2,9 @@
 
 body.modal-open {
   overflow: hidden;
+  position: fixed;
+  width: 100%;
+  left: 0;
 }
 
 .modal-overlay {
@@ -10,11 +13,8 @@ body.modal-open {
   background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
-  /* Цэнтруе мадалку па вертыкалі */
   justify-content: center;
-  /* Цэнтруе мадалку па гарызанталі */
   padding: 0;
-  /* Гэты падынг будзе пераназначацца ў медыя-запытах */
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
@@ -32,20 +32,15 @@ body.modal-open {
 .leave-feedback-modal {
   background: #060307;
   width: 100%;
-  /* Выкарыстоўваем 100% для працы з max-width */
   height: auto;
-  /* Вышыня адаптуецца да змесціва */
   max-height: 98vh;
-  /* Абмежаваная вышыня 98% ад вышыні відавочнай вобласці */
   max-width: 320px;
-  /* Агульная максімальная шырыня для мабільных па змаўчанні */
   border-radius: 16px;
   padding: 64px 16px 58px 16px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
-  /* Пракрутка адключана */
   position: relative;
   transform: scale(0.95);
   opacity: 0;
@@ -263,17 +258,13 @@ body.modal-open {
 @media screen and (max-width: 767px) {
   .modal-overlay {
     padding: 0 16px;
-    /* Забяспечвае бакавыя падынгі для бэкдропа */
   }
 
   .leave-feedback-modal {
     max-width: 320px;
-    /* Ужо вызначана ў агульным стылі, але пакінем для яснасці */
     width: 100%;
     height: auto;
-    /* Адаптыўная вышыня */
     max-height: 98vh;
-    /* Ужо вызначана ў агульным стылі, але пакінем для яснасці */
   }
 }
 
@@ -282,17 +273,13 @@ body.modal-open {
   .modal-overlay {
     background: rgba(0, 0, 0, 0.25);
     padding: 20px 32px;
-    /* Вертыкальныя і гарызантальныя падынгі для overlay */
   }
 
   .leave-feedback-modal {
     max-width: 704px;
-    /* Новая макс. шырыня */
     width: 100%;
     height: auto;
-    /* Адаптыўная вышыня */
     max-height: 98vh;
-    /* Абмежаваная вышыня 98% ад вышыні відавочнай вобласці */
     padding: 64px 32px;
   }
 
@@ -321,17 +308,13 @@ body.modal-open {
   .modal-overlay {
     background: rgba(0, 0, 0, 0.25);
     padding: 20px 288px;
-    /* Вертыкальныя і гарызантальныя падынгі для overlay */
   }
 
   .leave-feedback-modal {
     max-width: 864px;
-    /* Новая макс. шырыня */
     width: 100%;
     height: auto;
-    /* Адаптыўная вышыня */
     max-height: 98vh;
-    /* Абмежаваная вышыня 98% ад вышыні відавочнай вобласці */
     padding: 64px;
   }
 
