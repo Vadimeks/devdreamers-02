@@ -10,13 +10,17 @@ async function loadFeedbacks() {
   try {
     const response = await fetchFeedbacks(10, 1);
     const feedbacks = response.data;
-    feedbacks.forEach(({ rating, descr, name }) => {
-      const slide = createFeedbackSlide({ rating, text: descr, user: name });
-      swiperWrapper.appendChild(slide);
-    });
-    initSwiper();
+    if (feedbacks && feedbacks.length > 0) {
+      feedbacks.forEach(({ rating, descr, name }) => {
+        const slide = createFeedbackSlide({ rating, text: descr, user: name });
+        swiperWrapper.appendChild(slide);
+      });
+      initSwiper();
+    } else {
+      console.warn('No feedbacks received from the API.');
+    }
   } catch (error) {
-    console.error('Oops...Error', error);
+    console.error('Oops...Error loading feedbacks:', error);
   }
 }
 
@@ -63,41 +67,57 @@ function initSwiper() {
       clickable: true,
       type: 'custom',
       renderCustom: function (swiperInstance, current, total) {
-        let leftBulletActive = '';
-        let middleBulletActive = '';
-        let rightBulletActive = '';
+        const leftBulletClass =
+          current === 1 ? 'swiper-pagination-bullet-active' : '';
+        const middleBulletClass =
+          current > 1 && current < total
+            ? 'swiper-pagination-bullet-active'
+            : '';
+        const rightBulletClass =
+          current === total ? 'swiper-pagination-bullet-active' : '';
 
-        if (current === 1) {
-          leftBulletActive = 'swiper-pagination-bullet-active';
-        } else if (current === total) {
-          rightBulletActive = 'swiper-pagination-bullet-active';
-        } else {
-          middleBulletActive = 'swiper-pagination-bullet-active';
-        }
         return `
-          <span class="swiper-pagination-bullet ${leftBulletActive}" data-slide-index="0"></span>
-          <span class="swiper-pagination-bullet ${middleBulletActive}" data-slide-index="${Math.floor(
-          (total - 1) / 2
-        )}"></span>
-          <span class="swiper-pagination-bullet ${rightBulletActive}" data-slide-index="${
-          total - 1
-        }"></span>
+          <span class="swiper-pagination-bullet ${leftBulletClass}" data-slide-target="first-slide-go"></span>
+          <span class="swiper-pagination-bullet ${middleBulletClass}" data-slide-target="indicator-only"></span>
+          <span class="swiper-pagination-bullet ${rightBulletClass}" data-slide-target="last-slide-go"></span>
         `;
       },
     },
     on: {
-      paginationUpdate: function () {
-        const bullets = document.querySelectorAll(
-          '.feedback-pagination .swiper-pagination-bullet'
-        );
-        bullets.forEach(bullet => {
-          bullet.onclick = () => {
-            const index = parseInt(bullet.getAttribute('data-slide-index'));
-            swiper.slideTo(index);
-          };
-        });
+      init: function () {
+        addPaginationClickHandlers(this);
+      },
+      paginationRender: function () {
+        addPaginationClickHandlers(this);
       },
     },
     grabCursor: true,
   });
+
+  function addPaginationClickHandlers(swiperInstance) {
+    const paginationContainer = document.querySelector('.feedback-pagination');
+    if (!paginationContainer) return;
+
+    paginationContainer.removeEventListener(
+      'click',
+      handleCustomPaginationClick
+    );
+    paginationContainer.addEventListener('click', handleCustomPaginationClick);
+
+    function handleCustomPaginationClick(event) {
+      const clickedBullet = event.target.closest('.swiper-pagination-bullet');
+      if (!clickedBullet) return;
+
+      const targetAction = clickedBullet.getAttribute('data-slide-target');
+      const totalSlides = swiperInstance.slides.length;
+
+      if (targetAction === 'first-slide-go') {
+        swiperInstance.slideTo(0);
+      } else if (targetAction === 'last-slide-go') {
+        swiperInstance.slideTo(totalSlides - 1);
+      } else if (targetAction === 'indicator-only') {
+        return;
+      }
+    }
+  }
 }
