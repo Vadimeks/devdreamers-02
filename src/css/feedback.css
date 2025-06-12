@@ -137,6 +137,42 @@
   opacity: 1;
 }
 
+/* --- Стылі кнопкі "Leave Feedback" (размешчана ў Feedback Section) --- */
+.leave-feedback-button {
+  background: rgba(118, 65, 145, 1);
+  box-shadow:
+    0px 1px 2px 0px rgba(6, 3, 7, 0.05),
+    inset 0px -2px 1px 0px rgba(0, 0, 0, 0.2),
+    inset 0px 0px 0px 1px rgba(6, 3, 7, 0.15),
+    inset 0px 2px 1px 0px rgba(255, 255, 255, 0.25),
+    inset 0px 32px 24px 0px rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 10px 24px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 250ms ease;
+  display: block;
+  /* Цэнтруе кнопку як блокавы элемент */
+  margin-left: auto;
+  /* Цэнтруе кнопку */
+  margin-right: auto;
+  /* Цэнтруе кнопку */
+  text-align: center;
+  /* Цэнтруе тэкст унутры кнопкі */
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.leave-feedback-button:hover {
+  background: #8e44ad;
+}
+
+
 /* --- Media Queries для секцыі водгукаў --- */
 
 /* Mobile (max-width: 767px) */
@@ -150,6 +186,11 @@
 
   .feedback-pagination {
     margin-bottom: 26px;
+  }
+
+  .leave-feedback-button {
+    width: 288px;
+    height: 47px;
   }
 }
 
@@ -174,6 +215,12 @@
 
   .feedback-pagination {
     margin-bottom: 66.5px;
+  }
+
+  .leave-feedback-button {
+    width: 158px;
+    height: 47px;
+    padding: 0;
   }
 }
 
@@ -208,5 +255,10 @@
 
   .feedback-pagination {
     margin-bottom: 90px;
+  }
+
+  .leave-feedback-button {
+    width: 177px;
+    height: 47px;
   }
 }

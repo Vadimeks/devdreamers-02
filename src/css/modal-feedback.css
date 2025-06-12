@@ -10,8 +10,11 @@ body.modal-open {
   background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
+  /* Цэнтруе мадалку па вертыкалі */
   justify-content: center;
+  /* Цэнтруе мадалку па гарызанталі */
   padding: 0;
+  /* Гэты падынг будзе пераназначацца ў медыя-запытах */
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
@@ -29,14 +32,20 @@ body.modal-open {
 .leave-feedback-modal {
   background: #060307;
   width: 100%;
+  /* Выкарыстоўваем 100% для працы з max-width */
   height: auto;
+  /* Вышыня адаптуецца да змесціва */
   max-height: 98vh;
+  /* Абмежаваная вышыня 98% ад вышыні відавочнай вобласці */
   max-width: 320px;
+  /* Агульная максімальная шырыня для мабільных па змаўчанні */
   border-radius: 16px;
   padding: 64px 16px 58px 16px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
+  /* Пракрутка адключана */
   position: relative;
   transform: scale(0.95);
   opacity: 0;
@@ -196,10 +205,6 @@ body.modal-open {
   margin-top: auto;
   width: 100%;
   height: 47px;
-}
-
-.submit-feedback,
-.leave-feedback-button {
   background: rgba(118, 65, 145, 1);
   box-shadow:
     0px 1px 2px 0px rgba(6, 3, 7, 0.05),
@@ -225,8 +230,7 @@ body.modal-open {
   box-sizing: border-box;
 }
 
-.submit-feedback:hover,
-.leave-feedback-button:hover {
+.submit-feedback:hover {
   background: #8e44ad;
 }
 
@@ -257,16 +261,19 @@ body.modal-open {
 
 /* Mobile (max-width: 767px) */
 @media screen and (max-width: 767px) {
+  .modal-overlay {
+    padding: 0 16px;
+    /* Забяспечвае бакавыя падынгі для бэкдропа */
+  }
 
   .leave-feedback-modal {
     max-width: 320px;
+    /* Ужо вызначана ў агульным стылі, але пакінем для яснасці */
     width: 100%;
-    height: 100vh;
-  }
-
-  .leave-feedback-button {
-    width: 288px;
-    height: 47px;
+    height: auto;
+    /* Адаптыўная вышыня */
+    max-height: 98vh;
+    /* Ужо вызначана ў агульным стылі, але пакінем для яснасці */
   }
 }
 
@@ -274,15 +281,19 @@ body.modal-open {
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .modal-overlay {
     background: rgba(0, 0, 0, 0.25);
+    padding: 20px 32px;
+    /* Вертыкальныя і гарызантальныя падынгі для overlay */
   }
 
   .leave-feedback-modal {
     max-width: 704px;
+    /* Новая макс. шырыня */
     width: 100%;
-    max-height: 688px;
+    height: auto;
+    /* Адаптыўная вышыня */
     max-height: 98vh;
+    /* Абмежаваная вышыня 98% ад вышыні відавочнай вобласці */
     padding: 64px 32px;
-    margin-top: 0;
   }
 
   .modal-title {
@@ -293,7 +304,6 @@ body.modal-open {
   .submit-feedback {
     width: 340px;
     height: 47px;
-    margin: 0 auto;
   }
 
   .rating-group .rating {
@@ -304,24 +314,24 @@ body.modal-open {
     height: 24px;
     width: 24px;
   }
-
-  .leave-feedback-button {
-    width: 158px;
-    height: 47px;
-  }
 }
 
 /* Desktop (1440px and up) */
 @media screen and (min-width: 1440px) {
   .modal-overlay {
     background: rgba(0, 0, 0, 0.25);
+    padding: 20px 288px;
+    /* Вертыкальныя і гарызантальныя падынгі для overlay */
   }
 
   .leave-feedback-modal {
     max-width: 864px;
+    /* Новая макс. шырыня */
     width: 100%;
-    max-height: 688px;
+    height: auto;
+    /* Адаптыўная вышыня */
     max-height: 98vh;
+    /* Абмежаваная вышыня 98% ад вышыні відавочнай вобласці */
     padding: 64px;
   }
 
@@ -332,7 +342,6 @@ body.modal-open {
   .submit-feedback {
     width: 108px;
     height: 47px;
-    margin: 0 auto;
   }
 
   .rating-group .rating {
@@ -342,10 +351,5 @@ body.modal-open {
   .star {
     width: 24px;
     height: 24px;
-  }
-
-  .leave-feedback-button {
-    width: 177px;
-    height: 47px;
   }
 }
