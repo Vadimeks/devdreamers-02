@@ -1,0 +1,14 @@
+.star.small,
+.rating.small .star.label-value,
+.rating.small .rating.star .star.label-value,
+.rating.small .rating.label-value .star,
+.rating.small .star {
+    width: 10px;
+    height: 9.5px;
+}
+
+.rating.immediately .star-container {
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none;
+}
