@@ -198,11 +198,11 @@
 .rating.small .rating.star .star.label-value,
 .rating.small .rating.label-value .star,
 .rating.small .star {
-  height: 9.5px;
+  height: 9.5px !important;
   /* fixing error in validator (9,5)*/
 }
 
 .rating.immediately .star-container {
-  transition: none;
+  transition: none !important;
   /* fixing error in validator (all none)*/
 }
