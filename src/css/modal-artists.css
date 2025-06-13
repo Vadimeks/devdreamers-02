@@ -1,4 +1,4 @@
-/* Base Modal Styles */
+/*  Modal Artists Styles */
 .modal-artists-backdrop {
   position: fixed;
   top: 0;
@@ -46,7 +46,6 @@ body.modal-open {
     0 25px 50px rgba(0, 0, 0, 0.4);
 }
 
-/* Scrollbar aesthetics for modal-container */
 .modal-container::-webkit-scrollbar {
   width: 8px;
 }
@@ -62,7 +61,6 @@ body.modal-open {
   border: 2px solid rgba(6, 3, 7, 1);
 }
 
-/* Modal Content Styles (Mobile First: up to 767px) */
 .modal-content {
   max-width: 320px;
   width: 100%;
@@ -76,7 +74,6 @@ body.modal-open {
   margin: 0 auto;
 }
 
-/* Close button style */
 .close-modal {
   position: absolute;
   top: 16px;
@@ -105,7 +102,6 @@ body.modal-open {
   color: #333;
 }
 
-/* --- LOADER STYLES START HERE --- */
 .loader {
   display: none;
   position: absolute;
@@ -187,10 +183,6 @@ body.modal-open {
   color: #fff;
 }
 
-/* --- LOADER STYLES END HERE --- */
-
-
-/* Modal Body & Content Styles */
 .modal-body {
   width: 100%;
   display: flex;
@@ -198,7 +190,6 @@ body.modal-open {
   gap: 25px;
 }
 
-/* Modal Title Styles */
 .modal-title {
   margin-top: 0;
   margin-bottom: 0;
@@ -212,20 +203,17 @@ body.modal-open {
   margin-top: 4px;
 }
 
-/* Artist Overview Block Styles */
 .artist-overview-block {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Artist Image Container */
 .artist-image-container {
   width: 100%;
   flex-shrink: 0;
 }
 
-/* Artist Image */
 .modal-artist-image {
   display: block;
   width: 100%;
@@ -236,7 +224,6 @@ body.modal-open {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Wrapper for artist info list and description details */
 .modal-descr {
   display: flex;
   flex-direction: column;
@@ -245,7 +232,6 @@ body.modal-open {
   flex-grow: 1;
 }
 
-/* Artist Info List Styles */
 .artist-info-list {
   list-style: none;
   padding: 0;
@@ -260,7 +246,6 @@ body.modal-open {
   border-radius: 5px;
 }
 
-/* Years active /Sex/Country/Biography headings */
 .artist-info-item h3 {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
@@ -272,7 +257,6 @@ body.modal-open {
   text-transform: uppercase;
 }
 
-/* Text for Years active /Sex/Country */
 .artist-info-item p.artist-info {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
@@ -282,7 +266,6 @@ body.modal-open {
   color: rgba(255, 255, 255, 1);
 }
 
-/* Artist Description Details (Biography and Genres) */
 .artist-description-details {
   display: flex;
   flex-direction: column;
@@ -298,7 +281,6 @@ body.modal-open {
   margin-bottom: 0;
 }
 
-/* Text for Biography */
 .artist-info-bio-text {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
@@ -312,7 +294,6 @@ body.modal-open {
   box-sizing: border-box;
 }
 
-/* Scrollbar aesthetics for biography */
 .artist-info-bio-text::-webkit-scrollbar {
   width: 8px;
 }
@@ -328,7 +309,6 @@ body.modal-open {
   border: 2px solid rgba(6, 3, 7, 1);
 }
 
-/* Genres list */
 .genres-list {
   list-style: none;
   display: flex;
@@ -339,7 +319,6 @@ body.modal-open {
   align-self: flex-start;
 }
 
-/* Each genre item */
 .genres-item {
   color: rgba(255, 255, 255, 1);
   height: 32px;
@@ -356,13 +335,11 @@ body.modal-open {
   white-space: nowrap;
 }
 
-/* Artist Albums Block Styles */
 .artist-albums-block {
   margin-top: 16px;
   width: 100%;
 }
 
-/* Albums Title */
 .artist-albums-block h3 {
   font-family: 'Epilogue', sans-serif;
   font-weight: 700;
@@ -377,7 +354,6 @@ body.modal-open {
   padding-bottom: 0;
 }
 
-/* Artist Albums List */
 .artist-albums-list {
   list-style: none;
   padding: 0;
@@ -400,7 +376,6 @@ body.modal-open {
   min-width: 250px;
 }
 
-/* Album Title */
 .artist-albums-item h3 {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
@@ -423,7 +398,6 @@ body.modal-open {
   gap: 0;
 }
 
-/* Album Track Item: Main container for each track row */
 .album-track-item {
   height: 40px;
   display: flex;
@@ -447,7 +421,6 @@ body.modal-open {
   border-top: none;
 }
 
-/* Table header for tracks */
 .album-track-item.track-header {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 600;
@@ -462,7 +435,6 @@ body.modal-open {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* Track Info List: Flex container for track, time, and link within a row */
 .track-info-list {
   list-style: none;
   display: flex;
@@ -472,7 +444,6 @@ body.modal-open {
   width: 100%;
 }
 
-/* Track Info Item: Base style for all cells (Track, Time, Link) */
 .track-info-item {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
@@ -489,7 +460,6 @@ body.modal-open {
   align-items: center;
 }
 
-/* Specific styling for the 'Track' cell */
 .track-info-item:nth-child(1) {
   width: 97px;
   min-width: 97px;
@@ -499,7 +469,6 @@ body.modal-open {
   flex-grow: 1;
 }
 
-/* Specific styling for the 'Time' cell */
 .track-info-item.track-info-item-time {
   width: 74px;
   min-width: 74px;
@@ -508,7 +477,6 @@ body.modal-open {
   flex-shrink: 0;
 }
 
-/* Specific styling for the 'Link' cell */
 .track-info-item.track-info-item-link {
   width: 24px;
   min-width: 24px;
@@ -517,7 +485,6 @@ body.modal-open {
   flex-shrink: 0;
 }
 
-/* YouTube Button styling */
 .yt-button {
   border: none;
   padding: 0;
@@ -541,7 +508,6 @@ body.modal-open {
   opacity: 0.8;
 }
 
-/* YouTube Icon styling */
 .yt-button .yt-icon {
   color: currentColor;
   width: 24px;
@@ -553,8 +519,6 @@ body.modal-open {
   color: #555;
 }
 
-/* --- Media Queries --- */
-
 /* Tablets: 768px - 1439px */
 @media (min-width: 768px) {
   .modal-container {
@@ -562,7 +526,6 @@ body.modal-open {
     background-color: rgba(6, 3, 7, 1);
   }
 
-  /* Scrollbar aesthetics for modal-container */
   .modal-container::-webkit-scrollbar {
     width: 12px;
   }
@@ -612,13 +575,11 @@ body.modal-open {
     gap: 24px;
   }
 
-  /* Artist info list (Years Active, Sex, Members, Country) */
   .artist-info-list {
     grid-template-columns: 146px 484px;
     gap: 24px;
   }
 
-  /* Biography details (content block) */
   .artist-description-details {
     flex-direction: column;
     gap: 24px;
@@ -629,7 +590,6 @@ body.modal-open {
     max-height: 135px;
   }
 
-  /* Genres list */
   .genres-list {
     width: 317px;
     height: auto;
@@ -648,7 +608,6 @@ body.modal-open {
     text-align: left;
   }
 
-  /* Artist albums list (2 albums per row) */
   .artist-albums-list {
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
@@ -722,13 +681,11 @@ body.modal-open {
     gap: 32px;
   }
 
-  /* Artist info list (Years Active, Sex, Members, Country) */
   .artist-info-list {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px 32px;
   }
 
-  /* Biography details (content block) */
   .artist-description-details {
     flex-direction: column;
     gap: 32px;
@@ -738,7 +695,6 @@ body.modal-open {
     max-height: 180px;
   }
 
-  /* Genres list */
   .genres-list {
     width: auto;
     flex-wrap: wrap;
@@ -752,7 +708,6 @@ body.modal-open {
     margin-right: 0;
   }
 
-  /* Artist albums list (4 albums per row) */
   .artist-albums-list {
     grid-template-columns: repeat(4, 1fr);
     gap: 32px;
@@ -765,13 +720,12 @@ body.modal-open {
     min-width: unset;
   }
 
-  /* Track Item: Main container for each track row */
   .album-track-item {
     height: 32px;
     padding: 7px 4px 7px 12px;
   }
 
-  /* Table header for tracks */
+
   .album-track-item.track-header {
     height: 20px;
     padding: 4px 4px 4px 8px;
@@ -780,12 +734,10 @@ body.modal-open {
     letter-spacing: 0;
   }
 
-  /* Track Info List: Flex container for track, time, and link within a row */
   .track-info-list {
     gap: 0;
   }
 
-  /* Track Info Item: Base style for all cells (Track, Time, Link) */
   .track-info-item {
     font-size: 12px;
     line-height: 1.5;
@@ -794,20 +746,17 @@ body.modal-open {
     height: auto;
   }
 
-  /* Specific styling for the 'Track' cell */
   .track-info-item:nth-child(1) {
     width: 97px;
     min-width: 97px;
     flex-grow: 1;
   }
 
-  /* Specific styling for the 'Time' cell */
   .track-info-item.track-info-item-time {
     width: 102px;
     min-width: 102px;
   }
 
-  /* Specific styling for the 'Link' cell */
   .track-info-item.track-info-item-link {
     width: 35px;
     min-width: 35px;

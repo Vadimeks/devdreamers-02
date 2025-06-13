@@ -1,4 +1,4 @@
-/*======================ARTISTS-SECTION===================*/
+/*ARTISTS-SECTION*/
 
 .artists-section {
   padding: 64px 0;
@@ -41,6 +41,7 @@
 .artists-image {
   margin-bottom: 24px;
 }
+
 .artists-img {
   display: block;
   border-radius: 16px;
@@ -99,7 +100,7 @@
   height: 27px;
   background-color: #060307;
   padding: 0;
-  
+
 
   cursor: pointer;
   transition: color 0.3s ease;
@@ -156,10 +157,12 @@
   margin-left: 12px;
   fill: currentColor;
 }
+
 .btn-label svg {
   display: inline-block;
   vertical-align: middle;
 }
+
 #global-loader {
   position: fixed;
   inset: 0;
@@ -244,18 +247,22 @@
   display: none !important;
 
 }
+
 @media screen and (min-width: 768px) {
   .artists {
     gap: 32px;
     margin-bottom: 64px;
   }
+
   .artists-img {
     width: 704px;
   }
+
   .artist-card {
     width: 704px;
     min-width: 450px;
   }
+
   .btn {
     width: 340px;
   }
@@ -270,9 +277,11 @@
   .artists-img {
     width: 640px;
   }
+
   .artist-genres {
     margin-bottom: 20px;
   }
+
   .artist-card {
     width: 640px;
     min-width: 450px;
@@ -283,8 +292,8 @@
     margin-bottom: 80px;
     width: 523px;
   }
+
   .btn {
     width: 170px;
   }
 }
-

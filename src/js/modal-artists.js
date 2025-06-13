@@ -1,3 +1,4 @@
+// modal artists
 import { fetchArtistDetails } from './apiService.js';
 
 const artistModal = document.getElementById('artistModal');
