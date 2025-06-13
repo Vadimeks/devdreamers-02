@@ -6,4 +6,4 @@ ArtistsHub is a dynamic web platform created to help users discover music and ex
 ⚙️Tech Stack Front-end: HTML, CSS, JavaScript, Swiper, Css-star-rating, Axios, Pagination Tools: VSCode, Trello, Figma, Git/GitHub
 
 👥Team DevDreamers Team Lead+Developer: Vadzim Simanau Scrum Master+Developer: Anastasiia Lahotska
-Developers: Beniamin Mishkur, Elena Polyakova, Yelizaveta Lohvynovska, Ushakov Oleksii, Oleksiy Baranivskiy, Maliarchuk Yuliia, Nataliia Fedorchuk
+Developers: Beniamin Mishkur, Olena Poliakova, Yelizaveta Lohvynovska, Ushakov Oleksii, Oleksiy Baranivskiy, Maliarchuk Yuliia, Nataliia Fedorchuk
