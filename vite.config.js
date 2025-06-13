@@ -36,6 +36,10 @@ export default defineConfig(({ command }) => {
           },
         },
       },
+      // --- ДАДАДЗЕНА/ЗМЕНЕНА:
+      outDir: '../dist', // <-- Гэта канфігурацыя для тэчкі вываду
+      emptyOutDir: true, // <-- І гэта таксама важна, каб ачышчаць яе перад зборкай
+      // ---
     },
     plugins: [
       injectHTML(),
