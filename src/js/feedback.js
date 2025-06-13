@@ -1,5 +1,20 @@
-import Swiper from 'swiper/bundle';
-import 'swiper/css/bundle';
+// Замест:
+// import Swiper from 'swiper/bundle';
+// import 'swiper/css/bundle';
+
+// ЗМЯНІЦЕ НА:
+
+// 1. Імпартуем само ядро Swiper
+import Swiper from 'swiper';
+
+// 2. Імпартуем канкрэтныя модулі, якія вам патрэбны
+// Згодна з вашым кодам, гэта Navigation і Pagination
+import { Navigation, Pagination } from 'swiper/modules';
+
+// 3. Імпартуем мінімальныя CSS-стылі
+import 'swiper/css'; // Базавыя стылі Swiper
+import 'swiper/css/navigation'; // Стылі для навігацыйных стрэлак
+import 'swiper/css/pagination'; // Стылі для пагінацыі
 
 import { fetchFeedbacks } from './apiService';
 
@@ -60,6 +75,9 @@ function renderStars(count) {
 
 function initSwiper() {
   const swiper = new Swiper('.feedback-swiper', {
+    // ДАДАЙЦЕ ГЭТУЮ ОПЦЫЮ:
+    modules: [Navigation, Pagination], // Тут пералічваем усе патрэбныя модулі
+
     loop: false,
 
     navigation: {
