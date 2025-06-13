@@ -1,26 +1,9 @@
-// Замест:
-// import Swiper from 'swiper/bundle';
-// import 'swiper/css/bundle';
-
-// ЗМЯНІЦЕ НА:
-
-// 1. Імпартуем само ядро Swiper
-import Swiper from 'swiper';
-
-// 2. Імпартуем канкрэтныя модулі, якія вам патрэбны
-// Згодна з вашым кодам, гэта Navigation і Pagination
-import { Navigation, Pagination } from 'swiper/modules';
-
-// 3. Імпартуем мінімальныя CSS-стылі
-import 'swiper/css'; // Базавыя стылі Swiper
-import 'swiper/css/navigation'; // Стылі для навігацыйных стрэлак
-import 'swiper/css/pagination'; // Стылі для пагінацыі
+import Swiper from 'swiper/bundle';
+import 'swiper/css/bundle';
 
 import { fetchFeedbacks } from './apiService';
 
-// Функцыі для адкрыцця/закрыцця мадальнага акна
-// Імпартуем іх з асобнага файла modal-feedback.js
-import { openFeedbackModal } from './modal-feedback'; // Мяркуецца, што openFeedbackModal будзе экспартавана з modal-feedback.js
+import { openFeedbackModal } from './modal-feedback';
 
 const swiperWrapper = document.querySelector('.swiper-wrapper');
 const leaveFeedbackButton = document.querySelector('.leave-feedback-button');
@@ -75,9 +58,6 @@ function renderStars(count) {
 
 function initSwiper() {
   const swiper = new Swiper('.feedback-swiper', {
-    // ДАДАЙЦЕ ГЭТУЮ ОПЦЫЮ:
-    modules: [Navigation, Pagination], // Тут пералічваем усе патрэбныя модулі
-
     loop: false,
 
     navigation: {

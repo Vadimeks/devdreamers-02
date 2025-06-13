@@ -252,8 +252,6 @@ body.modal-open {
   }
 }
 
-/* --- Media Queries для мадальнага акна --- */
-
 /* Mobile (max-width: 767px) */
 @media screen and (max-width: 767px) {
   .modal-overlay {

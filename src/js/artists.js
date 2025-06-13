@@ -1,12 +1,10 @@
 import { fetchArtists as fetchArtistsFromApi } from './apiService.js';
 import { openArtistModal } from './modal-artists.js';
 
-// DOM Element Caching
 const artistsList = document.getElementById('artists-list');
 const loadMoreBtn = document.getElementById('load-more');
 const globalLoader = document.getElementById('global-loader');
 
-// State Variables
 let currentPage = 1;
 const limit = 8;
 let buffer = [];
@@ -55,9 +53,6 @@ async function fetchArtists(page = 1) {
   }
 }
 
-/**
- * Renders artist cards from the buffer into the DOM.
- */
 function renderFromBuffer() {
   const itemsToShow = buffer.splice(0, limit);
   const fragment = document.createDocumentFragment();
@@ -105,9 +100,6 @@ function renderFromBuffer() {
   addLearnMoreButtonListeners();
 }
 
-/**
- * Handles clicks on the "Load More" button.
- */
 loadMoreBtn.addEventListener('click', () => {
   loadMoreBtn.blur();
   if (buffer.length >= limit) {
@@ -118,9 +110,6 @@ loadMoreBtn.addEventListener('click', () => {
   }
 });
 
-/**
- * Shows the global loader.
- */
 function showGlobalLoader() {
   if (globalLoader) {
     globalLoader.classList.add('is-active');
@@ -128,9 +117,6 @@ function showGlobalLoader() {
   }
 }
 
-/**
- * Hides the global loader.
- */
 function hideGlobalLoader() {
   if (globalLoader) {
     globalLoader.classList.remove('is-active');
@@ -138,9 +124,6 @@ function hideGlobalLoader() {
   }
 }
 
-/**
- * Attaches click handlers to all "Learn More" buttons that don't already have a listener.
- */
 function addLearnMoreButtonListeners() {
   const learnMoreBtns = document.querySelectorAll('.js-learn-more-btn');
   learnMoreBtns.forEach(button => {
@@ -169,7 +152,6 @@ async function onLearnMoreBtnClick(event) {
   }
 }
 
-// Initial Load
 document.addEventListener('DOMContentLoaded', () => {
   fetchArtists(currentPage);
 });
