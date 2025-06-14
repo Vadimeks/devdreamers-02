@@ -1,8 +1,11 @@
-import Swiper from 'swiper/bundle';
-import 'swiper/css/bundle';
+import Swiper from 'swiper';
+import { Navigation, Pagination } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 import { fetchFeedbacks } from './apiService';
-
 import { openFeedbackModal } from './modal-feedback';
 
 const swiperWrapper = document.querySelector('.swiper-wrapper');
@@ -59,6 +62,7 @@ function renderStars(count) {
 function initSwiper() {
   const swiper = new Swiper('.feedback-swiper', {
     loop: false,
+    modules: [Navigation, Pagination], // Дададзена: уключаем толькі патрэбныя модулі
 
     navigation: {
       nextEl: '.feedback-button-next',
@@ -124,7 +128,6 @@ function initSwiper() {
   }
 }
 
-// Слухач падзей для кнопкі "Leave feedback"
 document.addEventListener('DOMContentLoaded', () => {
   if (leaveFeedbackButton) {
     leaveFeedbackButton.addEventListener('click', openFeedbackModal);
