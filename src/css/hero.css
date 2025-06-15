@@ -7,7 +7,6 @@
     padding: 64px 0 0 0;
 }
 
-
 .hero-section::before,
 .hero-section::after {
     content: '';
@@ -45,7 +44,6 @@
     letter-spacing: -0.01em;
     color: #fff;
     text-transform: capitalize;
-
 }
 
 .hero-text {
@@ -77,34 +75,25 @@
     font-size: 18px;
     line-height: 1.5;
     color: #fff;
-
 }
 
 .hero-btn-icon {
     fill: white;
 }
 
+/* Стылі для кантейнера Hero-малюнка */
 .hero-img-wrapper {
     height: 385px;
     width: 100%;
-    background-image: url(../img/hero/img-hero-mobile.webp);
-    background-position: center;
+    /* НІЯКІХ background-image тут. Яны будуць усталёўвацца JavaScript. */
+    /* Пакідаем асноўныя background-уласцівасці, якія JS будзе дапаўняць */
     background-repeat: no-repeat;
-    background-position-y: bottom;
     background-size: cover;
-}
-
-@media screen and (min-width: 320px) and (min-resolution: 192dpi),
-screen and (min-width: 320px) and (min-resolution: 2dppx) {
-    .hero-img-wrapper {
-        background-image: url(../img/hero/img-hero-mobile@2x.webp);
-
-
-    }
+    background-position: center bottom;
+    /* Дэфолт для мабільных */
 }
 
 /* tablet */
-
 @media only screen and (min-width: 768px) {
     .hero-title {
         margin: 0 0 24px 0;
@@ -124,7 +113,7 @@ screen and (min-width: 320px) and (min-resolution: 2dppx) {
 
     .hero-img-wrapper {
         height: 632px;
-        background-image: url(../img/hero/img-hero-tablet.webp);
+        /* background-image, position, size - усё гэта будзе ў JS */
     }
 
     .hero-section {
@@ -132,15 +121,8 @@ screen and (min-width: 320px) and (min-resolution: 2dppx) {
     }
 }
 
-@media screen and (min-width: 768px) and (min-resolution: 192dpi),
-screen and (min-width: 768px) and (min-resolution: 2dppx) {
-    .hero-img-wrapper {
-        background-image: url(../img/hero/img-hero-tablet@2x.webp);
-    }
-}
 
 /* desktop */
-
 @media only screen and (min-width: 1440px) {
     .hero-container {
         align-items: center;
@@ -153,8 +135,9 @@ screen and (min-width: 768px) and (min-resolution: 2dppx) {
     .hero-img-wrapper {
         flex: 1;
         height: 900px;
-        background-image: url(../img/hero/img-hero-desktop.webp);
+        /* background-image, position, size - усё гэта будзе ў JS */
         background-position: center right;
+        /* Для дэсктопа, JS усталюе URL */
     }
 
     .hero-block-wrapper {
@@ -179,12 +162,5 @@ screen and (min-width: 768px) and (min-resolution: 2dppx) {
 
     .hero-btn-icon {
         height: 20px;
-    }
-}
-
-@media screen and (min-width: 1440px) and (min-resolution: 192dpi),
-screen and (min-width: 1440px) and (min-resolution: 2dppx) {
-    .hero-img-wrapper {
-        background-image: url(../img/hero/img-hero-desktop@2x.webp);
     }
 }
