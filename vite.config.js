@@ -3,6 +3,7 @@ import { glob } from 'glob';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import SortCss from 'postcss-sort-media-queries';
+import { purgeCSSPlugin } from '@fullhuman/postcss-purgecss';
 
 export default defineConfig(({ command }) => {
   return {
@@ -35,16 +36,36 @@ export default defineConfig(({ command }) => {
           },
         },
       },
-
       outDir: '../dist',
       emptyOutDir: true,
     },
-    plugins: [
-      injectHTML(),
-      FullReload(['./src/**/**.html']),
-      SortCss({
-        sort: 'mobile-first',
-      }),
-    ],
+    plugins: [injectHTML(), FullReload(['./src/**/**.html'])],
+    css: {
+      postcss: {
+        plugins: [
+          SortCss({
+            sort: 'mobile-first',
+          }),
+          purgeCSSPlugin({
+            // <-- Use purgeCSSPlugin here
+            content: ['./index.html', './src/**/*.html', './src/**/*.js'],
+            safelist: [
+              'swiper-initialized',
+              'swiper-slide-active',
+              'swiper-slide-next',
+              'swiper-slide-prev',
+              'swiper-pagination-bullet',
+              'swiper-pagination-bullet-active',
+              'swiper-button-disabled',
+              'swiper-wrapper',
+              'swiper-container',
+              'is-open',
+              'is-active',
+              'is-hidden',
+            ],
+          }),
+        ],
+      },
+    },
   };
 });
