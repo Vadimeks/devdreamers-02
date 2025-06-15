@@ -1,4 +1,4 @@
-// import 'normalize.css';
+import 'normalize.css';
 // import '/js/header.js';
 // import '/js/hero.js';
 import '/js/mobile-menu.js';
