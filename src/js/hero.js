@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const allArtistCards = Array.from(
     document.querySelectorAll('.hero-artist-card')
-  );
-
-  let currentOrder = allArtistCards.sort((a, b) => {
+  ).sort((a, b) => {
     return parseInt(a.dataset.artistIndex) - parseInt(b.dataset.artistIndex);
   });
+
+  let currentOrder = [...allArtistCards];
 
   const rotateArtists = () => {
     const firstPositions = new Map();
@@ -66,10 +66,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  const animationInterval = setInterval(rotateArtists, 3000);
+  let animationIntervalId;
+
+  const startAnimation = (initialDelay = 1000, subsequentDelay = 3000) => {
+    clearInterval(animationIntervalId);
+
+    setTimeout(() => {
+      rotateArtists();
+      animationIntervalId = setInterval(rotateArtists, subsequentDelay);
+    }, initialDelay);
+  };
+
+  startAnimation();
 
   const exploreBtn = document.querySelector('.explore-btn');
-  const artistsSection = document.getElementById('artists-section');
+  // Зменена artists-section на artist-section
+  const artistsSection = document.getElementById('artist-section');
 
   if (exploreBtn && artistsSection) {
     exploreBtn.addEventListener('click', event => {
