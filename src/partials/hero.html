@@ -1,19 +1,137 @@
-<!-- Section Hero -->
 <section class="hero-section">
     <div class="container hero-container">
-        <div class="hero-block-wrapper">
-            <h1 class="hero-title">Discover your next favorite artist today</h1>
-            <p class="hero-text">Dive into a world of music discoveries with ArtistsHub – your personal guide to the
-                boundless
-                universe of sound.
-                Explore, filter, and learn about your favorite artists all in one place.</p>
-            <a href="#artists-list" class="hero-btn">
-                <span class="hero-btn-text">Explore Artists</span>
-                <svg class="hero-btn-icon" width="15" height="21">
+        <div class="hero-first-block">
+            <div class="hero-descr">
+                <h1 class="main-title">Discover Your Next Favorite Artist Today</h1>
+                <p class="hero-text">Dive into a world of music discoveries with ArtistsHub – your personal guide to the
+                    boundless universe of sound.
+                    Explore, filter, and learn about your favorite artists all in one place.</p>
+            </div>
+
+            <button class="explore-btn" type="button">Explore Artists <svg class="explore-btn-icon" width="15"
+                    height="20">
                     <use href="/img/sprite.svg#icon-hero-btn"></use>
-                </svg>
-            </a>
+                </svg></button>
         </div>
-        <div class="hero-img-wrapper"></div>
+        <div class="hero-second-block">
+            <div class="hero-column-one">
+                <div class="hero-artist-card" data-artist-index="0">
+                    <picture>
+                        <source media="(max-width: 767px)" srcset="
+                                                    ./img/hero-gallery/1-mob.webp 1x,
+                                                    ./img/hero-gallery/1-mob@2x.webp 2x">
+
+                        <source media="(min-width: 768px) and (max-width: 1439px)" srcset="
+                                                ./img/hero-gallery/1-tab.webp 1x,
+                                                ./img/hero-gallery/1-tab@2x.webp 2x">
+
+                        <source media="(min-width: 1440px)" srcset="
+                                                ./img/hero-gallery/1-desc.webp 1x,
+                                                ./img/hero-gallery/1-desc@2x.webp 2x">
+
+                        <img class="hero-artist-img" src="./img/hero-gallery/1-mob.webp" alt="Artist photo" width="280"
+                            height="169" loading="lazy">
+                    </picture>
+                </div>
+                <div class="hero-artist-card" data-artist-index="2">
+                    <picture>
+                        <source media="(max-width: 767px)" srcset="
+                            ./img/hero-gallery/3-mob.webp 1x,
+                            ./img/hero-gallery/3-mob@2x.webp 2x">
+
+                        <source media="(min-width: 768px) and (max-width: 1439px)" srcset="
+                        ./img/hero-gallery/3-tab.webp 1x,
+                        ./img/hero-gallery/3-tab@2x.webp 2x">
+
+                        <source media="(min-width: 1440px)" srcset="
+                        ./img/hero-gallery/3-desc.webp 1x,
+                        ./img/hero-gallery/3-desc@2x.webp 2x">
+
+                        <img class="hero-artist-img" src="./img/hero-gallery/3-mob.webp" alt="Artist photo" width="280"
+                            height="169" loading="lazy">
+                    </picture>
+                </div>
+                <div class="hero-artist-card" data-artist-index="4">
+                    <picture>
+                        <source media="(max-width: 767px)" srcset="
+                                                    ./img/hero-gallery/5-mob.webp 1x,
+                                                    ./img/hero-gallery/5-mob@2x.webp 2x">
+
+                        <source media="(min-width: 768px) and (max-width: 1439px)" srcset="
+                                                ./img/hero-gallery/5-tab.webp 1x,
+                                                ./img/hero-gallery/5-tab@2x.webp 2x">
+
+                        <source media="(min-width: 1440px)" srcset="
+                                                ./img/hero-gallery/5-desc.webp 1x,
+                                                ./img/hero-gallery/5-desc@2x.webp 2x">
+
+                        <img class="hero-artist-img" src="./img/hero-gallery/5-mob.webp" alt="Artist photo" width="280"
+                            height="169" loading="lazy">
+                    </picture>
+                </div>
+            </div>
+            <div class="hero-column-two">
+                <div class="hero-artist-card" data-artist-index="1">
+                    <picture>
+                        <source media="(max-width: 767px)" srcset="
+                                                                        ./img/hero-gallery/2-mob.webp 1x,
+                                                                        ./img/hero-gallery/2-mob@2x.webp 2x">
+
+                        <source media="(min-width: 768px) and (max-width: 1439px)" srcset="
+                                                                    ./img/hero-gallery/2-tab.webp 1x,
+                                                                    ./img/hero-gallery/2-tab@2x.webp 2x">
+
+                        <source media="(min-width: 1440px)" srcset="
+                                                                    ./img/hero-gallery/2-desc.webp 1x,
+                                                                    ./img/hero-gallery/2-desc@2x.webp 2x">
+
+                        <img class="hero-artist-img" src="./img/hero-gallery/2-mob.webp" alt="Artist photo" width="280"
+                            height="169" loading="lazy">
+                    </picture>
+                </div>
+                <div class="hero-artist-card" data-artist-index="3">
+                    <picture>
+                        <source media="(max-width: 767px)"
+                            srcset="
+                                                                                            ./img/hero-gallery/4-mob.webp 1x,
+                                                                                            ./img/hero-gallery/4-mob@2x.webp 2x">
+
+                        <source media="(min-width: 768px) and (max-width: 1439px)"
+                            srcset="
+                                                                                        ./img/hero-gallery/4-tab.webp 1x,
+                                                                                        ./img/hero-gallery/4-tab@2x.webp 2x">
+
+                        <source media="(min-width: 1440px)"
+                            srcset="
+                                                                                        ./img/hero-gallery/4-desc.webp 1x,
+                                                                                        ./img/hero-gallery/4-desc@2x.webp 2x">
+
+                        <img class="hero-artist-img" src="./img/hero-gallery/4-mob.webp" alt="Artist photo" width="280"
+                            height="169" loading="lazy">
+                    </picture>
+                </div>
+                <div class="hero-artist-card" data-artist-index="5">
+                    <picture>
+                        <source media="(max-width: 767px)"
+                            srcset="
+                                                                                            ./img/hero-gallery/6-mob.webp 1x,
+                                                                                            ./img/hero-gallery/6-mob@2x.webp 2x">
+
+                        <source media="(min-width: 768px) and (max-width: 1439px)"
+                            srcset="
+                                                                                        ./img/hero-gallery/6-tab.webp 1x,
+                                                                                        ./img/hero-gallery/6-tab@2x.webp 2x">
+
+                        <source media="(min-width: 1440px)"
+                            srcset="
+                                                                                        ./img/hero-gallery/6-desc.webp 1x,
+                                                                                        ./img/hero-gallery/6-desc@2x.webp 2x">
+
+                        <img class="hero-artist-img" src="./img/hero-gallery/6-mob.webp" alt="Artist photo" width="280"
+                            height="169" loading="lazy">
+                    </picture>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

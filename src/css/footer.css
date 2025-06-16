@@ -28,7 +28,7 @@
 }
 
 .link-list-item:hover {
-  color: lightslategray;
+  color: #764191;
   transition: color 0.4s ease;
 }
 
