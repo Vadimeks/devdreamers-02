@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       card.offsetWidth;
 
-      card.style.transition = 'transform 0.5s ease-in-out';
+      card.style.transition = 'transform 2s ease-in-out';
       card.style.transform = 'translate(0, 0)';
     });
   };
@@ -80,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
   startAnimation();
 
   const exploreBtn = document.querySelector('.explore-btn');
-  // Зменена artists-section на artist-section
   const artistsSection = document.getElementById('artist-section');
 
   if (exploreBtn && artistsSection) {
